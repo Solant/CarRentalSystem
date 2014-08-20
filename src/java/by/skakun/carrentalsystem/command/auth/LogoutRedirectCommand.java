@@ -1,0 +1,25 @@
+package by.skakun.carrentalsystem.command.auth;
+
+import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.manager.ConfigurationManager;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.log4j.Logger;
+
+/**
+ *
+ * @author Skakun
+ * getting user to logout.jsp
+ */
+public class LogoutRedirectCommand implements ActionCommand {
+
+    private static final Logger LOG = Logger.getLogger(LogoutRedirectCommand.class);
+
+    @Override
+    public String execute(HttpServletRequest request) {
+        String page = ConfigurationManager.getProperty("path.page.logout");
+        LOG.info ("->logout.jsp");
+        return page;
+
+    }
+
+}

@@ -1,0 +1,420 @@
+@charset "utf-8";
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+* html .page-wrapper {
+    height: 100%;
+}
+.page-buffer {
+    padding-bottom: 80px;
+    height:auto;
+    min-height:100%;
+}
+
+body{
+    width: 100%;
+    background-image: url('../img/bg.jpg');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-color: #2c3338;
+    color: #606468;
+    font: 87.5%/1.5em 'Open Sans', sans-serif;
+    margin: 0;
+
+
+}
+.header {
+    width:100%;
+    height: 80px;
+    padding-top: 20px;
+    margin-left: 0;
+}
+
+
+.footer {
+    text-align: right;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    position: inherit;
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    color: white;
+
+}
+
+
+h4 {
+    color: red;
+    margin-top: 10px;
+    margin-bottom: -10px;
+
+}
+
+.title {
+    color: white;
+    margin-left: 20px;
+    margin-top: 40px;
+    font-family: Georgia;
+    font-size: 38px;
+    font-weight: bold;
+
+}
+
+#menu {
+    float:left;
+}
+
+h1 { margin: 0; }
+
+a {
+    color: #999;
+    text-decoration: none;
+}
+
+a:hover { color: #1dabb8; }
+
+input {
+  border: none;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  padding: 0;
+  -webkit-appearance: none;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+after { clear: both; }
+
+#login {
+  margin: 0;
+  width: 320px;
+  margin-top:70px;
+  left:0px;
+  
+}
+
+#login form {
+  margin-left: 0;
+  padding: 22px 22px 22px 22px;
+  width: 100%;
+  border-radius: 5px;
+  background: #282e33;
+  border-top: 3px solid #434a52;
+  border-bottom: 3px solid #434a52;
+}
+
+#login form span {
+  background-color: #363b41;
+  border-radius: 3px 0px 0px 3px;
+  border-right: 3px solid #434a52;
+  color: #606468;
+ // display: block;
+  float: left;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+  height: 30px;
+}
+
+#login form input[type="text"] {
+  background-color: #3b4148;
+  border-radius: 0px 3px 3px 0px;
+  color: #a9a9a9;
+  margin-bottom: 1em;
+  padding: 0 16px;
+  width: 235px;
+  height: 30px;
+}
+
+#login form input[type="password"] {
+  background-color: #3b4148;
+  border-radius: 0px 3px 3px 0px;
+  color: #a9a9a9;
+  margin-bottom: 1em;
+  padding: 0 16px;
+  width: 235px;
+  height: 30px;
+}
+
+#login form input[type="submit"] {
+  background: #b5cd60;
+  border: 0;
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+#login form input[type="submit"]:hover {
+  background: black;
+}
+
+#login form.lang input[type="submit"] {
+  background: #b5cd60;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+ #login form.lang input[type="submit"]:hover {
+  background: black;
+ }
+.title {
+    color: white;
+    margin-left: 20px;
+    font-family: Georgia;
+    font-size: 38px;
+    font-weight: bold;
+
+}
+#login form.menu input[type="submit"] {
+  background: #b5cd60;
+  border: 0;
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+#login form.menu input[type="submit"]:hover {
+  background: black;
+}
+
+#login form.menu {
+  
+  margin-left: 0;
+  padding: 2px 2px 2px 2px;
+  width: 100%;
+  border-radius: 5px;
+  background: #282e33;
+  border-top: 3px solid #434a52;
+  border-bottom: 3px solid #434a52;
+}
+
+#page-content {
+    margin-left: 400px;
+    margin-top: 100px;
+    width: 500px;
+    height:auto;
+    min-height: 270px;
+    
+}
+
+.cartable table tr {
+   border-bottom-width: 2px;
+   border-bottom-color: white;
+   padding-bottom: 20px;
+   border-bottom-style: dotted;
+}
+
+.cartable {
+    color:white;
+    margin-top: 10px;
+    
+}
+
+#login form.order input[type="submit"] {
+  background: #b5cd60;
+  border: 0;
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+#login form.order input[type="submit"]:hover {
+  background: black;
+}
+
+#login form.order {
+  
+  margin-left: 0;
+  padding: 2px 2px 2px 2px;
+  width: 100%;
+  border-radius: 5px;
+  background: #282e33;
+  border-top: 3px solid #434a52;
+  border-bottom: 3px solid #434a52;
+}
+
+#usertable
+{
+margin-top: 20px;
+font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+width:500px;
+color:black;
+background-color: white;
+border-collapse:collapse;
+}
+
+#usertable td.heading 
+{
+font-size:1em;
+background-color: #A7C942;
+border:1px solid black;
+padding:3px 7px 2px 7px;
+}
+#usertable td, #usertable th 
+{
+font-size:1em;
+border:1px solid #98bf21;
+padding:3px 7px 2px 7px;
+}
+#usertable th 
+{
+font-size:1.1em;
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#A7C942;
+color:#ffffff;
+}
+
+
+.container {
+	max-width:400px;
+	width:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+#contact input[type="text"], #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea, #contact button[type="submit"] { font:400 12px/16px "Open Sans", Helvetica, Arial, sans-serif; }
+
+#contact {
+	background:#F9F9F9;
+	padding:25px;
+	margin:50px 0;
+}
+
+#contact h3 {
+	color: #F96;
+	display: block;
+	font-size: 30px;
+	font-weight: 400;
+}
+
+#contact h4 {
+	margin:5px 0 15px;
+	display:block;
+	font-size:13px;
+}
+
+fieldset {
+	border: medium none !important;
+	margin: 0 0 10px;
+	min-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+#contact input[type="text"], #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea {
+	width:100%;
+	border:1px solid #CCC;
+	background:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+}
+
+#contact input[type="text"]:hover, #contact input[type="email"]:hover, #contact input[type="tel"]:hover, #contact input[type="url"]:hover, #contact textarea:hover {
+	-webkit-transition:border-color 0.3s ease-in-out;
+	-moz-transition:border-color 0.3s ease-in-out;
+	transition:border-color 0.3s ease-in-out;
+	border:1px solid #AAA;
+}
+
+#contact textarea {
+	height:100px;
+	max-width:100%;
+  resize:none;
+}
+
+#contact button[type="submit"] {
+	cursor:pointer;
+	width:100%;
+	border:none;
+	background:#0CF;
+	color:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+	font-size:15px;
+}
+
+#contact button[type="submit"]:hover {
+	background:#09C;
+	-webkit-transition:background 0.3s ease-in-out;
+	-moz-transition:background 0.3s ease-in-out;
+	transition:background-color 0.3s ease-in-out;
+}
+
+#contact button[type="submit"]:active { box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.5); }
+
+#contact input:focus, #contact textarea:focus {
+	outline:0;
+	border:1px solid #999;
+}
+::-webkit-input-placeholder {
+ color:#888;
+}
+:-moz-placeholder {
+ color:#888;
+}
+::-moz-placeholder {
+ color:#888;
+}
+:-ms-input-placeholder {
+ color:#888;
+}
+
+#welcome_msg {
+    color:white;
+    margin-top: -20px;
+    min-height: 300px;
+    height:auto;
+    padding-bottom: 40px;
+    width:500px;
+}
+#welcome_msg h2{
+    margin-bottom: -50px;
+    padding-bottom: 0px;
+}
+
+#adminT {
+    color:white;
+    margin-top: -20px;
+    font-size: 32px;
+    font-family: Georgia;
+}
+
+form input[type="submit"] {
+    margin-top: 5px;
+    background-color: #2c3338;
+    border-bottom:1px solid white;
+      
+      color:white;
+}
+form input[type="submit"]:hover {
+    color: #A7C942;
+     border-bottom:1px solid #A7C942;
+}
+h7 {
+    color:red;
+    font-weight: 700;
+}
