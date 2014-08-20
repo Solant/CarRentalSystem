@@ -4,7 +4,6 @@ import by.skakun.carrentalsystem.exception.ClientException;
 import java.util.Objects;
 import org.apache.log4j.Logger;
 
-
 public class Client extends Entity {
 
     private static final Logger LOG = Logger.getLogger(Client.class);
@@ -16,6 +15,8 @@ public class Client extends Entity {
     private String passNum;
     private String email;
     private ClientType type;
+    private int active;
+    private int credit;
 
     public Client() {
         super();
@@ -35,7 +36,7 @@ public class Client extends Entity {
         }
     }
 
-    public Client(String login, String password, String name, String surname, String passNum, String type, String email) {
+    public Client(String login, String password, String name, String surname, String passNum, String type, String email, int active, int credit) {
         super();
         try {
             setLogin(login);
@@ -45,8 +46,34 @@ public class Client extends Entity {
             setPassNum(passNum);
             setEmail(email);
             setType(type);
+            setActive(active);
+            setCredit(credit);
         } catch (ClientException ex) {
             LOG.info("ClientException while creating Client:" + ex);
+        }
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        if(credit>=0){
+            this.credit = credit;
+        } else {
+            credit = 0;
+        }
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        if (active == 1) {
+            this.active = active;
+        } else {
+            this.active = 0;
         }
     }
 
@@ -193,7 +220,7 @@ public class Client extends Entity {
     public String toString() {
         return super.toString() + "Client{" + "login=" + login + ", password=" + password + ","
                 + " name=" + name + ", surname=" + surname + ", passport number="
-                + passNum + ", e-mail="+ email + ", type=" + type + '}';
+                + passNum + ", e-mail=" + email + ", type=" + type + '}';
     }
 
 }

@@ -11,7 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message key="header.title"/></title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
-
     </head>
     <body>
         <div class="header"> 
@@ -24,7 +23,8 @@
                 <input type="hidden" name="command" value="Register" />
                 <div class="titling"><fmt:message key="register.name"/>: <h7>*</h7></div>
                 <div class="warning"> <fmt:message key="register.warn.login"/> </div>
-                <input type="text" name="login"  pattern="^[a-z0-9_-]{3,16}$"  value="" autofocus required> <!--required-->
+                <input type="text" name="login"  pattern="^[a-z0-9_-]{3,16}$"  value="" autofocus required>
+                <c:if test="${not empty errorLogin}"><div class="alert"><fmt:message key="error.double.login"/></div></c:if>
                 <div class="titling"> <fmt:message key="register.passoword" />: <h7>*</h7></div>
                 <div class="warning"> <fmt:message key="register.warn.pass"/> </div>
                 <input type="password" name="password" pattern="^[a-z0-9_-]{6,16}$" value="" autofocus required id='pas1'>

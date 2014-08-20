@@ -25,12 +25,12 @@ public class ClientDaoImpl implements ClientDao {
     private ConnectionPool pool;
     private static final Logger LOG = Logger.getLogger(ClientDaoImpl.class);
     private static final String ADD_NEW_USER = "INSERT INTO CLIENT(USERNAME, "
-            + "PASS, SURNAME,NAME, PASSPORT_NUMBER, CLIENT_TYPE, EMAIL) "
-            + "VALUES(?, ?, ?, ?, ?, ?, ?)";
-    private static final String SELECT_USER_BY_ID = "SELECT * FROM CLIENT WHERE ID = ?;";
-    private static final String UPDATE_USER = "UPDATE USER SET LOGIN =?, PASSWORD=?,"
+            + "PASS, SURNAME,NAME, PASSPORT_NUMBER, CLIENT_TYPE, EMAIL, ACTIVE, CREDIT) "
+            + "VALUES(?, ?, ?, ?, ?, ?, ?, 1, 1000)";
+    private static final String SELECT_USER_BY_ID = "SELECT * FROM CLIENT WHERE USER_ID = ?;";
+    private static final String UPDATE_USER = "UPDATE CLIENT SET USERNAME =?, PASSWORD=?,"
             + " NAME=?, SURNAME=?, PASSPORT_NUMBER=? WHERE ID = ?;";
-    private static final String CHECK_LOGIN = "SELECT * FROM User where login= ?;";
+    private static final String CHECK_LOGIN = "SELECT * FROM CLIENT WHERE USERNAME= ?;";
     private static final String GET_ALL_USERS = "SELECT * FROM CLIENT;";
     private static final String DELETE_USER = "DELETE FROM CLIENT WHERE CLIENT.`user_id`=?;";
     private static final String CHANGE_PASSWORD = "UPDATE `client` SET client.`pass`=? "
@@ -38,7 +38,7 @@ public class ClientDaoImpl implements ClientDao {
 
     /**
      *
-     * @param connection from ConnectionPool
+     * 
      */
     public ClientDaoImpl() throws DAOException {
         this.pool = ConnectionPool.getInstance();
@@ -64,7 +64,6 @@ public class ClientDaoImpl implements ClientDao {
             String email = user.getEmail();
 
             stm = connection.prepareStatement(ADD_NEW_USER);
-
             stm.setString(1, login);
             stm.setString(2, password);
             stm.setString(3, surname);
@@ -162,9 +161,10 @@ public class ClientDaoImpl implements ClientDao {
         try {
             stm = connection.prepareStatement(CHECK_LOGIN);
             stm.setString(1, login);
+            LOG.info(stm);
             rs = stm.executeQuery();
             while (rs.next()) {
-                return false;
+                return true;
             }
         } catch (SQLException ex) {
             throw new DAOException("DAOException while UserDaoImpl.checkLogin", ex);
@@ -172,7 +172,7 @@ public class ClientDaoImpl implements ClientDao {
             closePS(stm);
             pool.returnConnection(connection);
         }
-        return true;
+        return false;
     }
 
     /**
@@ -200,6 +200,8 @@ public class ClientDaoImpl implements ClientDao {
                 user.setPassword(rs.getString("pass"));
                 user.setType(rs.getString("client_type"));
                 user.setId(rs.getInt("user_id"));
+                user.setActive(rs.getInt("active"));
+                user.setCredit(rs.getInt("credit"));
                 list.add(user);
             }
             return list;
@@ -266,7 +268,6 @@ public class ClientDaoImpl implements ClientDao {
             rs.next();
             String password = rs.getString("pass");
             if (password.equals(pass)) {
-
                 stm = connection.prepareStatement(CHANGE_PASSWORD);
                 stm.setString(1, newPass);
                 stm.setInt(2, id);

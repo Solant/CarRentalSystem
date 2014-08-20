@@ -20,13 +20,17 @@
                     <c:import url="..\common\menu.jsp" charEncoding="utf-8"/> 
                 </div>
                 <div id="page-content">  
+                                        
+
                     <h2><fmt:message key="user.order.topay"/></h2>
                     <c:if test="${not empty success}"><div class="msg"><fmt:message key="pay.success"/></div></c:if>
                     <c:if test="${not empty fail}"><div class="msg"><fmt:message key="pay.fail"/></div></c:if>
                         <hr/>   
                     <c:forEach var="elem" items="${lst}" varStatus="status">
                         <form name ="ApplicationPay"  method="POST" action="carrent">
-                            <input type="hidden" name="applid" value="${elem.id}" /> 
+                            <input type="hidden" name="applid" value="${elem.id}" />
+                            <input type="hidden" name="sumToPay" value="${elem.sumToPay}" />
+                            <input type="hidden" name="userId" value="${userId}" />
                             <b><fmt:message key="user.order.car"/>: </b>  ${elem.carName} <br/>
                             <b><fmt:message key="user.order.price"/> :</b> ${elem.price} <br/>
                             <b><fmt:message key="user.order.period"/> : </b> ${elem.period} <br/>

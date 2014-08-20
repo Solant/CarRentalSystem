@@ -17,8 +17,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun 
- * DAO implementation for OrderDao Interface
+ * @author Skakun DAO implementation for OrderDao Interface
  *
  */
 public class OrderDaoImpl implements OrderDao {
@@ -40,8 +39,10 @@ public class OrderDaoImpl implements OrderDao {
             + " where ORDERC.`order_id`=?;";
     private static final String UPDATE_SET_REFUSED = "UPDATE ORDERC SET ORDERC.`confirmed`=2,"
             + " ORDERC.`reason_for_refusal`= ? where ORDERC.`order_id`=?;";
+    private static final String SELECT_CREDIT = "SELECT CLIENT.`credit` FROM CLIENT WHERE CLIENT.`user_id`=?;";
     private static final String PAY_FOR_ORDER = "UPDATE ORDERC SET ORDERC.`paidfor`=1"
             + " where ORDERC.`order_id`=?;";
+    private static final String CHANGE_CREDIT = "UPDATE CLIENT SET CLIENT.`credit`=(? - ?)  WHERE CLIENT.`user_id`=?;";
     private static final String DELETE_ORDER = "DELETE FROM ORDERC where ORDERC.`order_id`=?;";
     private static final String SELECT_NEW_ORDERS = "SELECT ORDERC.`order_id`, CAR.`carname`, "
             + "CAR.`price`, CLIENT.`username`, CLIENT.`surname`, "
@@ -261,18 +262,44 @@ public class OrderDaoImpl implements OrderDao {
      * @throws DAOException
      */
     @Override
-    public boolean pay(int id) throws DAOException {
+    public boolean pay(int id, int idOr, int sum) throws DAOException {
         LOG.info("OrderDaoImpl.pay()");
         PreparedStatement stm = null;
+        PreparedStatement stm1 = null;
+        PreparedStatement stm2 = null;
+
         try {
+            stm1 = connection.prepareStatement(SELECT_CREDIT);
+            stm1.setInt(1, id);
+            ResultSet rs = stm1.executeQuery();
+            rs.next();
+            int credit = rs.getInt("credit");
+            if(sum>credit) {
+                return false;
+            }
+            connection.setAutoCommit(false);
             stm = connection.prepareStatement(PAY_FOR_ORDER);
-            stm.setInt(1, id);
+            stm.setInt(1, idOr);
             stm.executeUpdate();
+            stm2 = connection.prepareCall(CHANGE_CREDIT);
+            stm2.setInt(1, credit);
+            stm2.setInt(2, sum);
+            stm2.setInt(3, id);
+            LOG.info(stm2);
+            stm2.executeUpdate();
+            connection.commit();
+            connection.setAutoCommit(true);
             return true;
         } catch (SQLException ex) {
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                throw new DAOException("DAOException while OrderDaoImpl.pay() at rollback", e);
+            }
             throw new DAOException("SQLException in ADI.pay():" + ex);
         } finally {
             closePS(stm);
+            closePS(stm1);
             pool.returnConnection(connection);
         }
     }

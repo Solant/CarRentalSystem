@@ -9,6 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message key="header.title"/></title>
         <link rel="stylesheet" href="..\css\style.css" type="text/css">
+        <script src="js/sum.js" type="text/javascript"></script> 
     </head>
     <body>
         <div class="page-wrapper"> 
@@ -38,9 +39,11 @@
                         <p><fmt:message key="order.date"/></p> 
                         <input type="date" name="date" value="" required=""/>
                         <div class="notice"><fmt:message key="order.minmax"/></div>
-                        <input type="number" min="1" max="30" name="period" value="" placeholder="" />
+                        <input  type="number" min="1" max="30" name="period" value="" placeholder="" />
                         <input type="submit" value="<fmt:message key="cars.order"/>" />
                     </form> 
+                    <form>
+                      <!-- insert calcutator here? -->
                 </div>               
             </div> 
         </div>

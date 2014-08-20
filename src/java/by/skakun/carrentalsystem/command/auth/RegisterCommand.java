@@ -1,8 +1,6 @@
 package by.skakun.carrentalsystem.command.auth;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
-import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -33,6 +31,8 @@ public class RegisterCommand implements ActionCommand {
         String passport = request.getParameter("pass_num");
         String email = request.getParameter("email");
         String type = "USER";
+        int active = 1; //1 means active, 0 means inactive
+        int credit = 1000; // srandart sum, placeholder for real billing
         password = PasswordHashing.getHashValue(password);
         ClientDaoImpl clientDao;
         try {
@@ -43,8 +43,20 @@ public class RegisterCommand implements ActionCommand {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        Client user = new Client(login, password, realname, surname, passport, type, email);
         try {
+            boolean flag = clientDao.checkLogin(login);
+            if(flag) {
+            request.setAttribute("errorLogin", 1);
+            page = ConfigurationManager.getProperty("path.page.register");
+            return page;
+            }
+        } catch (DAOException ex) {
+            LOG.error("DAOException while checkLogin()");
+        }
+        
+        Client user = new Client(login, password, realname, surname, passport, type, email, active, credit);
+        try {
+            clientDao = new ClientDaoImpl();
             clientDao.create(user);
             page = ConfigurationManager.getProperty("path.page.index");
             return page;

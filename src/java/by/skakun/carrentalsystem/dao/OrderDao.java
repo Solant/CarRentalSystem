@@ -81,7 +81,7 @@ public interface OrderDao <T extends Order> extends IDao {
      * @return
      * @throws DAOException
      */
-    boolean pay(int id) throws DAOException;
+    boolean pay(int id, int idOr, int sum) throws DAOException;
     
     /**
      *

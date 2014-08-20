@@ -24,7 +24,8 @@
                     <p> <fmt:message key="user.account.username"/>: <b> ${userName}</b> <br/>
                         <fmt:message key="user.account.name"/>: <b> ${userRealName}</b> <br/>
                     <fmt:message key="user.account.surname"/>: <b> ${userSurname}</b> <br/>
-                    <fmt:message key="user.account.passnum"/>: <b> ${userPassNum}</b> <br/> </p>
+                    <fmt:message key="user.account.passnum"/>: <b> ${userPassNum}</b> <br/> 
+                        </p>
                         <div id="login">
                             <form name='form-change-password' method="POST" action="carrent" class="menu"> 
                                 <input type="hidden" name="command" value="ChangePassword" /> 

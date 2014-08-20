@@ -47,9 +47,9 @@
         <filter-name>characterencodingfilter</filter-name>     
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-   <!-- <listener>
+   <listener>
         <listener-class>by.skakun.carrentalsystem.listener.ContListener</listener-class>
-    </listener> -->
+   </listener>
     
     
 </web-app>

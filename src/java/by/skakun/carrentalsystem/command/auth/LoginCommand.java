@@ -76,6 +76,7 @@ public class LoginCommand implements ActionCommand {
                         httpSession.setAttribute("userPassNum", client.getPassNum());
                         httpSession.setAttribute("userSurname", client.getSurname());
                         httpSession.setAttribute("userRealName", client.getName());
+                        httpSession.setAttribute("credit", client.getCredit());
                         if (client.getType().equals(ClientType.ADMIN)) {
                             page = ConfigurationManager.getProperty("path.page.admin");
                             return page;

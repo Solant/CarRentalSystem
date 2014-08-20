@@ -1,7 +1,6 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.manager.ConfigurationManager;
@@ -17,8 +16,15 @@ public class PayCommand implements ActionCommand {
         String page;
         LOG.info("PayCommand");
         boolean flag = false;
-        String idA = (String) request.getParameter("applid");
-        int id = Integer.parseInt(idA);
+       String idO = (String) request.getParameter("applid");
+        String idS = (String) request.getParameter("userId");
+        LOG.info("idS" + idS);
+        int id = Integer.parseInt(idS);
+        int idOr = Integer.parseInt(idO);
+        LOG.info(id);
+        String sumO = (String) request.getParameter("sumToPay");
+        int sum = Integer.parseInt(sumO);
+        LOG.info("sum" + sum);
         OrderDaoImpl orderDao;
         try {
             orderDao = new OrderDaoImpl();
@@ -29,7 +35,7 @@ public class PayCommand implements ActionCommand {
             return page;
         }
         try {
-            flag = orderDao.pay(id);
+            flag = orderDao.pay(id, idOr,sum);
         } catch (DAOException ex) {
             LOG.info("DAOException while PayCommand: " + ex);
         }
@@ -38,7 +44,6 @@ public class PayCommand implements ActionCommand {
 
         } else {
             request.setAttribute("fail", "1");
-
         }
         page = new BasketCommand().execute(request);
         return page;
