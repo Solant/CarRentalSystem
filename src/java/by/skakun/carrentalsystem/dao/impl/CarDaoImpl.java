@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 public class CarDaoImpl implements CarDao {
 
     private Connection connection;
+    private ConnectionPool pool;
     private static final Logger LOG = Logger.getLogger(CarDaoImpl.class);
     private static final String SELECT_ALL = "SELECT * FROM CAR;";
     private static final String SELECT_ALL_ACTIVE = "SELECT * FROM CAR WHERE CAR.`active`=1;";
@@ -44,8 +45,9 @@ public class CarDaoImpl implements CarDao {
      *
      * @param connection from the ConnectionPool
      */
-    public CarDaoImpl(Connection connection) {
-        this.connection = connection;
+    public CarDaoImpl() throws DAOException {
+        this.pool = ConnectionPool.getInstance();
+        this.connection = pool.getConnection();
     }
 
     /**
@@ -76,7 +78,7 @@ public class CarDaoImpl implements CarDao {
             throw new DAOException("DAOException while CarDaoImpl.getAll()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -107,7 +109,7 @@ public class CarDaoImpl implements CarDao {
             throw new DAOException("DAOException while CarDaoImpl.getAllForUser()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -144,7 +146,7 @@ public class CarDaoImpl implements CarDao {
             throw new DAOException("DAOException while CarDaoImpl.changeCarname()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -169,7 +171,7 @@ public class CarDaoImpl implements CarDao {
             throw new DAOException("DAOException while CarDaoImpl.changeCarprice", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -194,7 +196,7 @@ public class CarDaoImpl implements CarDao {
             throw new DAOException("DAOException while CarDaoImpl.changeCarimage()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -225,7 +227,7 @@ public class CarDaoImpl implements CarDao {
             throw new DAOException("DAOException while CarDaoImpl.changeActive()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -256,7 +258,7 @@ public class CarDaoImpl implements CarDao {
             throw new DAOException("DAOException while CarDaoImpl.deleteCar()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
 
         }
     }
@@ -281,13 +283,12 @@ public class CarDaoImpl implements CarDao {
             stm.setInt(2, price);
             stm.setString(3, image);
             stm.executeUpdate();
-            ConnectionPool.returnConnection(connection);
             return true;
         } catch (SQLException ex) {
             throw new DAOException("", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 

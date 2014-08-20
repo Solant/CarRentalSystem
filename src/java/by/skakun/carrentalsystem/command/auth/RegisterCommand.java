@@ -19,7 +19,7 @@ public class RegisterCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
 
-        String page ;
+        String page;
         String login = request.getParameter("login");
         String realname = request.getParameter("realname");
         String password = request.getParameter("password");
@@ -34,10 +34,18 @@ public class RegisterCommand implements ActionCommand {
         String email = request.getParameter("email");
         String type = "USER";
         password = PasswordHashing.getHashValue(password);
-        ClientDao userDao = (ClientDao) new ClientDaoImpl(ConnectionPool.getConnection());
+        ClientDaoImpl clientDao;
+        try {
+            clientDao = new ClientDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         Client user = new Client(login, password, realname, surname, passport, type, email);
         try {
-            userDao.create(user);
+            clientDao.create(user);
             page = ConfigurationManager.getProperty("path.page.index");
             return page;
         } catch (DAOException ex) {

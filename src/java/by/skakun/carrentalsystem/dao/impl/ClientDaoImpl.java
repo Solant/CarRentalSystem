@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 public class ClientDaoImpl implements ClientDao {
 
     private Connection connection;
+    private ConnectionPool pool;
     private static final Logger LOG = Logger.getLogger(ClientDaoImpl.class);
     private static final String ADD_NEW_USER = "INSERT INTO CLIENT(USERNAME, "
             + "PASS, SURNAME,NAME, PASSPORT_NUMBER, CLIENT_TYPE, EMAIL) "
@@ -39,8 +40,9 @@ public class ClientDaoImpl implements ClientDao {
      *
      * @param connection from ConnectionPool
      */
-    public ClientDaoImpl(Connection connection) {
-        this.connection = connection;
+    public ClientDaoImpl() throws DAOException {
+        this.pool = ConnectionPool.getInstance();
+        this.connection = pool.getConnection();
     }
 
     /**
@@ -76,7 +78,7 @@ public class ClientDaoImpl implements ClientDao {
             throw new DAOException("DAOException while ClientDaoImpl.create():", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
 
         }
     }
@@ -109,7 +111,7 @@ public class ClientDaoImpl implements ClientDao {
             throw new DAOException("DAOException while ClientDaoImpl.read():", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -142,7 +144,7 @@ public class ClientDaoImpl implements ClientDao {
             throw new DAOException("DAOException while ClientDaoImpl.update():", e);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -168,7 +170,7 @@ public class ClientDaoImpl implements ClientDao {
             throw new DAOException("DAOException while UserDaoImpl.checkLogin", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
         return true;
     }
@@ -205,7 +207,7 @@ public class ClientDaoImpl implements ClientDao {
             throw new DAOException("ClientException while ClientDaoImpl.getAll():", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -237,7 +239,7 @@ public class ClientDaoImpl implements ClientDao {
             throw new DAOException("DAOException while ClientDaoImpl.deleteUser()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -277,7 +279,7 @@ public class ClientDaoImpl implements ClientDao {
             throw new DAOException("DAOException while ClientDaoImpl.changePassword()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 

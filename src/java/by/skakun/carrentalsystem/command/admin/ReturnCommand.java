@@ -19,7 +19,7 @@ public class ReturnCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         try {
-            OrderDaoImpl applDao = new OrderDaoImpl(ConnectionPool.getConnection());
+            OrderDaoImpl applDao = new OrderDaoImpl();
             String appl = (String) request.getParameter("applId");
             int applId = Integer.parseInt(appl);
             applDao.returnCar(applId);

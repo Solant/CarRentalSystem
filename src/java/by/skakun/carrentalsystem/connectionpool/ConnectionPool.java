@@ -5,17 +5,19 @@ import by.skakun.carrentalsystem.manager.ConfigurationManager;
 
 import java.sql.*;
 import java.util.Properties;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 public final class ConnectionPool {
 
     private static final Logger LOG = Logger.getLogger(ConnectionPool.class);
     public static ConnectionPool INSTANCE;
-    private static final BlockingQueue<Connection> connections = new LinkedBlockingQueue<>();
+    private static ReentrantLock lock;
+    private BlockingQueue<Connection> connections;
     private final static String DATABASE_URL = ConfigurationManager.getProperty("db.url");
     private final static String DATABASE_LOGIN = ConfigurationManager.getProperty("db.user");
     private final static String DATABASE_PASSWORD = ConfigurationManager.getProperty("db.password");
@@ -30,22 +32,23 @@ public final class ConnectionPool {
         if (flag) {
             try {
                 flag = false;
+                connections = new ArrayBlockingQueue<>(CONNECTIONS_QUANTITY);
                 Properties p = new Properties();
                 p.setProperty("user", DATABASE_LOGIN);
                 p.setProperty("password", DATABASE_PASSWORD);
                 p.setProperty("useUnicode", "true");
                 p.setProperty("characterEncoding", "utf-8");
                 Class.forName(DATABASE_DRIVER).newInstance();
+
                 for (int i = 0; i < CONNECTIONS_QUANTITY; i++) {
                     connection = DriverManager.getConnection(DATABASE_URL, p);
                     if (connection != null) {
-                        connections.add(connection);
-                        LOG.info("Connection #" + i + "  with the database established.");
+                        connections.put(connection);
                     }
                 }
             } catch (ClassNotFoundException | SQLException ex) {
                 LOG.warn("Couldn't establish the connection with the db while creating the  ConnectionPool. " + ex);
-            } catch (InstantiationException | IllegalAccessException ex) {
+            } catch (InstantiationException | IllegalAccessException | InterruptedException ex) {
                 LOG.warn("Connection pool exception:" + ex);
             }
         }
@@ -53,7 +56,7 @@ public final class ConnectionPool {
 
     public static ConnectionPool getInstance() {
         LOG.info("ConnectionPool.getInstance()");
-        ReentrantLock lock = new ReentrantLock();
+        lock = new ReentrantLock();
         if (INSTANCE == null) {
             lock.lock();
             try {
@@ -67,25 +70,46 @@ public final class ConnectionPool {
         return INSTANCE;
     }
 
-    public static Connection getConnection() throws DAOException {
+    public Connection getConnection() throws DAOException {
         LOG.info("ConnectionPool.getConnection()");
         Connection connection = null;
         try {
             connection = getInstance().connections.poll(DATABASE_WAIT, TimeUnit.MILLISECONDS);
-            if(connection==null) {
+            if (connection == null) {
                 throw new DAOException("There are no more available connections to the database");
             }
         } catch (InterruptedException ex) {
-            LOG.error("Couldn't establish connection to the db. " + ex);
+            LOG.fatal("Couldn't establish connection to the db. " + ex);
         }
         return connection;
     }
 
-    public static void returnConnection(Connection connection) {
+    public void returnConnection(Connection connection) {
         try {
-            connections.put(connection);
+            if (connection != null) {
+                connections.put(connection);
+            }
         } catch (InterruptedException ex) {
-            LOG.info("Exception while returning the connection. " + ex);
+            LOG.error("Exception while returning the connection. " + ex);
+        }
+    }
+
+    public static void releaseConnectionPool() {
+        if (INSTANCE != null) {
+            lock.lock();
+            try {
+                if (INSTANCE != null) {
+                    INSTANCE.connections.stream().filter((connection) -> (connection != null)).forEach((connection) -> {
+                        try {
+                            connection.close();
+                        } catch (SQLException e) {
+                            LOG.error("Can't close connection (" + connection + "): ", e);
+                        }
+                    });
+                }
+            } finally {
+                lock.unlock();
+            }
         }
     }
 }

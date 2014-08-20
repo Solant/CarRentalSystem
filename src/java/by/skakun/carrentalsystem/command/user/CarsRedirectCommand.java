@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 
 /**
  * processing request to get to cars.jsp with list of all available to user cars
+ *
  * @author apple
  */
 public class CarsRedirectCommand implements ActionCommand {
@@ -21,7 +22,15 @@ public class CarsRedirectCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        CarDaoImpl carDao = new CarDaoImpl(ConnectionPool.getConnection());
+        CarDaoImpl carDao;
+        try {
+            carDao = new CarDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            String page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         List<Car> cars = null;
         try {
             cars = carDao.getAllForUser();

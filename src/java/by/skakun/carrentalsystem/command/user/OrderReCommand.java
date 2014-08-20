@@ -31,17 +31,25 @@ public class OrderReCommand implements ActionCommand {
         LOG.info(k1 + " " + k2);
         sumToPay = k1 * k2;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date parsedate=null;
+        Date parsedate = null;
         try {
             parsedate = formatter.parse((String) request.getParameter("date"));
         } catch (ParseException ex) {
             LOG.info("ParseException while converting date: " + ex);
         }
         java.sql.Date sql = new java.sql.Date(parsedate.getTime());
-        OrderDao applDao = (OrderDao) new OrderDaoImpl(ConnectionPool.getConnection());
+        OrderDaoImpl orderDao;
+        try {
+            orderDao = new OrderDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         Order appl = new Order(userId, carid, sumToPay, k1, k2, sql);
         try {
-            applDao.create(appl);
+            orderDao.create(appl);
             page = ConfigurationManager.getProperty("path.page.order.success");
             return page;
         } catch (DAOException ex) {

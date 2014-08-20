@@ -21,7 +21,7 @@ public class ReturnDamageCommand implements ActionCommand {
         String page;
         LOG.info("ReturnDamageCommand");
         try {
-            OrderDaoImpl applDao = new OrderDaoImpl(ConnectionPool.getConnection());
+            OrderDaoImpl applDao = new OrderDaoImpl();
             String appl = (String) request.getParameter("applId");
             String damage = (String) request.getParameter("damage");
             LOG.info("damage" + damage);

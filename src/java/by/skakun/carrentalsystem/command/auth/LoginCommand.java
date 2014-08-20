@@ -2,7 +2,6 @@ package by.skakun.carrentalsystem.command.auth;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
-import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.entity.ClientType;
@@ -15,9 +14,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 /**
- * 
- * @author apple
- * processing authorization request from user trying to log into the system
+ *
+ * @author apple processing authorization request from user trying to log into
+ * the system
  */
 public class LoginCommand implements ActionCommand {
 
@@ -31,8 +30,8 @@ public class LoginCommand implements ActionCommand {
     /**
      *
      * @param request
-     * @return either the main page for user or admin, or login page with warning
-     * if login and/or password werent' correct
+     * @return either the main page for user or admin, or login page with
+     * warning if login and/or password werent' correct
      */
     @Override
     public String execute(HttpServletRequest request) {
@@ -44,17 +43,25 @@ public class LoginCommand implements ActionCommand {
             return page;
         }
         password = PasswordHashing.getHashValue(password);
-        ClientDao userDao = (ClientDao) new ClientDaoImpl(ConnectionPool.getConnection());
+        ClientDaoImpl clientDao;
+        try {
+            clientDao = new ClientDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         List<Client> clients = null;
         try {
-            clients = userDao.getAll();
+            clients = clientDao.getAll();
         } catch (DAOException ex) {
             LOG.info("DAOException after userDao.getAll()" + ex.getLocalizedMessage());
         }
 
         String login2;
         String password2;
-        
+
         if (clients != null) {
             for (Client client : clients) {
                 if (client != null) {

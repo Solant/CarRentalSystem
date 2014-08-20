@@ -26,7 +26,15 @@ public class ChangePasswordConfCommand implements ActionCommand {
         String newpassword = (String) request.getParameter("newpass");
         password = PasswordHashing.getHashValue(password);
         newpassword = PasswordHashing.getHashValue(newpassword);
-        ClientDaoImpl clientDao = new ClientDaoImpl(ConnectionPool.getConnection());
+        ClientDaoImpl clientDao;
+        try {
+            clientDao = new ClientDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         try {
             flag = clientDao.changePassword(id, password, newpassword);
             if (flag) {

@@ -24,7 +24,7 @@ public class ConfirmCommand implements ActionCommand {
         String page;
         boolean flag = false;
         try {
-            OrderDaoImpl applDao = new OrderDaoImpl(ConnectionPool.getConnection());
+            OrderDaoImpl applDao = new OrderDaoImpl();
             String appl = (String) request.getParameter("applId");
             LOG.info(appl);
             int applId = Integer.parseInt(appl);

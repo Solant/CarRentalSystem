@@ -12,8 +12,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun
- * getting admin to page with all new applications
+ * @author Skakun getting admin to page with all new applications
  */
 public class NewOrdersCommand implements ActionCommand {
 
@@ -21,7 +20,15 @@ public class NewOrdersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        OrderDaoImpl applDao = new OrderDaoImpl(ConnectionPool.getConnection());
+        OrderDaoImpl applDao;
+        try {
+            applDao = new OrderDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            String page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         List<Order> appls = null;
         try {
             appls = applDao.getNewOrders();

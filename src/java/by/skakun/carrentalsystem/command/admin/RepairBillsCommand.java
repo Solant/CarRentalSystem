@@ -16,7 +16,15 @@ public class RepairBillsCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        RepairBillDaoImpl billDao = new RepairBillDaoImpl(ConnectionPool.getConnection());
+        RepairBillDaoImpl billDao;
+        try {
+            billDao = new RepairBillDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            String page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         List<Order> bills = null;
         try {
             bills = billDao.getAll();
@@ -30,4 +38,3 @@ public class RepairBillsCommand implements ActionCommand {
     }
 
 }
-

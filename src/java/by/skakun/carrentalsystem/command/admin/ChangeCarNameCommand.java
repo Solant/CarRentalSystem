@@ -31,7 +31,15 @@ public class ChangeCarNameCommand implements ActionCommand {
         String carid = (String) request.getParameter("carid");
         int id = Integer.parseInt(carid);
         String carname = (String) request.getParameter("newcarname");
-        CarDaoImpl carDao = new CarDaoImpl(ConnectionPool.getConnection());
+        CarDaoImpl carDao;
+        try {
+            carDao = new CarDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database");
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         try {
             flag = carDao.changeCarname(carname, id);
 

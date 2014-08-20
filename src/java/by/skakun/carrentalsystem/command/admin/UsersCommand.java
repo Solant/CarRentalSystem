@@ -1,4 +1,3 @@
-
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
@@ -15,12 +14,21 @@ import org.apache.log4j.Logger;
  *
  * @author Skakun
  */
-public class UsersCommand implements ActionCommand{
+public class UsersCommand implements ActionCommand {
+
     private static final Logger LOG = Logger.getLogger(UsersCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
-     ClientDaoImpl clientDao = new ClientDaoImpl(ConnectionPool.getConnection());
+        ClientDaoImpl clientDao;
+        try {
+            clientDao = new ClientDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            String page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         List<Client> clients = null;
         try {
             clients = clientDao.getAll();
@@ -31,6 +39,6 @@ public class UsersCommand implements ActionCommand{
         request.setAttribute("lst", clients);
         LOG.info("->users");
         String page = ConfigurationManager.getProperty("path.page.allusers");
-        return page;   
+        return page;
     }
 }

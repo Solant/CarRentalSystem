@@ -22,20 +22,28 @@ public class DeleteApplicationCommand implements ActionCommand {
         String idA = (String) request.getParameter("applid");
         int id = Integer.parseInt(idA);
         LOG.info("Application id" + id);
-        OrderDaoImpl applDao = new OrderDaoImpl(ConnectionPool.getConnection());
+        OrderDaoImpl orderDao;
         try {
-            flag = applDao.delete(id);
+            orderDao = new OrderDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
+        try {
+            flag = orderDao.delete(id);
         } catch (DAOException ex) {
             LOG.info("DAOException while PayCommand: " + ex);
         }
         if (flag) {
         //    LOG.info("True");
-        //    request.setAttribute("success", "1");
+            //    request.setAttribute("success", "1");
             page = new BasketCommand().execute(request);
             return page;
         } else {
         //    LOG.info("False");
-        //    request.setAttribute("fail", "1");
+            //    request.setAttribute("fail", "1");
             page = new BasketCommand().execute(request);
             return page;
         }

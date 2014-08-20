@@ -20,7 +20,15 @@ public class NewCarCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        CarDaoImpl carDao = new CarDaoImpl(ConnectionPool.getConnection());
+        CarDaoImpl carDao;
+        try {
+            carDao = new CarDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         boolean flag = false;
         try {
             String carname = (String) request.getParameter("carname");

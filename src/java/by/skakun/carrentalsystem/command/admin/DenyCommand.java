@@ -20,7 +20,7 @@ public class DenyCommand implements ActionCommand {
         String page;
         Boolean flag = false;
         try {
-            OrderDaoImpl applDao = new OrderDaoImpl(ConnectionPool.getConnection());
+            OrderDaoImpl applDao = new OrderDaoImpl();
             String appl = (String) request.getParameter("applId");
             String reason = (String) request.getParameter("reasonForRefusal");
             int applId = Integer.parseInt(appl);

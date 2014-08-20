@@ -5,7 +5,6 @@ import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.manager.ConfigurationManager;
-import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -26,7 +25,15 @@ public class ChangeCarPriceCommand implements ActionCommand {
         int id = Integer.parseInt(carid);
         String carprice = (String) request.getParameter("newprice");
         int price = Integer.parseInt(carprice);
-        CarDaoImpl carDao = new CarDaoImpl(ConnectionPool.getConnection());
+        CarDaoImpl carDao;
+        try {
+            carDao = new CarDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database");
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         try {
             flag = carDao.changeCarprice(price, id);
             if (flag) {

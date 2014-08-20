@@ -20,7 +20,15 @@ public class DeleteUserCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        ClientDaoImpl clientDao = new ClientDaoImpl(ConnectionPool.getConnection());
+        ClientDaoImpl clientDao;
+        try {
+            clientDao = new ClientDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         boolean flag;
         int id = Integer.parseInt((String) request.getParameter("user_id"));
         try {

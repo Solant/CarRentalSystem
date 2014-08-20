@@ -25,7 +25,15 @@ public class ChangeActiveCommand implements ActionCommand {
         int id = Integer.parseInt(carid);
         String caractive = (String) request.getParameter("active");
         int active = Integer.parseInt(caractive);
-        CarDaoImpl carDao = new CarDaoImpl(ConnectionPool.getConnection());
+        CarDaoImpl carDao;
+        try {
+            carDao = new CarDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         try {
             flag = carDao.changeActive(active, id);
 

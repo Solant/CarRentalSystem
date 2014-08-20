@@ -20,7 +20,15 @@ public class DeleteCarCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        CarDaoImpl carDao = new CarDaoImpl(ConnectionPool.getConnection());
+        CarDaoImpl carDao;
+        try {
+            carDao = new CarDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database");
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         boolean flag = false;
         try {
             int id = Integer.parseInt((String) request.getParameter("carid"));

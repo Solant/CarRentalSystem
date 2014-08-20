@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.dao.impl;
 
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
+import static by.skakun.carrentalsystem.dao.IDao.closePS;
 import by.skakun.carrentalsystem.dao.RepairBillDao;
 import by.skakun.carrentalsystem.entity.Entity;
 import by.skakun.carrentalsystem.entity.RepairBill;
@@ -22,6 +23,7 @@ import org.apache.log4j.Logger;
 public class RepairBillDaoImpl implements RepairBillDao {
 
     private Connection connection;
+    private ConnectionPool pool;
     private static final Logger LOG = Logger.getLogger(RepairBillDaoImpl.class);
     private static final String GET_ALL = "SELECT damagebill.`bill_id`, damagebill.`damage`, "
             + "damagebill.`sum`, car.`carname` FROM damagebill LEFT JOIN "
@@ -34,8 +36,9 @@ public class RepairBillDaoImpl implements RepairBillDao {
      *
      * @param connection from ConnectionPool
      */
-    public RepairBillDaoImpl(Connection connection) {
-        this.connection = connection;
+    public RepairBillDaoImpl() throws DAOException {
+        this.pool = ConnectionPool.getInstance();
+        this.connection = pool.getConnection();
     }
 
     /**
@@ -61,7 +64,7 @@ public class RepairBillDaoImpl implements RepairBillDao {
         } catch (SQLException ex) {
             throw new DAOException("DAOException while RepairBillDaoImpl.getAll()", ex);
         } finally {
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
 
         }
     }
@@ -75,14 +78,15 @@ public class RepairBillDaoImpl implements RepairBillDao {
     @Override
     public boolean repair(int id) throws DAOException {
         LOG.info("RepairBillDaoImpl.repair()");
+        PreparedStatement stm = null;
         try {
-            PreparedStatement stm = connection.prepareStatement(REPAIR);
+            stm = connection.prepareStatement(REPAIR);
             stm.setInt(1, id);
             stm.executeUpdate();
-            ConnectionPool.returnConnection(connection);
             return true;
         } catch (SQLException ex) {
-            ConnectionPool.returnConnection(connection);
+            closePS(stm);
+            pool.returnConnection(connection);
             throw new DAOException("DAOException while RepairBillDaoImpl.repair()", ex);
         }
     }

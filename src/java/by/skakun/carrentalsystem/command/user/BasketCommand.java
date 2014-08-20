@@ -17,15 +17,27 @@ public class BasketCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         LOG.info("BasketCommand");
-        OrderDaoImpl orderDao = new OrderDaoImpl(ConnectionPool.getConnection());
+        OrderDaoImpl orderDao;
+        OrderDaoImpl orderDao2;
+        OrderDaoImpl orderDao3;
+        try {
+            orderDao = new OrderDaoImpl();
+            orderDao2 = new OrderDaoImpl();
+            orderDao3 = new OrderDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database", ex);
+            LOG.info("->errorpage");
+            String page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         List<Order> order = null;
         List<Order> orderArch = null;
         List<Order> orderDenied = null;
         try {
             int id = (int) request.getSession().getAttribute("userId");
             order = orderDao.getUByUserId(id);
-            orderArch = orderDao.getAByUserId(id);
-            orderDenied = orderDao.getDByUserId(id); 
+            orderArch = orderDao2.getAByUserId(id);
+            orderDenied = orderDao3.getDByUserId(id);
         } catch (DAOException ex) {
             LOG.info("DAOException while basket-command" + ex.getLocalizedMessage());
         }

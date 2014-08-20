@@ -21,7 +21,7 @@ public class RepairedCommand implements ActionCommand {
         String page;
         boolean flag=false;
         try {
-            RepairBillDaoImpl billDao = new RepairBillDaoImpl(ConnectionPool.getConnection());
+            RepairBillDaoImpl billDao = new RepairBillDaoImpl();
             String appl = (String) request.getParameter("applId");
             int applId = Integer.parseInt(appl);
             flag = billDao.repair(applId);

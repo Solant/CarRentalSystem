@@ -13,9 +13,9 @@ import org.apache.log4j.Logger;
  * @author Skakun
  */
 public class ChangeCarImageCommand implements ActionCommand {
-    
+
     private static final Logger LOG = Logger.getLogger(ChangeCarImageCommand.class);
-    
+
     @Override
     public String execute(HttpServletRequest request) {
         String page;
@@ -24,10 +24,18 @@ public class ChangeCarImageCommand implements ActionCommand {
         int id = Integer.parseInt(carid);
         String carimage = (String) request.getParameter("newimage");
         carimage = "img/car/".concat(carimage).concat(".jpg");
-        CarDaoImpl carDao = new CarDaoImpl(ConnectionPool.getConnection());
+        CarDaoImpl carDao;
+        try {
+            carDao = new CarDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database");
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         try {
             flag = carDao.changeCarimage(carimage, id);
-            
+
             if (flag) {
                 request.setAttribute("isuccess", "1");
                 page = ConfigurationManager.getProperty("path.page.carchange");
@@ -42,7 +50,7 @@ public class ChangeCarImageCommand implements ActionCommand {
             page = ConfigurationManager.getProperty("path.page.carchange");
             return page;
         }
-        
+
     }
-    
+
 }

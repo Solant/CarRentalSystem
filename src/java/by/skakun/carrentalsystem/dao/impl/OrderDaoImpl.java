@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 public class OrderDaoImpl implements OrderDao {
 
     private static final Logger LOG = Logger.getLogger(OrderDaoImpl.class);
+    private ConnectionPool pool;
     private static final String ORDERC_INSERT = "INSERT INTO ORDERC(USER_ID, CAR_ID, SUM_TO_PAY, CONFIRMED, "
             + "PAIDFOR, RETURNED) VALUES(?, ?, ?, 0, 0, 0);";
     private static final String BILL_INSERT = "INSERT INTO bill (bill.`order_id`,"
@@ -85,8 +86,9 @@ public class OrderDaoImpl implements OrderDao {
      *
      * @param connection from ConnectionPool
      */
-    public OrderDaoImpl(Connection connection) {
-        this.connection = connection;
+    public OrderDaoImpl() throws DAOException {
+        this.pool = ConnectionPool.getInstance();
+        this.connection = pool.getConnection();
     }
 
     /**
@@ -133,7 +135,7 @@ public class OrderDaoImpl implements OrderDao {
         } finally {
             closePS(stm);
             closePS(stm1);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
 
     }
@@ -177,7 +179,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.getUByUserId()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -201,7 +203,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.confirm()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -223,7 +225,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.returnCar()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -248,7 +250,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.returnCar()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -271,7 +273,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("SQLException in ADI.pay():" + ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -294,7 +296,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException(" DAOException in ADI.delete():" + ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -326,7 +328,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.getNewOrders ()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -359,7 +361,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException(ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -392,7 +394,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.getUnPaidOrders()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -425,7 +427,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.getArchiveOrders()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -460,7 +462,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrdercationDaoImpl.getDByUserId()", ex);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -492,7 +494,7 @@ public class OrderDaoImpl implements OrderDao {
             throw new DAOException("DAOException while OrderDaoImpl.getAByUserId()", e);
         } finally {
             closePS(stm);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
     }
 
@@ -530,7 +532,7 @@ public class OrderDaoImpl implements OrderDao {
         } finally {
             closePS(stm);
             closePS(stm1);
-            ConnectionPool.returnConnection(connection);
+            pool.returnConnection(connection);
         }
 
     }

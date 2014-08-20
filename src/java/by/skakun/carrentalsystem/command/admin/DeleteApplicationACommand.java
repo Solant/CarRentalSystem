@@ -1,12 +1,10 @@
 package by.skakun.carrentalsystem.command.admin;
 
-import by.skakun.carrentalsystem.command.user.*;
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.manager.ConfigurationManager;
-import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -24,7 +22,15 @@ public class DeleteApplicationACommand implements ActionCommand {
         LOG.info(idA);
         int id = Integer.parseInt(idA);
         LOG.info("Application id" + id);
-        OrderDaoImpl applDao = new OrderDaoImpl(ConnectionPool.getConnection());
+        OrderDaoImpl applDao;
+        try {
+            applDao = new OrderDaoImpl();
+        } catch (DAOException ex) {
+            LOG.fatal("Couldn't establish the connection to the database");
+            LOG.info("->errorpage");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         try {
             flag = applDao.delete(id);
         } catch (DAOException ex) {
@@ -32,12 +38,12 @@ public class DeleteApplicationACommand implements ActionCommand {
         }
         if (flag) {
         //    LOG.info("True");
-        //    request.setAttribute("success", "1");
+            //    request.setAttribute("success", "1");
             page = new UnpaidOrdersCommand().execute(request);
             return page;
         } else {
         //    LOG.info("False");
-        //    request.setAttribute("fail", "1");
+            //    request.setAttribute("fail", "1");
             page = new UnpaidOrdersCommand().execute(request);
             return page;
         }
