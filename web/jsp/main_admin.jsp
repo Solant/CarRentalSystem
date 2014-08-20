@@ -22,7 +22,6 @@
                         <c:import url="\common\menu_admin.jsp" charEncoding="utf-8"/>
                </div>
                <div id="page-content">
-                   
                    <h2>
                        <fmt:message key="admin.welcome"/>, <b>${userName}.</b>
 

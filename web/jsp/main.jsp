@@ -19,7 +19,6 @@
                 </div>
                <div id="menu">     <c:import url="\common\menu.jsp" charEncoding="utf-8"/>
                </div>
-               
                <div id="page-content">
                    <h2><fmt:message key="user.mainpage.title"/></h2>
                    <p><fmt:message key="user.mainpage.test"/></p>
