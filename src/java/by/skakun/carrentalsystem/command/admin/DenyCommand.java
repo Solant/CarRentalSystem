@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
+ * denies user's order
  */
 public class DenyCommand implements ActionCommand {
 
@@ -26,7 +28,7 @@ public class DenyCommand implements ActionCommand {
             int applId = Integer.parseInt(appl);
             flag = applDao.deny(applId, reason);
         } catch (DAOException ex) {
-            LOG.info("DaoMistake in denyComand: " + ex);
+            LOG.info("DAOException in denyComand: " + ex);
         }
         if (flag) {
             request.setAttribute("cfail", "1");

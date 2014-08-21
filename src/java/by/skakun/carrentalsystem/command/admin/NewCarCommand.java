@@ -1,7 +1,6 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.entity.Car;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -12,6 +11,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * returns page after trying to add new car to the database
  */
 public class NewCarCommand implements ActionCommand {
 
@@ -37,9 +37,8 @@ public class NewCarCommand implements ActionCommand {
             carimage = "img/car/".concat(carimage).concat(".jpg");
             Car car = new Car(carname, price, carimage, 1);
             flag = carDao.create(car);
-            LOG.info(flag);
         } catch (DAOException ex) {
-            LOG.info("Dao Mistake after clientDao.deleteUser(id)." + ex.getLocalizedMessage());
+            LOG.info("DAOException while CarDao.create()" + ex);
         }
         if (flag) {
             request.setAttribute("csuccess", "1");

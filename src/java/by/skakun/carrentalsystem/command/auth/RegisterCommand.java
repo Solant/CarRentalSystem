@@ -10,6 +10,12 @@ import by.skakun.carrentalsystem.manager.MessageManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * registering user in the system and returning him to login.jsp
+ */
 public class RegisterCommand implements ActionCommand {
 
     private static final Logger LOG = Logger.getLogger(RegisterCommand.class);

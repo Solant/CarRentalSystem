@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * changes the image of car and returns him to the car info page
  */
 public class ChangeCarImageCommand implements ActionCommand {
 
@@ -23,7 +24,7 @@ public class ChangeCarImageCommand implements ActionCommand {
         String carid = (String) request.getParameter("carid");
         int id = Integer.parseInt(carid);
         String carimage = (String) request.getParameter("newimage");
-        carimage = "img/car/".concat(carimage).concat(".jpg");
+        carimage = "img/car/".concat(carimage).concat(".jpg"); //created an acceptable for database image address
         CarDaoImpl carDao;
         try {
             carDao = new CarDaoImpl();

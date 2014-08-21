@@ -7,15 +7,21 @@ import by.skakun.carrentalsystem.manager.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * logging the user out of the system
+ */
 public class LogoutCommand implements ActionCommand{
     private static final Logger LOG = Logger.getLogger(MainRedirectCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
-     String user = (String) request.getSession().getAttribute("userName");
      request.setAttribute("userName", "GUEST");
      String page = ConfigurationManager.getProperty("path.page.index");
      request.getSession().invalidate();
+     LOG.info("session invalidated");
      return page;
     
     }

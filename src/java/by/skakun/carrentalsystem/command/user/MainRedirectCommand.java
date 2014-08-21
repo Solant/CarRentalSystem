@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
  * getting user to main.jsp
  */
 public class MainRedirectCommand implements ActionCommand {

@@ -1,7 +1,7 @@
 package by.skakun.carrentalsystem.command.auth;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
+import by.skakun.carrentalsystem.command.admin.MainAdmCommand;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.entity.ClientType;
@@ -15,17 +15,13 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author apple processing authorization request from user trying to log into
- * the system
+ * @author Skakun
+ *
+ * processing authorization request from user trying to log into the system
  */
 public class LoginCommand implements ActionCommand {
 
     private static final Logger LOG = Logger.getLogger(LoginCommand.class);
-
-    /**
-     *
-     */
-    public boolean flag = false;
 
     /**
      *
@@ -72,13 +68,14 @@ public class LoginCommand implements ActionCommand {
                         httpSession.setAttribute("user", client);
                         httpSession.setAttribute("userType", client.getType());
                         httpSession.setAttribute("userName", client.getLogin());
+                        httpSession.setAttribute("userEmail", client.getEmail());
                         httpSession.setAttribute("userId", client.getId());
                         httpSession.setAttribute("userPassNum", client.getPassNum());
                         httpSession.setAttribute("userSurname", client.getSurname());
                         httpSession.setAttribute("userRealName", client.getName());
                         httpSession.setAttribute("credit", client.getCredit());
                         if (client.getType().equals(ClientType.ADMIN)) {
-                            page = ConfigurationManager.getProperty("path.page.admin");
+                            page = new MainAdmCommand().execute(request);
                             return page;
                         } else {
                             page = ConfigurationManager.getProperty("path.page.main");

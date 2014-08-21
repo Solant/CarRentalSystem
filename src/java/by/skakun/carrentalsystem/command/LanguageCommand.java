@@ -14,7 +14,7 @@ public class LanguageCommand implements ActionCommand {
     private final static Logger LOG = Logger.getLogger(LanguageCommand.class);
 
     /**
-     *
+     * default constructor
      */
     public LanguageCommand() {
     }
@@ -22,7 +22,7 @@ public class LanguageCommand implements ActionCommand {
     /**
      *
      * @param request
-     * @return loging.jsp in a selected language
+     * @return login.jsp in a selected language
      */
     @Override
     public String execute(HttpServletRequest request) {

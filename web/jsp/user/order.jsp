@@ -9,10 +9,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message key="header.title"/></title>
         <link rel="stylesheet" href="..\css\style.css" type="text/css">
-        <script src="js/sum.js" type="text/javascript"></script> 
+        <link rel="shortcut icon" href="..\img\favicon.ico" type="image/x-icon" />
+
     </head>
     <body>
         <div class="page-wrapper"> 
+                              
             <div class="page-buffer">    
                 <div class="header"> 
                     <c:import url='..\common\header.jsp' charEncoding="utf-8"/> 
@@ -42,11 +44,13 @@
                         <input  type="number" min="1" max="30" name="period" value="" placeholder="" />
                         <input type="submit" value="<fmt:message key="cars.order"/>" />
                     </form> 
-                    <form>
-                      <!-- insert calcutator here? -->
+                    <!-- insert calcutator here? -->
+
+
                 </div>               
             </div> 
         </div>
+
         <div class="footer">  <c:import url="..\common\footer.jsp" charEncoding="utf-8"/> </div>
     </body>
 </html>

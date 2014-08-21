@@ -22,9 +22,9 @@
     </welcome-file-list>
     <jsp-config>
         <taglib>
-        <taglib-uri>customtags</taglib-uri>
-        <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
-    </taglib>
+            <taglib-uri>customtags</taglib-uri>
+            <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
     </jsp-config>
     <error-page>
         <error-code>404</error-code>
@@ -47,9 +47,7 @@
         <filter-name>characterencodingfilter</filter-name>     
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-   <listener>
+    <listener>
         <listener-class>by.skakun.carrentalsystem.listener.ContListener</listener-class>
-   </listener>
-    
-    
+    </listener>
 </web-app>

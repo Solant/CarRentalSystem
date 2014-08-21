@@ -9,12 +9,21 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * Connection pool for accessing Database
+ */
 public final class ConnectionPool {
 
     private static final Logger LOG = Logger.getLogger(ConnectionPool.class);
+
+    /**
+     * fields for describing connection and pool
+     */
     public static ConnectionPool INSTANCE;
     private static ReentrantLock lock;
     private BlockingQueue<Connection> connections;
@@ -27,7 +36,7 @@ public final class ConnectionPool {
     private static boolean flag = true;
 
     private ConnectionPool() {
-        LOG.info("We are in the ConnectionPool.");
+        LOG.info("ConnectionPool()");
         Connection connection;
         if (flag) {
             try {
@@ -54,6 +63,10 @@ public final class ConnectionPool {
         }
     }
 
+    /**
+     *
+     * @return new Instanse of Connection Pool (if it wasn't alreasy initialized)
+     */
     public static ConnectionPool getInstance() {
         LOG.info("ConnectionPool.getInstance()");
         lock = new ReentrantLock();
@@ -70,6 +83,11 @@ public final class ConnectionPool {
         return INSTANCE;
     }
 
+    /**
+     *
+     * @return connection from the pool
+     * @throws DAOException
+     */
     public Connection getConnection() throws DAOException {
         LOG.info("ConnectionPool.getConnection()");
         Connection connection = null;
@@ -84,6 +102,11 @@ public final class ConnectionPool {
         return connection;
     }
 
+    /**
+     *
+     * @param connection
+     * returning connection to the database
+     */
     public void returnConnection(Connection connection) {
         try {
             if (connection != null) {
@@ -94,6 +117,9 @@ public final class ConnectionPool {
         }
     }
 
+    /**
+     * releasing all connections and closing the pool. Is called from ServletContextListener
+     */
     public static void releaseConnectionPool() {
         if (INSTANCE != null) {
             lock.lock();

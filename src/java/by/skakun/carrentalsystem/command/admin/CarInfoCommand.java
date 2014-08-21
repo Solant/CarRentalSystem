@@ -9,13 +9,13 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * sends admin to page with information about chosen car
  */
 public class CarInfoCommand implements ActionCommand{
     private static final Logger LOG = Logger.getLogger(CarInfoCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("carinfo");
         String carname =  (String) request.getParameter("carname");
         String carprice =  (String) request.getParameter("carprice");
         String carid = (String) request.getParameter("carid");

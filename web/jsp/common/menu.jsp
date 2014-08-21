@@ -30,6 +30,14 @@
                     <input type="hidden" name="command" value="basket" />
                     <input type="submit" value="<fmt:message key='menu.basket'/>"/>
                 </form>
+                 <form name ="menu" class="menu" method="POST" action="carrent" > 
+                    <input type="hidden" name="command" value="paid" />
+                    <input type="submit" value="<fmt:message key='menu.paid.user'/>"/>
+                </form>
+                 <form name ="menu" class="menu" method="POST" action="carrent" > 
+                    <input type="hidden" name="command" value="denied" />
+                    <input type="submit" value="<fmt:message key='menu.annul'/>"/>
+                </form>
                 <form name ="menu" class="menu" method="POST" action="carrent" > 
                     <input type="hidden" name="command" value="CONTACTSREDIRECT" />
                     <input type="submit" value="<fmt:message key='menu.contacts'/>"/>

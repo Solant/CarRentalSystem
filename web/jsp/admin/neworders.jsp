@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +22,7 @@
                 </div>
                 <div id="page-content">  
                     <h2><fmt:message key="menu.atc"/></h2>
+                    
                     <table class="cartable">
                         <c:if test="${not empty csuccess}"><div class="msg"><fmt:message key="confirm.success"/></div></c:if>
                         <c:if test="${not empty cfail}"><div class="msg"><fmt:message key="confirm.deny"/></div></c:if>

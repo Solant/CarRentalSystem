@@ -1,17 +1,16 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.manager.ConfigurationManager;
-import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun processing the request of changing the car name
+ * @author Skakun
+ * processing the request of changing the car name
  */
 public class ChangeCarNameCommand implements ActionCommand {
 

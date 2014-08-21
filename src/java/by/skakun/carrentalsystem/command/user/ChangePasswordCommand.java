@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
  * processing user's request to get to changepassword.jsp
  */
 public class ChangePasswordCommand implements ActionCommand {

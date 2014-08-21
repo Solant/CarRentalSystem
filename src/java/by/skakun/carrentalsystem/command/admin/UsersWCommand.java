@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
+ * gets admin to page where they can manage users
  */
 public class UsersWCommand implements ActionCommand{
     private static final Logger LOG = Logger.getLogger(UsersWCommand.class);

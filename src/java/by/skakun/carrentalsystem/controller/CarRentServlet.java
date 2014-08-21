@@ -14,11 +14,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
-//@WebServlet("/carrent")
 
 /**
  *
- * @author Skakun Controller for CarRentSystem
+ * @author Skakun
+ *
+ * Controller for CarRentSystem
  */
 public class CarRentServlet extends HttpServlet {
 

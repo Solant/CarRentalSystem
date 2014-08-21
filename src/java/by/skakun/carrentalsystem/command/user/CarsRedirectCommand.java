@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 /**
+ * 
+ * @author Skakun
+ * 
  * processing request to get to cars.jsp with list of all available to user cars
- *
- * @author apple
  */
 public class CarsRedirectCommand implements ActionCommand {
 

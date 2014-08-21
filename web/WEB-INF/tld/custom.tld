@@ -5,27 +5,17 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
   <tlib-version>1.0</tlib-version>
   <short-name>custom</short-name>
-  <uri>/WEB-INF/custom.tld</uri>
+  <uri>/WEB-INF/custom.tld</uri>    
   <tag>
-      <name>info-time</name>
-      <tag-class>by.skakun.carrentalsystem.tag.InfoTimeJava</tag-class>
-      <body-content>empty</body-content>
+      <name>statistics-tag</name>
+      <tag-class>by.skakun.carrentalsystem.tag.StatisticsTag</tag-class>
+      <body-content>scriptless</body-content>
       <attribute>
-          <name>str</name>
-          <required>true</required>
+          <name>command</name>
+          <required>false</required>
           <rtexprvalue>true</rtexprvalue>
       </attribute>
   </tag>
-  
-    <tag>
-      <name>hello</name>
-      <tag-class>by.skakun.carrentalsystem.tag.HelloTag</tag-class>
-      <body-content>empty</body-content>
-      <attribute>
-          <name>role</name>
-          <required>true</required>
-          <rtexprvalue>true</rtexprvalue>
-      </attribute>
-  </tag>
+      
   
 </taglib>

@@ -26,6 +26,7 @@ public class OrderDaoImpl implements OrderDao {
     private ConnectionPool pool;
     private static final String ORDERC_INSERT = "INSERT INTO ORDERC(USER_ID, CAR_ID, SUM_TO_PAY, CONFIRMED, "
             + "PAIDFOR, RETURNED) VALUES(?, ?, ?, 0, 0, 0);";
+    private static final String SELECT_ALL_ORDERS = "SELECT * FROM ORDERC;";
     private static final String BILL_INSERT = "INSERT INTO bill (bill.`order_id`,"
             + " bill.`period`, bill.`price`, bill.`startdate`) VALUES (LAST_INSERT_ID(), ?, ?, ?);";
     private static final String GET_UNPAID_BY_USER_ID = "SELECT ORDERC.`sum_to_pay`,ORDERC.`order_id`,"
@@ -581,7 +582,25 @@ public class OrderDaoImpl implements OrderDao {
      */
     @Override
     public List getAll() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Order> list = new ArrayList<>();
+        LOG.info("OrderDaoImpl.getALL()");
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(SELECT_ALL_ORDERS);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Order order = new Order();
+                order.setId(rs.getInt("order_id"));
+                order.setPaid(true);
+                list.add(order);
+            }
+            return list;
+        } catch (SQLException  ex) {
+            throw new DAOException(ex);
+        } finally {
+            closePS(stm);
+            pool.returnConnection(connection);
+        }
     }
 
 }

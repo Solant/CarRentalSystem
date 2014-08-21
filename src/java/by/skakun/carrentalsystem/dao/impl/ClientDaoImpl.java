@@ -35,6 +35,8 @@ public class ClientDaoImpl implements ClientDao {
     private static final String DELETE_USER = "DELETE FROM CLIENT WHERE CLIENT.`user_id`=?;";
     private static final String CHANGE_PASSWORD = "UPDATE `client` SET client.`pass`=? "
             + "where client.`user_id`=?;";
+    private static final String CHANGE_EMAIL = "UPDATE `client` SET client.`email`=? "
+            + "where client.`user_id`=?;";
 
     /**
      *
@@ -199,6 +201,7 @@ public class ClientDaoImpl implements ClientDao {
                 user.setLogin(rs.getString("username"));
                 user.setPassword(rs.getString("pass"));
                 user.setType(rs.getString("client_type"));
+                user.setEmail(rs.getString("email"));
                 user.setId(rs.getInt("user_id"));
                 user.setActive(rs.getInt("active"));
                 user.setCredit(rs.getInt("credit"));
@@ -250,7 +253,7 @@ public class ClientDaoImpl implements ClientDao {
      * @param id of the user
      * @param pass - old password
      * @param newPass - new password
-     * @return trie or false depending on whether the operation was successful,
+     * @return true or false depending on whether the operation was successful,
      * otherwise
      * @throws DAOException
      *
@@ -278,6 +281,33 @@ public class ClientDaoImpl implements ClientDao {
             }
         } catch (SQLException ex) {
             throw new DAOException("DAOException while ClientDaoImpl.changePassword()", ex);
+        } finally {
+            closePS(stm);
+            pool.returnConnection(connection);
+        }
+    }
+    
+    /**
+     *
+     * @param id of the user
+     * @param newEmail - new email
+     * @return trie or false depending on whether the operation was successful,
+     * otherwise
+     * @throws DAOException
+     *
+     */
+    @Override
+    public boolean changeEmail(int id, String newEmail) throws DAOException {
+        LOG.info("ClientDaoImpl.changePassword()");
+        PreparedStatement stm = null;
+        try {
+                stm = connection.prepareStatement( CHANGE_EMAIL);
+                stm.setString(1, newEmail);
+                stm.setInt(2, id);
+                stm.executeUpdate();
+                return true;
+        } catch (SQLException ex) {
+            throw new DAOException("DAOException while ClientDaoImpl.changeEmail()", ex);
         } finally {
             closePS(stm);
             pool.returnConnection(connection);

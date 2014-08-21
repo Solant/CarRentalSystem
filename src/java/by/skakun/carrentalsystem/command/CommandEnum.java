@@ -26,7 +26,7 @@ public enum CommandEnum {
      */
     DELETEAPPLICATION {
                 {
-                    this.command = new DeleteApplicationCommand();
+                    this.command = new DeleteOrderCommand();
                 }
             },
     
@@ -35,7 +35,7 @@ public enum CommandEnum {
      */
     DELETEUNPAID {
                 {
-                    this.command = new DeleteApplicationACommand();
+                    this.command = new DeleteOrderACommand();
                 }
             },
     
@@ -54,6 +54,22 @@ public enum CommandEnum {
     RETURN {
                 {
                     this.command = new ReturnCommand();
+                }
+            },
+      /**
+     * administrator registers that car is returned without any damage
+     */
+    DENIED {
+                {
+                    this.command = new DeniedCommand();
+                }
+            },
+      /**
+     * administrator registers that car is returned without any damage
+     */
+    PAID {
+                {
+                    this.command = new PaidCommand();
                 }
             },
 
@@ -128,6 +144,15 @@ public enum CommandEnum {
     CHANGEPASSWORD {
                 {
                     this.command = new ChangePasswordCommand();
+                }
+            },
+    
+    /**
+     * getting user to changepassword.jsp
+     */
+    CHANGEEMAIL {
+                {
+                    this.command = new ChangeEmailCommand();
                 }
             },
 
@@ -234,7 +259,7 @@ public enum CommandEnum {
      */
     CONTACTSREDIRECT {
                 {
-                    this.command = new ContactsRedicrectCommand();
+                    this.command = new ContactsRedirectCommand();
                 }
             },
 
@@ -329,14 +354,7 @@ public enum CommandEnum {
 
     
 
-    /**
-     *
-     */
-    BACKCARS {
-                {
-                    this.command = new CarsWCommand();
-                }
-            },
+    
 
     /**
      *

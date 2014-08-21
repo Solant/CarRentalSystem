@@ -5,6 +5,11 @@ import by.skakun.carrentalsystem.manager.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * returns page for adding new car
+ */
 public class AddNewCarCommand implements ActionCommand {
 
     private static final Logger LOG = Logger.getLogger(AddNewCarCommand.class);
@@ -12,6 +17,7 @@ public class AddNewCarCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = ConfigurationManager.getProperty("path.page.addnewcar");
+        LOG.info("->addnewcar.jsp");
         return page;
     }
 }

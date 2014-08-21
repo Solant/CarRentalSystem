@@ -9,6 +9,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * showing user their basket with confirmed orders waiting to be paid for
+ */
 public class BasketCommand implements ActionCommand {
 
     private static final Logger LOG = Logger.getLogger(BasketCommand.class);

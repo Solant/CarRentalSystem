@@ -9,6 +9,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message key="header.title"/></title>
         <link rel="stylesheet" href="..\css\style.css" type="text/css">
+        <link rel="shortcut icon" href="..\img\favicon.ico" type="image/x-icon" />
+
     </head>
     <body>
         <div class="page-wrapper"> 

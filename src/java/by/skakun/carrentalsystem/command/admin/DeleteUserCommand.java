@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
+ * deletes user / not reccomended
  */
 public class DeleteUserCommand implements ActionCommand {
 

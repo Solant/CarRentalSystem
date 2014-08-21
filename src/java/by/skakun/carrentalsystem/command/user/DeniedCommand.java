@@ -1,4 +1,4 @@
-package by.skakun.carrentalsystem.command.admin;
+package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
@@ -12,34 +12,31 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * sends admin to page with all archived orders
+ * 
+ * showing user the list of denied orders (with reasons, why)
  */
-public class ArchiveOrdersCommand implements ActionCommand {
+public class DeniedCommand implements ActionCommand {
 
-    private static final Logger LOG = Logger.getLogger(ArchiveOrdersCommand.class);
+    private static final Logger LOG = Logger.getLogger(DeniedCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
+        LOG.info("DeniedCommand");
         OrderDaoImpl orderDao;
+        List<Order> orderDenied;
         try {
             orderDao = new OrderDaoImpl();
+            int id = (int) request.getSession().getAttribute("userId");
+            orderDenied = orderDao.getDByUserId(id);
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
             LOG.info("->errorpage");
             String page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        List<Order> appls = null;
-        try {
-            appls = orderDao.getArchiveOrders();
-        } catch (DAOException ex) {
-            LOG.error("DAOException while applicationDaoImpl.getAll()." + ex);
-        }
-        request.setAttribute("lst", appls);
-        LOG.info("-> archiveorders.jsp");
-        String page = ConfigurationManager.getProperty("path.page.archiveorders");
+        request.setAttribute("lstR", orderDenied); 
+        LOG.info("->denied");
+        String page = ConfigurationManager.getProperty("path.page.ordersdenied");
         return page;
-
     }
-
 }

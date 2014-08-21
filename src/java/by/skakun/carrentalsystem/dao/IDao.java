@@ -29,15 +29,13 @@ public interface IDao<T extends Entity> {
 
     /**
      *
-     * @return
-     * @throws DAOException
+     * @return @throws DAOException
      */
     List<T> getAll() throws DAOException;
 
     /**
      *
-     * @param stm
-     * closes prepared statement
+     * @param stm closes prepared statement
      */
     public static void closePS(PreparedStatement stm) {
         try {
@@ -48,6 +46,5 @@ public interface IDao<T extends Entity> {
             LOG.error("SQLException while closing PreparedStatement in OrderDaoImpl", ex);
         }
     }
-    
 
 }

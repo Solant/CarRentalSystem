@@ -5,15 +5,20 @@ import by.skakun.carrentalsystem.manager.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
-public class ContactsRedicrectCommand implements ActionCommand {
+/**
+ *
+ * @author Skakun
+ * 
+ * getting user to contacts page
+ */
+public class ContactsRedirectCommand implements ActionCommand {
 
-    private static final Logger LOG = Logger.getLogger(ContactsRedicrectCommand.class);
+    private static final Logger LOG = Logger.getLogger(ContactsRedirectCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("Перенаправляем на страницу contacts");
+        LOG.info("->contacts");
         String page = ConfigurationManager.getProperty("path.page.contacts");
-        LOG.info("page");
         return page;
 
     }

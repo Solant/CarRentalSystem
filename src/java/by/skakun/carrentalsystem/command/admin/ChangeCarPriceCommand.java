@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * changes the price of car and returns him to the car info page
  */
 public class ChangeCarPriceCommand implements ActionCommand {
 

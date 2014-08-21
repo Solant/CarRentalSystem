@@ -1,8 +1,6 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.dao.impl.RepairBillDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +8,9 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author apple
+ * @author Skakun
+ * 
+ * marking the chosen repaibill as paid and getting admin to the page with the rest of unpaid bills
  */
 public class RepairedCommand implements ActionCommand {
 

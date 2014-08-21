@@ -7,7 +7,8 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author apple
+ * @author Skakun
+ *
  * processing redirect to logouta.jsp
  */
 public class LogoutARedicrectCommand implements ActionCommand {

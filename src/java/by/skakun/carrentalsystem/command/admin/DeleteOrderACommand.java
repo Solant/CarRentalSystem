@@ -1,27 +1,30 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.manager.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
-public class DeleteApplicationACommand implements ActionCommand {
+/**
+ *
+ * @author Skakun
+ * 
+ * deletes unpaid orders which admin chose
+ */
+public class DeleteOrderACommand implements ActionCommand {
 
-    private static final Logger LOG = Logger.getLogger(DeleteApplicationACommand.class);
+    private static final Logger LOG = Logger.getLogger(DeleteOrderACommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
         String page;
 
-        LOG.info("DeleteApplicationACommand");
+        LOG.info("DeleteOrderACommand");
         boolean flag = false;
         String idA = (String) request.getParameter("applId");
-        LOG.info(idA);
         int id = Integer.parseInt(idA);
-        LOG.info("Application id" + id);
         OrderDaoImpl applDao;
         try {
             applDao = new OrderDaoImpl();
@@ -37,13 +40,9 @@ public class DeleteApplicationACommand implements ActionCommand {
             LOG.info("DAOException while PayCommand: " + ex);
         }
         if (flag) {
-        //    LOG.info("True");
-            //    request.setAttribute("success", "1");
             page = new UnpaidOrdersCommand().execute(request);
             return page;
         } else {
-        //    LOG.info("False");
-            //    request.setAttribute("fail", "1");
             page = new UnpaidOrdersCommand().execute(request);
             return page;
         }

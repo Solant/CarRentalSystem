@@ -1,7 +1,6 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.RepairBillDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -10,6 +9,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * gets admin to page with all unpaid repair bills
+ */
 public class RepairBillsCommand implements ActionCommand {
 
     private static final Logger LOG = Logger.getLogger(RepairBillsCommand.class);
@@ -29,7 +34,7 @@ public class RepairBillsCommand implements ActionCommand {
         try {
             bills = billDao.getAll();
         } catch (DAOException ex) {
-            LOG.info("DAOException after applicationDaoImpl.getRepairBills()" + ex);
+            LOG.info("DAOException after OrderDao.getRepairBills()" + ex);
         }
         request.setAttribute("lst", bills);
         LOG.info("->repairbills");

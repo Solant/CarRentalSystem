@@ -1,17 +1,17 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.manager.ConfigurationManager;
-import by.skakun.carrentalsystem.manager.MessageManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 /**
  *
- * @author apple
+ * @author Skakun
+ * 
+ * deletes car / not recommended
  */
 public class DeleteCarCommand implements ActionCommand {
 

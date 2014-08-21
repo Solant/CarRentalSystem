@@ -5,6 +5,12 @@ import by.skakun.carrentalsystem.manager.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * defining order and adding period of rent
+ */
 public class DefineOrderCommand implements ActionCommand {
 
      private static final Logger LOG = Logger.getLogger(DefineOrderCommand.class);
