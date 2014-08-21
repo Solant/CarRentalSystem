@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun 
+ * 
  * DAO implementation for RepairBillDao Interface
  */
 public class RepairBillDaoImpl implements RepairBillDao {
@@ -34,7 +35,7 @@ public class RepairBillDaoImpl implements RepairBillDao {
 
     /**
      *
-     * @param connection from ConnectionPool
+     * @throws DAOException
      */
     public RepairBillDaoImpl() throws DAOException {
         this.pool = ConnectionPool.getInstance();

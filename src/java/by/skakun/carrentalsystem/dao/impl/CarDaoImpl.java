@@ -43,7 +43,7 @@ public class CarDaoImpl implements CarDao {
 
     /**
      *
-     * @param connection from the ConnectionPool
+     * @throws by.skakun.carrentalsystem.exception.DAOException
      */
     public CarDaoImpl() throws DAOException {
         this.pool = ConnectionPool.getInstance();

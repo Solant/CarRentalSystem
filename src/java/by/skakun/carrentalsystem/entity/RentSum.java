@@ -1,10 +1,12 @@
 
 package by.skakun.carrentalsystem.entity;
 
+import java.io.Serializable;
+
 /**
  *
- * @author apple
+ * @author Skakun
  */
-public class RentSum extends Entity{
+public class RentSum extends Entity implements Serializable{
     
 }

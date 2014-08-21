@@ -9,6 +9,9 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
+ * Handler for custom tag, which shows statistics about the amount of fields in
+ * chosen database table and provides a link to manage the data of the table.
  */
 public class StatisticsTag extends TagSupport {
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/apple/CarRentalSystem/web/jsp/admin/deleteusers.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/UsersCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/DeleteUserCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/web/jsp/admin/allusers.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/web/WEB-INF/classes/title.properties</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/MainAdmCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/auth/LogoutARedicrectCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/dao/impl/ClientDaoImpl.java</file>
+        </group>
+    </open-files>
+</project-private>

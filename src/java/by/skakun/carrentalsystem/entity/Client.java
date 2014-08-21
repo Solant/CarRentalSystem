@@ -1,10 +1,15 @@
 package by.skakun.carrentalsystem.entity;
 
 import by.skakun.carrentalsystem.exception.ClientException;
+import java.io.Serializable;
 import java.util.Objects;
 import org.apache.log4j.Logger;
 
-public class Client extends Entity {
+/**
+ *
+ * @author Skakun
+ */
+public final class Client extends Entity implements Serializable{
 
     private static final Logger LOG = Logger.getLogger(Client.class);
 
@@ -18,10 +23,23 @@ public class Client extends Entity {
     private int active;
     private int credit;
 
+    /**
+     *
+     */
     public Client() {
         super();
     }
 
+    /**
+     *
+     * @param login
+     * @param password
+     * @param name
+     * @param surname
+     * @param passNum
+     * @param id
+     * @param type
+     */
     public Client(String login, String password, String name, String surname, String passNum, int id, ClientType type) {
         super(id);
         try {
@@ -36,6 +54,18 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @param login
+     * @param password
+     * @param name
+     * @param surname
+     * @param passNum
+     * @param type
+     * @param email
+     * @param active
+     * @param credit
+     */
     public Client(String login, String password, String name, String surname, String passNum, String type, String email, int active, int credit) {
         super();
         try {
@@ -53,10 +83,18 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCredit() {
         return credit;
     }
 
+    /**
+     *
+     * @param credit
+     */
     public void setCredit(int credit) {
         if(credit>=0){
             this.credit = credit;
@@ -65,10 +103,18 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getActive() {
         return active;
     }
 
+    /**
+     *
+     * @param active
+     */
     public void setActive(int active) {
         if (active == 1) {
             this.active = active;
@@ -77,10 +123,19 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     * @throws ClientException
+     */
     public void setEmail(String email) throws ClientException {
         if (!email.isEmpty()) {
             this.email = email;
@@ -89,10 +144,19 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     * @throws ClientException
+     */
     public void setName(String name) throws ClientException {
         if (!name.isEmpty()) {
             this.name = name;
@@ -101,10 +165,19 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSurname() {
         return surname;
     }
 
+    /**
+     *
+     * @param surname
+     * @throws ClientException
+     */
     public void setSurname(String surname) throws ClientException {
         if (!surname.isEmpty()) {
             this.surname = surname;
@@ -113,10 +186,19 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassNum() {
         return passNum;
     }
 
+    /**
+     *
+     * @param passNum
+     * @throws ClientException
+     */
     public void setPassNum(String passNum) throws ClientException {
         if (!passNum.isEmpty()) {
             this.passNum = passNum;
@@ -125,10 +207,18 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public ClientType getType() {
         return type;
     }
 
+    /**
+     *
+     * @param s
+     */
     public void setType(String s) {
         if (s.toUpperCase().equals("ADMIN")) {
             this.type = ClientType.ADMIN;
@@ -137,10 +227,19 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     *
+     * @param login
+     * @throws ClientException
+     */
     public void setLogin(String login) throws ClientException {
         if (!login.isEmpty()) {
             this.login = login;
@@ -149,10 +248,19 @@ public class Client extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     * @throws ClientException
+     */
     public void setPassword(String password) throws ClientException {
 
         if (!password.isEmpty()) {
@@ -163,11 +271,19 @@ public class Client extends Entity {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getId() {
         return super.getId();
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void setId(int id) {
         super.setId(id);

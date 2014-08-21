@@ -4,7 +4,7 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
-import by.skakun.carrentalsystem.manager.ConfigurationManager;
+import by.skakun.carrentalsystem.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 

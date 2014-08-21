@@ -1,7 +1,7 @@
 package by.skakun.carrentalsystem.connectionpool;
 
 import by.skakun.carrentalsystem.exception.DAOException;
-import by.skakun.carrentalsystem.manager.ConfigurationManager;
+import by.skakun.carrentalsystem.util.ConfigurationManager;
 
 import java.sql.*;
 import java.util.Properties;

@@ -6,7 +6,7 @@ import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.entity.Car;
 import by.skakun.carrentalsystem.exception.DAOException;
-import by.skakun.carrentalsystem.manager.ConfigurationManager;
+import by.skakun.carrentalsystem.util.ConfigurationManager;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;

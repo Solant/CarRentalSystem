@@ -1,12 +1,18 @@
 package by.skakun.carrentalsystem.entity;
 
 import by.skakun.carrentalsystem.exception.OrderException;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
+import org.apache.log4j.Logger;
 
-public class Order extends Entity {
+/**
+ *
+ * @author Skakun
+ */
+public class Order extends Entity implements Serializable{
 
-    private static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(Order.class);
+    private static final Logger LOG = Logger.getLogger(Order.class);
 
     private int userId;
     private int carId;
@@ -23,9 +29,23 @@ public class Order extends Entity {
     private String passNum;
     private String clientSurname;
 
+    /**
+     *
+     */
     public Order() {
     }
 
+    /**
+     *
+     * @param userId
+     * @param carId
+     * @param sumToPay
+     * @param paid
+     * @param damaged
+     * @param returned
+     * @param confirmed
+     * @param refusalReason
+     */
     public Order(int userId, int carId, int sumToPay, boolean paid, Damage damaged, int returned, int confirmed, String refusalReason) {
         this.userId = userId;
         this.carId = carId;
@@ -37,6 +57,15 @@ public class Order extends Entity {
         this.refusalReason = refusalReason;
     }
 
+    /**
+     *
+     * @param userId
+     * @param carId
+     * @param sumToPay
+     * @param price
+     * @param period
+     * @param date
+     */
     public Order(int userId, int carId, int sumToPay, int price, int period, Date date) {
         try {
             setUserId(userId);
@@ -50,6 +79,18 @@ public class Order extends Entity {
         }
     }
 
+    /**
+     *
+     * @param userId
+     * @param carId
+     * @param sumToPay
+     * @param paid
+     * @param damaged
+     * @param returned
+     * @param confirmed
+     * @param id
+     * @param refusalReason
+     */
     public Order(int userId, int carId, int sumToPay, boolean paid, Damage damaged, int returned, int confirmed, int id, String refusalReason) {
         super(id);
         this.userId = userId;
@@ -62,18 +103,35 @@ public class Order extends Entity {
         this.refusalReason = refusalReason;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     *
+     * @param date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPeriod() {
         return period;
     }
 
+    /**
+     *
+     * @param period
+     * @throws OrderException
+     */
     public void setPeriod(int period) throws OrderException {
         if (period > 0) {
             this.period = period;
@@ -82,10 +140,19 @@ public class Order extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassNum() {
         return passNum;
     }
 
+    /**
+     *
+     * @param passNum
+     * @throws OrderException
+     */
     public void setPassNum(String passNum) throws OrderException {
         if (!passNum.isEmpty()) {
             this.passNum = passNum;
@@ -94,10 +161,19 @@ public class Order extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getClientSurname() {
         return clientSurname;
     }
 
+    /**
+     *
+     * @param clientSurname
+     * @throws OrderException
+     */
     public void setClientSurname(String clientSurname) throws OrderException {
         if (!clientSurname.isEmpty()) {
             this.clientSurname = clientSurname;
@@ -106,10 +182,19 @@ public class Order extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCarName() {
         return carName;
     }
 
+    /**
+     *
+     * @param carName
+     * @throws OrderException
+     */
     public void setCarName(String carName) throws OrderException {
         if (!carName.isEmpty()) {
             this.carName = carName;
@@ -119,10 +204,19 @@ public class Order extends Entity {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     * @throws OrderException
+     */
     public void setPrice(int price) throws OrderException {
         if (price > 0) {
             this.price = price;
@@ -131,26 +225,51 @@ public class Order extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     *
+     * @param userId
+     */
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCarId() {
         return carId;
     }
 
+    /**
+     *
+     * @param carId
+     */
     public void setCarId(int carId) {
         this.carId = carId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSumToPay() {
         return sumToPay;
     }
 
+    /**
+     *
+     * @param sumToPay
+     * @throws OrderException
+     */
     public void setSumToPay(int sumToPay) throws OrderException {
         if (sumToPay > 0) {
             this.sumToPay = sumToPay;
@@ -159,42 +278,82 @@ public class Order extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isPaid() {
         return paid;
     }
 
+    /**
+     *
+     * @param paid
+     */
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
 
+    /**
+     *
+     * @return
+     */
     public Damage getDamaged() {
         return damaged;
     }
 
+    /**
+     *
+     * @param damaged
+     */
     public void setDamaged(Damage damaged) {
         this.damaged = damaged;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getReturned() {
         return returned;
     }
 
+    /**
+     *
+     * @param returned
+     */
     public void setReturned(int returned) {
         this.returned = returned;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getConfirmed() {
         return confirmed;
     }
 
+    /**
+     *
+     * @param confirmed
+     */
     public void setConfirmed(int confirmed) {
         this.confirmed = confirmed;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRefusalReason() {
         return refusalReason;
     }
 
+    /**
+     *
+     * @param refusalReason
+     */
     public void setRefusalReason(String refusalReason) {
         this.refusalReason = refusalReason;
     }

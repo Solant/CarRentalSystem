@@ -17,7 +17,9 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun DAO implementation for OrderDao Interface
+ * @author Skakun
+ * 
+ * DAO implementation for OrderDao Interface
  *
  */
 public class OrderDaoImpl implements OrderDao {
@@ -86,7 +88,6 @@ public class OrderDaoImpl implements OrderDao {
 
     /**
      *
-     * @param connection from ConnectionPool
      */
     public OrderDaoImpl() throws DAOException {
         this.pool = ConnectionPool.getInstance();
@@ -259,6 +260,8 @@ public class OrderDaoImpl implements OrderDao {
     /**
      *
      * @param id of the order
+     * @param idOr
+     * @param sum
      * @return true id the payment was successful, otherwise
      * @throws DAOException
      */

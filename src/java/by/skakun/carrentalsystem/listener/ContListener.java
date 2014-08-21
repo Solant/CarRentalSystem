@@ -2,20 +2,15 @@
 package by.skakun.carrentalsystem.listener;
 
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Enumeration;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 /**
  *
  * @author Skakun
+ * 
+ * releasing ConnectionPool on close
  */
 public class ContListener implements ServletContextListener {
 
@@ -28,7 +23,8 @@ public class ContListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ConnectionPool.releaseConnectionPool();
+        ConnectionPool.releaseConnectionPool(); 
+        LOG.info("ConnectionPool is released");
     }
 
 

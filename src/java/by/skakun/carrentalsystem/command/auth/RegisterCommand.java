@@ -4,9 +4,8 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
-import by.skakun.carrentalsystem.logic.PasswordHashing;
-import by.skakun.carrentalsystem.manager.ConfigurationManager;
-import by.skakun.carrentalsystem.manager.MessageManager;
+import by.skakun.carrentalsystem.util.PasswordHashing;
+import by.skakun.carrentalsystem.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -29,7 +28,7 @@ public class RegisterCommand implements ActionCommand {
         String password = request.getParameter("password");
         String passwordRepeat = request.getParameter("passwordRepeat");
         if (!password.equals(passwordRepeat)) {
-            request.setAttribute("errorPassword", MessageManager.getProperty("message.loginerror"));
+            request.setAttribute("errorPassword", "1");
             page = ConfigurationManager.getProperty("path.page.register");
             return page;
         }

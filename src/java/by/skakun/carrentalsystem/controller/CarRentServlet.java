@@ -2,8 +2,7 @@ package by.skakun.carrentalsystem.controller;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.command.ActionFactory;
-import by.skakun.carrentalsystem.manager.ConfigurationManager;
-import by.skakun.carrentalsystem.manager.MessageManager;
+import by.skakun.carrentalsystem.util.ConfigurationManager;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,7 +43,6 @@ public class CarRentServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             page = ConfigurationManager.getProperty("path.page.index");
-            request.getSession().setAttribute("nullpage", MessageManager.getProperty("message.nullpage"));
             response.sendRedirect(request.getContextPath() + page);
         }
     }

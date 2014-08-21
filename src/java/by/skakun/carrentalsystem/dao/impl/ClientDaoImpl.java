@@ -37,10 +37,14 @@ public class ClientDaoImpl implements ClientDao {
             + "where client.`user_id`=?;";
     private static final String CHANGE_EMAIL = "UPDATE `client` SET client.`email`=? "
             + "where client.`user_id`=?;";
+    private static final String SET_INACTIVE = "UPDATE `client` SET client.`active`=0"
+            + " where client.`user_id`=?;";
+    private static final String SET_ACTIVE = "UPDATE `client` SET client.`active`=1"
+            + " where client.`user_id`=?;";
 
     /**
      *
-     * 
+     * @throws DAOException
      */
     public ClientDaoImpl() throws DAOException {
         this.pool = ConnectionPool.getInstance();
@@ -308,6 +312,43 @@ public class ClientDaoImpl implements ClientDao {
                 return true;
         } catch (SQLException ex) {
             throw new DAOException("DAOException while ClientDaoImpl.changeEmail()", ex);
+        } finally {
+            closePS(stm);
+            pool.returnConnection(connection);
+        }
+    }
+    
+    
+    /**
+     *
+     *
+     * @param id - id of the client
+     * @return true if the state was changed
+     * @throws DAOException
+     */
+    public boolean changeActive(int id) throws DAOException {
+        LOG.info("CarDaoImpl.changeActive()");
+        PreparedStatement stm = null;
+        
+        try {
+            stm = connection.prepareStatement(SELECT_USER_BY_ID);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            rs.next();
+            int active = rs.getInt("active");
+            if (active == 1) {
+                stm = connection.prepareStatement(SET_INACTIVE);
+                stm.setInt(1, id);
+                stm.executeUpdate();
+                return true;
+            } else {
+                stm = connection.prepareStatement(SET_ACTIVE);
+                stm.setInt(1, id);
+                stm.executeUpdate();
+                return true;
+            }
+        } catch (SQLException ex) {
+            throw new DAOException("DAOException while ClientDaoImpl.changeActive()", ex);
         } finally {
             closePS(stm);
             pool.returnConnection(connection);

@@ -2,21 +2,40 @@ package by.skakun.carrentalsystem.entity;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author Skakun
+ */
 public abstract class Entity implements Serializable {
 
     private int id;
 
+    /**
+     *
+     */
     public Entity() {
     }
 
+    /**
+     *
+     * @param id
+     */
     public Entity(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }

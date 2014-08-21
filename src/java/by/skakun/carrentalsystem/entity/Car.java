@@ -1,10 +1,16 @@
 package by.skakun.carrentalsystem.entity;
 
 import by.skakun.carrentalsystem.exception.CarException;
+import java.io.Serializable;
 import java.util.Objects;
 import org.apache.log4j.Logger;
 
-public class Car extends Entity {
+/**
+ *
+ * @author Skakun
+ * 
+ */
+public final class Car extends Entity implements Serializable{
 
     private static final Logger LOG = Logger.getLogger(Car.class);
 
@@ -13,9 +19,20 @@ public class Car extends Entity {
     private String image;
     private int active;
 
+    /**
+     *
+     */
     public Car() {
     }
 
+    /**
+     *
+     * @param id
+     * @param carname
+     * @param price
+     * @param image
+     * @param active
+     */
     public Car(int id, String carname, int price, String image, int active) {
         super(id);
         try {
@@ -28,6 +45,13 @@ public class Car extends Entity {
         }
     }
 
+    /**
+     *
+     * @param carname
+     * @param price
+     * @param image
+     * @param active
+     */
     public Car(String carname, int price, String image, int active) {
         super();
         this.carname = carname;
@@ -36,21 +60,38 @@ public class Car extends Entity {
         this.active = active;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getId() {
         return super.getId();
     }
 
+    /**
+     *
+     * @param id
+     */
     @Override
     public void setId(int id) {
         super.setId(id);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCarname() {
         return carname;
     }
 
-    public void setCarname(String carname) throws CarException {
+    /**
+     *
+     * @param carname
+     * @throws CarException
+     */
+    public final void setCarname(String carname) throws CarException {
         if (!carname.isEmpty()) {
             this.carname = carname;
         } else {
@@ -58,11 +99,20 @@ public class Car extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) throws CarException {
+    /**
+     *
+     * @param price
+     * @throws CarException
+     */
+    public final void setPrice(int price) throws CarException {
         if (price > 0) {
             this.price = price;
         } else {
@@ -70,11 +120,20 @@ public class Car extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) throws CarException {
+    /**
+     *
+     * @param image
+     * @throws CarException
+     */
+    public final void setImage(String image) throws CarException {
         if (!image.isEmpty()) {
             this.image = image;
         } else {
@@ -82,11 +141,20 @@ public class Car extends Entity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getActive() {
         return active;
     }
 
-    public void setActive(int active) throws CarException {
+    /**
+     *
+     * @param active
+     * @throws CarException
+     */
+    public final void setActive(int active) throws CarException {
         if (active >= 0) {
             this.active = active;
         } else {

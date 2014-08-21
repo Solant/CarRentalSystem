@@ -3,7 +3,9 @@ package by.skakun.carrentalsystem.validator;
 
 /**
  *
- * @author apple
+ * @author Skakun
+ * 
+ * server-side validation
  */
 public class loginInfoValidator {
     public boolean loginVal(String login) {

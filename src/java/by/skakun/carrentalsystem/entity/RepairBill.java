@@ -1,13 +1,14 @@
 
 package by.skakun.carrentalsystem.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Skakun
  */
-public class RepairBill extends Entity{
+public class RepairBill extends Entity implements Serializable{
     private String carname;
     private int sum;
     private String damage;

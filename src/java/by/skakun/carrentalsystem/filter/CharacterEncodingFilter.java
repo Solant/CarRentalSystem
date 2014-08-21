@@ -1,7 +1,6 @@
 package by.skakun.carrentalsystem.filter;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,16 +9,34 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * filter for ensuring that all data in the system will be shown and transferred
+ * with UTF-8 encoding
+ */
 public class CharacterEncodingFilter implements Filter {
 
     private String code="UTF-8";
     static final Logger LOG = Logger.getLogger(CharacterEncodingFilter.class);
 
+    /**
+     *
+     */
     @Override
     public void destroy() {
         code = null;
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
@@ -32,6 +49,11 @@ public class CharacterEncodingFilter implements Filter {
 
     }
 
+    /**
+     *
+     * @param config
+     * @throws ServletException
+     */
     @Override
     public void init(FilterConfig config) throws ServletException {
         code = config.getInitParameter("encoding");
