@@ -38,8 +38,9 @@
                             <input type="hidden" name="command" value="Login" />
                             <span class="fontawesome-user"></span>
                             <input type="text" id="user" name= "login" placeholder="<fmt:message key="login.name" />" required>
-                            <span class="fontawesome-lock"></span>
-                            <input type="password" name="password" id="pass" placeholder="<fmt:message key="login.password" />" required>
+                            <c:if test="${not empty errorLogin}"><div class="alert"><fmt:message key="active.restricted"/></div></c:if>
+                                <span class="fontawesome-lock"></span>
+                                <input type="password" name="password" id="pass" placeholder="<fmt:message key="login.password" />" required>
                             <c:if test="${not empty errorPassword}"><div class="alert"><fmt:message key="error.pass.message"/></div></c:if>
                             <input type="submit" value="<fmt:message key="login.enter"/>">
                             <div class='notice'><a href='mailto:hamzees@gmail.com?Subject=<fmt:message key="login.forgot"/>' target="_top"><fmt:message key="login.forgot"/></a></div>

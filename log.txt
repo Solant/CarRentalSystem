@@ -91,3 +91,13 @@
 2014-08-21 23:19:10 [main        ] <INFO > <ConnectionPool.getConnection()>
 2014-08-21 23:19:10 [main        ] <INFO > <ConnectionPool.getInstance()>
 2014-08-21 23:19:10 [main        ] <INFO > <ClientDaoImpl.deleteUser()>
+2014-08-22 01:22:56 [main        ] <INFO > <ConnectionPool.getInstance()>
+2014-08-22 01:22:56 [main        ] <INFO > <ConnectionPool()>
+2014-08-22 01:22:56 [main        ] <INFO > <ConnectionPool.getConnection()>
+2014-08-22 01:22:56 [main        ] <INFO > <ConnectionPool.getInstance()>
+2014-08-22 01:22:56 [main        ] <INFO > <CLientDaoImpl.checkLogin()>
+2014-08-22 01:22:56 [main        ] <INFO > <com.mysql.jdbc.JDBC4PreparedStatement@1d29cf23: SELECT * FROM CLIENT WHERE USERNAME= '';>
+2014-08-22 01:22:56 [main        ] <INFO > <ConnectionPool.getInstance()>
+2014-08-22 01:22:56 [main        ] <INFO > <ConnectionPool.getConnection()>
+2014-08-22 01:22:56 [main        ] <INFO > <ConnectionPool.getInstance()>
+2014-08-22 01:22:56 [main        ] <INFO > <ClientDaoImpl.deleteUser()>

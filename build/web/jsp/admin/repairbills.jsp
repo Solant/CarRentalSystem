@@ -20,7 +20,7 @@
                     <c:import url="..\common\menu_admin.jsp" charEncoding="utf-8"/> 
                 </div>
                 <div id="page-content">  
-                    <h2><fmt:message key="menu.up"/></h2>
+                    <h2><fmt:message key="repairbill.title"/></h2>
                     <table class="cartable">
                         <c:if test="${not empty csuccess}"><div class="msg"><fmt:message key="order.damage.c"/></div></c:if>
                         <c:if test="${not empty cfail}"><div class="msg"><fmt:message key="order.damage.f"/></div></c:if>

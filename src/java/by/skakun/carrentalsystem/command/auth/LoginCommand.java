@@ -2,15 +2,15 @@ package by.skakun.carrentalsystem.command.auth;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.command.admin.MainAdmCommand;
+import by.skakun.carrentalsystem.command.user.MainRedirectCommand;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
-import by.skakun.carrentalsystem.entity.ClientType;
 import by.skakun.carrentalsystem.exception.DAOException;
-import by.skakun.carrentalsystem.util.PasswordHashing;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.LoginLogic;
+import by.skakun.carrentalsystem.util.PasswordHashing;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 /**
@@ -55,41 +55,21 @@ public class LoginCommand implements ActionCommand {
             LOG.info("DAOException after userDao.getAll()" + ex.getLocalizedMessage());
         }
 
-        String login2;
-        String password2;
-
-        if (clients != null) {
-            for (Client client : clients) {
-                if (client != null) {
-                    login2 = client.getLogin();
-                    password2 = client.getPassword();
-                    if (login.equals(login2) && password.equals(password2)) {
-                        HttpSession httpSession = request.getSession();
-                        httpSession.setAttribute("user", client);
-                        httpSession.setAttribute("userType", client.getType());
-                        httpSession.setAttribute("userName", client.getLogin());
-                        httpSession.setAttribute("userEmail", client.getEmail());
-                        httpSession.setAttribute("userId", client.getId());
-                        httpSession.setAttribute("userPassNum", client.getPassNum());
-                        httpSession.setAttribute("userSurname", client.getSurname());
-                        httpSession.setAttribute("userRealName", client.getName());
-                        httpSession.setAttribute("credit", client.getCredit());
-                        if (client.getType().equals(ClientType.ADMIN)) {
-                            page = new MainAdmCommand().execute(request);
-                            return page;
-                        } else {
-                            page = ConfigurationManager.getProperty("path.page.main");
-                            return page;
-                        }
-                    }
-
-                }
-            }
+        switch (LoginLogic.checkLogin(clients, login, password, request)) {
+            case 1:
+                request.setAttribute("errorLogin", "1");
+                page = ConfigurationManager.getProperty("path.page.index");
+                return page;
+            case 2:
+                page = new MainAdmCommand().execute(request);
+                return page;
+            case 3:
+                page = new MainRedirectCommand().execute(request);
+                return page;
+            default:
+                request.setAttribute("errorPassword", "1");
+                page = ConfigurationManager.getProperty("path.page.index");
+                return page;
         }
-
-        request.setAttribute("errorPassword", "1");
-        page = ConfigurationManager.getProperty("path.page.index");
-        return page;
-
     }
 }

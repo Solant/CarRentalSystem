@@ -1,5 +1,5 @@
 
-package by.skakun.carrentalsystem.validator;
+package by.skakun.carrentalsystem.util;
 
 /**
  *
@@ -7,7 +7,7 @@ package by.skakun.carrentalsystem.validator;
  * 
  * server-side validation
  */
-public class loginInfoValidator {
+public class EnteredInfoValidator {
     public boolean loginVal(String login) {
         if(login.isEmpty()) {
             return false;

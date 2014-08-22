@@ -1,14 +1,17 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
+import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 /**
  *
  * @author Skakun
- * 
+ *
  * getting user to main.jsp
  */
 public class MainRedirectCommand implements ActionCommand {
@@ -17,6 +20,22 @@ public class MainRedirectCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
+        OrderDaoImpl orderDao = null;
+        ArrayList list = null;
+        try {
+            orderDao = new OrderDaoImpl();
+        } catch (DAOException ex) {
+            LOG.error(ex);
+        }
+        try {
+            list = (ArrayList) orderDao.getUByUserId((int)request.getSession().getAttribute("userId"));
+        } catch (DAOException ex) {
+            LOG.error("DAOException while LogoutACommand", ex);
+        }
+        if (list.size() > 0) {
+            request.setAttribute("flag", "1");
+            request.setAttribute("rw", list.size());
+        }
         LOG.info("->main.jsp");
         String page = ConfigurationManager.getProperty("path.page.main");
         return page;
@@ -24,15 +43,3 @@ public class MainRedirectCommand implements ActionCommand {
     }
 
 }
-
-/**
- *
- * @param request
- * @return content for page result/or redirects to login page with error message
- */
-/*   @Override
- public String execute(HttpServletRequest request) {
- String page = ConfigurationManager.getProperty("path.page.register");
- return page;
-
- } */

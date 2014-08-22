@@ -1,6 +1,8 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="custom" uri="customtags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,8 +24,14 @@
                <div id="page-content">
                    <h2><fmt:message key="user.mainpage.title"/></h2>
                    <p><fmt:message key="user.mainpage.test"/></p>
+                   <c:if test="${not empty flag}"><div class="msg"> <fmt:message key="user.neworders.message"/></div>
+                       <input type="hidden" name="userId" value="${userId}"/>
+                        <custom:statistics-tag command="basket" >
+                            ${rw}
+                        </custom:statistics-tag>
+                    </c:if>
                      <div id="back"> 
-                            <form name ="BackForm"  method="POST" action="carrent" >
+                            <form name ="RentACar"  method="POST" action="carrent" >
                                 <input type="hidden" name="command" value="CARSREDIRECT"/> 
                                 <input type="submit" value="<fmt:message key="media.slogan"/>"/>
                             </form> 

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
  *
  * @author Skakun
  * 
- * Manager for retrieving database connection settings, pages' pahts information
+ * Manager for retrieving database connection settings, pages' paths information
  */
 public class ConfigurationManager {
   private final static ResourceBundle resourceBundle = 
