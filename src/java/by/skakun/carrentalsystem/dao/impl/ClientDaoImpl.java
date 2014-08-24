@@ -2,7 +2,6 @@ package by.skakun.carrentalsystem.dao.impl;
 
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.ClientDao;
-import static by.skakun.carrentalsystem.dao.IDao.closePS;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.ClientException;
 import by.skakun.carrentalsystem.exception.DAOException;

@@ -1,6 +1,8 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="custom" uri="customtags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +23,9 @@
                 <div id="menu">     
                     <c:import url="..\common\menu.jsp" charEncoding="utf-8"/> 
                 </div>
+                 <custom:info-tag type="${userType}" username="${userName}">
+                    <fmt:message key='infotag.access'/>
+                </custom:info-tag>
                 <div id="page-content">  
 
 
@@ -36,6 +41,7 @@
                             <b><fmt:message key="user.order.car"/>: </b>  ${elem.carName} <br/>
                             <b><fmt:message key="user.order.price"/> :</b> ${elem.price} <br/>
                             <b><fmt:message key="user.order.period"/> : </b> ${elem.period} <br/>
+                            <b><fmt:message key="order.date"/> </b> ${elem.date} <br/>
                             <b> <fmt:message key="user.order.sumToPay"/>: </b>  ${elem.sumToPay} <br/>
                             <input type="hidden" name="command" value="Pay" /> 
                             <input type="submit" value="<fmt:message key="user.order.pay" /> " />

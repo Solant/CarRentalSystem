@@ -78,6 +78,8 @@ public interface OrderDao <T extends Order> extends IDao {
     /**
      *
      * @param id
+     * @param idOr
+     * @param sum
      * @return
      * @throws DAOException
      */

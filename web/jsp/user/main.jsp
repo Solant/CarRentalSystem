@@ -21,6 +21,9 @@
                 </div>
                <div id="menu">     <c:import url="..\common\menu.jsp" charEncoding="utf-8"/>
                </div>
+                <custom:info-tag type="${userType}" username="${userName}">
+                    <fmt:message key='infotag.access'/>
+                </custom:info-tag>
                <div id="page-content">
                    <h2><fmt:message key="user.mainpage.title"/></h2>
                    <p><fmt:message key="user.mainpage.test"/></p>

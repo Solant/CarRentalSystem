@@ -9,13 +9,7 @@ package by.skakun.carrentalsystem.util;
  */
 public class EnteredInfoValidator {
     public boolean loginVal(String login) {
-        if(login.isEmpty()) {
-            return false;
-        } else if (login.length()<3) {
-            return false;
-        } else if (login.length()>16) {
-            return false;
-        }
+    //    if(login.equals("^[a-z0-9_-]{3,16}$");
         return true;
     }
 }

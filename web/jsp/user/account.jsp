@@ -1,6 +1,8 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="custom" uri="customtags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +23,9 @@
                 <div id="menu">     
                     <c:import url="..\common\menu.jsp" charEncoding="utf-8"/> 
                 </div>
+                 <custom:info-tag type="${userType}" username="${userName}">
+                    <fmt:message key='infotag.access'/>
+                </custom:info-tag>
                 <div id="page-content">  
                     <h2><fmt:message key="menu.account"/></h2>
                     <fmt:message key="user.account.username"/>: <b> ${userName}</b> <br/>
@@ -32,7 +37,7 @@
                     <!--        <div id="login"> -->
                     <form name='form-change-email' method="POST" action="carrent" > 
                         <input type="hidden" name="command" value="ChangeEmail" /> 
-                        <input type="email" name="newemail" value="" />
+                        <input type="email" name="newemail" required value="" />
                         <input type="submit" value="<fmt:message key="user.account.emailchange"/>"/>
                     </form> 
                     <c:if test="${not empty cpError}"><div class="msg"><fmt:message key="change.email.fail"/></div></c:if>

@@ -1,7 +1,5 @@
 package by.skakun.carrentalsystem.dao;
 
-
-
 import by.skakun.carrentalsystem.entity.Car;
 import by.skakun.carrentalsystem.exception.DAOException;
 import java.util.List;
@@ -11,8 +9,8 @@ import java.util.List;
  * @author Skakun
  * @param <T>
  */
-public interface CarDao <T extends Car> extends IDao{
-    
+public interface CarDao<T extends Car> extends IDao {
+
     /**
      *
      * @param id
@@ -20,23 +18,21 @@ public interface CarDao <T extends Car> extends IDao{
      * @throws DAOException
      */
     @Override
-    Car read(int id) throws DAOException;
+   Car read(int id) throws DAOException;
 
     /**
      *
-     * @return
-     * @throws DAOException
+     * @return @throws DAOException
      */
     @Override
     List<Car> getAll() throws DAOException;
-    
+
     /**
      *
-     * @return
-     * @throws DAOException
+     * @return @throws DAOException
      */
     List<Car> getAllForUser() throws DAOException;
-    
+
     /**
      *
      * @param carname
@@ -45,7 +41,7 @@ public interface CarDao <T extends Car> extends IDao{
      * @throws DAOException
      */
     boolean changeCarname(String carname, int id) throws DAOException;
-    
+
     /**
      *
      * @param carprice
@@ -54,7 +50,7 @@ public interface CarDao <T extends Car> extends IDao{
      * @throws DAOException
      */
     boolean changeCarprice(int carprice, int id) throws DAOException;
-    
+
     /**
      *
      * @param carimage
@@ -63,7 +59,7 @@ public interface CarDao <T extends Car> extends IDao{
      * @throws DAOException
      */
     boolean changeCarimage(String carimage, int id) throws DAOException;
-    
+
     /**
      *
      * @param active
@@ -71,16 +67,16 @@ public interface CarDao <T extends Car> extends IDao{
      * @return
      * @throws DAOException
      */
-    boolean changeActive(int active, int id) throws DAOException;
-    
+    abstract public boolean changeActive(int active, int id) throws DAOException;
+
     /**
      *
      * @param id
      * @return
      * @throws DAOException
      */
-    boolean deleteCar(int id) throws DAOException;
-    
+   boolean deleteCar(int id) throws DAOException;
+
     /**
      *
      * @param car
@@ -88,5 +84,5 @@ public interface CarDao <T extends Car> extends IDao{
      * @throws DAOException
      */
     boolean create(Car car) throws DAOException;
-    
+
 }

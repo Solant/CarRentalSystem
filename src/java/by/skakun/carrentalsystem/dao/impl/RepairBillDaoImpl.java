@@ -1,7 +1,6 @@
 package by.skakun.carrentalsystem.dao.impl;
 
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
-import static by.skakun.carrentalsystem.dao.IDao.closePS;
 import by.skakun.carrentalsystem.dao.RepairBillDao;
 import by.skakun.carrentalsystem.entity.Entity;
 import by.skakun.carrentalsystem.entity.RepairBill;
@@ -10,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -50,8 +48,10 @@ public class RepairBillDaoImpl implements RepairBillDao {
     @Override
     public List getAll() throws DAOException {
         LOG.info("RepairBillDaoImpl.getAll()");
-        try (Statement stm = connection.createStatement()) {
-            ResultSet rs = stm.executeQuery(GET_ALL);
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(GET_ALL);
+            ResultSet rs = stm.executeQuery();
             List<RepairBill> list = new ArrayList<>();
             while (rs.next()) {
                 RepairBill bill = new RepairBill();
@@ -65,6 +65,7 @@ public class RepairBillDaoImpl implements RepairBillDao {
         } catch (SQLException ex) {
             throw new DAOException("DAOException while RepairBillDaoImpl.getAll()", ex);
         } finally {
+            closePS(stm);
             pool.returnConnection(connection);
 
         }

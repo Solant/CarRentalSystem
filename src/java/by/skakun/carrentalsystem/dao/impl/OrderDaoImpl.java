@@ -1,7 +1,6 @@
 package by.skakun.carrentalsystem.dao.impl;
 
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
-import static by.skakun.carrentalsystem.dao.IDao.closePS;
 import by.skakun.carrentalsystem.dao.OrderDao;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -32,7 +31,7 @@ public class OrderDaoImpl implements OrderDao {
     private static final String BILL_INSERT = "INSERT INTO bill (bill.`order_id`,"
             + " bill.`period`, bill.`price`, bill.`startdate`) VALUES (LAST_INSERT_ID(), ?, ?, ?);";
     private static final String GET_UNPAID_BY_USER_ID = "SELECT ORDERC.`sum_to_pay`,ORDERC.`order_id`,"
-            + " CAR.`carname`,bill.`period`, CAR.`price` "
+            + " CAR.`carname`,bill.`period`, bill.`startdate`, CAR.`price` "
             + "FROM ORDERC LEFT JOIN CAR ON ORDERC.`car_id`=CAR.`car_id` INNER JOIN bill ON"
             + " ORDERC.`order_id`=bill.`order_id` WHERE ORDERC.`user_id`= ? AND ORDERC.`paidfor`=0 "
             + "AND ORDERC.`confirmed`=1;";
@@ -175,6 +174,7 @@ public class OrderDaoImpl implements OrderDao {
                 order.setPrice(rs.getInt("price"));
                 order.setPeriod(rs.getInt("period"));
                 order.setId(rs.getInt("order_id"));
+                order.setDate(rs.getDate("startdate"));
                 list.add(order);
             }
             return list;

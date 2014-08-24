@@ -18,6 +18,7 @@ public class ContListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        // серирализация???
 
     }
 

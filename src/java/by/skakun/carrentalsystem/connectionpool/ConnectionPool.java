@@ -89,10 +89,10 @@ public final class ConnectionPool {
      * @throws DAOException
      */
     public Connection getConnection() throws DAOException {
-        LOG.info("ConnectionPool.getConnection()");
+        LOG.debug("ConnectionPool.getConnection()");
         Connection connection = null;
         try {
-            connection = getInstance().connections.poll(DATABASE_WAIT, TimeUnit.MILLISECONDS);
+            connection = connections.take();
             if (connection == null) {
                 throw new DAOException("There are no more available connections to the database");
             }

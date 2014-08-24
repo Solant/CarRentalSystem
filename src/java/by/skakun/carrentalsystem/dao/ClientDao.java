@@ -4,7 +4,7 @@ import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
 import java.util.List;
 
-public interface ClientDao<T extends Client> extends IDao {
+public interface ClientDao <T extends Client> extends IDao {
 
     @Override
     Client read(int id) throws DAOException;

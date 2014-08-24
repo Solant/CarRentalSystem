@@ -16,6 +16,21 @@
           <rtexprvalue>true</rtexprvalue>
       </attribute>
   </tag>
+  <tag>
+      <name>info-tag</name>
+      <tag-class>by.skakun.carrentalsystem.tag.InfoTag</tag-class>
+      <body-content>scriptless</body-content>
+      <attribute>
+          <name>username</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      <attribute>
+          <name>type</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
       
   
 </taglib>

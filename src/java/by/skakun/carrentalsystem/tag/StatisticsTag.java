@@ -1,10 +1,10 @@
 package by.skakun.carrentalsystem.tag;
 
 import java.io.IOException;
+import java.io.Serializable;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -13,9 +13,7 @@ import org.apache.log4j.Logger;
  * Handler for custom tag, which shows statistics about the amount of fields in
  * chosen database table and provides a link to manage the data of the table.
  */
-public class StatisticsTag extends TagSupport {
-
-    private static final Logger LOG = Logger.getLogger(StatisticsTag.class);
+public class StatisticsTag extends TagSupport implements Serializable{
 
     private String command;
 

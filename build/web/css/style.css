@@ -579,3 +579,19 @@ form.tag input[type="submit"]:hover {
 .fontawesome-lock:before{
     content:"\f023";
 }
+
+.infotag {
+    margin-left:80%;
+    color:black;
+    border-width: 2px;
+  //  border-color: black;
+  //  border-style: solid;
+    width: auto;
+    padding: 2px;
+    text-align:center;
+    background-color:#ffffff;
+    opacity: 0.4;
+    margin-bottom: -80px;
+    border-radius: 5px;
+    
+}

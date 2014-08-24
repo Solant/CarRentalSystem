@@ -37,7 +37,7 @@ public interface IDao<T extends Entity> {
      *
      * @param stm closes prepared statement
      */
-    public static void closePS(PreparedStatement stm) {
+    default void closePS(PreparedStatement stm) {
         try {
             if (stm != null) {
                 stm.close();
