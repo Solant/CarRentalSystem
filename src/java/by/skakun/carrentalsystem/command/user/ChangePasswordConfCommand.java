@@ -1,18 +1,18 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.PasswordHashing;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun 
- * 
+ * @author Skakun
+ *
  * processing request to change user's password
  */
 public class ChangePasswordConfCommand implements ActionCommand {
@@ -26,6 +26,10 @@ public class ChangePasswordConfCommand implements ActionCommand {
         int id = (int) request.getSession().getAttribute("userId");
         String password = (String) request.getParameter("pass");
         String newpassword = (String) request.getParameter("newpass");
+        if (!EnteredInfoValidator.passwordVal(newpassword)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         password = PasswordHashing.getHashValue(password);
         newpassword = PasswordHashing.getHashValue(newpassword);
         ClientDaoImpl clientDao;

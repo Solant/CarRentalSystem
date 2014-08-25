@@ -4,6 +4,7 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -23,6 +24,10 @@ public class DeleteUserCommand implements ActionCommand {
         String page;
         boolean flag;
         int id = Integer.parseInt((String) request.getParameter("user_id"));
+        if(!EnteredInfoValidator.userIdVal(id)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         ClientDaoImpl clientDao;
         try {
             clientDao = new ClientDaoImpl();

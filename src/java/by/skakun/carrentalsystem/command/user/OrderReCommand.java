@@ -5,6 +5,7 @@ import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -14,7 +15,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
+ *
  * adding order to the database
  */
 public class OrderReCommand implements ActionCommand {
@@ -31,13 +32,17 @@ public class OrderReCommand implements ActionCommand {
         int sumToPay;
         int k1 = Integer.parseInt((String) request.getSession().getAttribute("carPrice"));
         int k2 = Integer.parseInt((String) request.getParameter("period"));
+        if (!EnteredInfoValidator.periodVal(k2)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         sumToPay = k1 * k2;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date parsedate = null;
         try {
             parsedate = formatter.parse((String) request.getParameter("date"));
         } catch (ParseException ex) {
-            LOG.info("ParseException while converting date: " + ex);
+            LOG.error("ParseException while converting date: " + ex);
         }
         java.sql.Date sql = new java.sql.Date(parsedate.getTime());
         OrderDaoImpl orderDao;
@@ -45,7 +50,7 @@ public class OrderReCommand implements ActionCommand {
             orderDao = new OrderDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -55,7 +60,7 @@ public class OrderReCommand implements ActionCommand {
             page = ConfigurationManager.getProperty("path.page.order.success");
             return page;
         } catch (DAOException ex) {
-            LOG.info("DAOException while orderDao.create()" + ex);
+            LOG.error("DAOException while orderDao.create()" + ex);
             page = ConfigurationManager.getProperty("path.page.order.fail");
             return page;
         }

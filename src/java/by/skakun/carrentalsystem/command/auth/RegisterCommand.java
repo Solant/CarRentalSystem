@@ -6,6 +6,7 @@ import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.PasswordHashing;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -36,6 +37,11 @@ public class RegisterCommand implements ActionCommand {
         String passport = request.getParameter("pass_num");
         String email = request.getParameter("email");
         String type = "USER";
+        /* additional validation in case validation on jsp page doesn't work*/
+        if(!EnteredInfoValidator.validateRegistrationInfo(login, email, passport, password)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         int active = 1; //1 means active, 0 means inactive
         int credit = 1000; // srandart sum, placeholder for real billing
         password = PasswordHashing.getHashValue(password);
@@ -44,7 +50,7 @@ public class RegisterCommand implements ActionCommand {
             clientDao = new ClientDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }

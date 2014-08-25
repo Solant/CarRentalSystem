@@ -34,7 +34,7 @@
                         <input type="hidden" name="command" value="ChangePasswordConf" />
                         <fmt:message key="user.account.newpass"/>:<h7>*</h7><br/>
                         <div class="msg"> <fmt:message key="register.warn.pass"/> </div>
-                        <input type="password" pattern="^[a-z0-9_-]{3,16}$" id="user" name= "newpass" placeholder="" required> <br/><br/>
+                        <input type="password" pattern="^[a-z0-9_-]{6,16}$" id="user" name= "newpass" placeholder="" required> <br/><br/>
                         <fmt:message key="user.account.oldpass"/>:<h7>*</h7><br/>
                         <input type="password" id="user" name= "pass" placeholder="" required> <br/><br/>
                         <input type="submit" value="<fmt:message key="user.account.passchange"/>"/>

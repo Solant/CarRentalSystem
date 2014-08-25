@@ -16,9 +16,10 @@
     <body>
         <div class="page-wrapper"> <div class="page-buffer"> <div class="header"> <c:import url="\common\header.jsp"/> </div>
                 <div class="errorMes">
+                    <br/>
+                    <br/>
                     <h2><fmt:message key="err.title"/> </h2><br/>
                     <b> <fmt:message key="error.clarification"/></b> <br/>
-
                     <div id="back"> 
                         <form name ="BackForm"  method="POST" action="carrent" >
                             <input type="hidden" name="command" value="logout"/> 

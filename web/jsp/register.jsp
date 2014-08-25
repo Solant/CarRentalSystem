@@ -25,22 +25,22 @@
                 <input type="hidden" name="command" value="Register" />
                 <div class="titling"><fmt:message key="register.name"/>: <h7>*</h7></div>
                 <div class="warning"> <fmt:message key="register.warn.login"/> </div>
-                <input type="text" name="login"  pattern="^[a-z0-9_-]{3,16}$"  value="" autofocus required>
+                <input type="text" name="login" pattern="^[a-z0-9_-]{3,16}$"  value="" autofocus required>
                 <c:if test="${not empty errorLogin}"><div class="alert"><fmt:message key="error.double.login"/></div></c:if>
                 <div class="titling"> <fmt:message key="register.passoword" />: <h7>*</h7></div>
                 <div class="warning"> <fmt:message key="register.warn.pass"/> </div>
-                <input type="password" name="password" pattern="^[a-z0-9_-]{6,16}$" value="" autofocus required id='pas1'>
+                <input type="password" name="password" pattern="^[a-z0-9_-]{6,16}$" value=""  required id='pas1'>
                 <div class="titling"> <fmt:message key="register.repeat_password" />: <h7>*</h7></div>
-                <input type="password" name="passwordRepeat" value="" autofocus required id='pas2'>
+                <input type="password" name="passwordRepeat" value=""  required id='pas2'>
                 <c:if test="${not empty errorPassword}"><div class="alert"><fmt:message key="error.double.pass"/></div></c:if>
                 <div class="titling"> <fmt:message key="register.realname" />: <h7>*</h7></div>
-                <input type="text" name="realname" value="" autofocus required>
+                <input type="text" name="realname" value=""  required>
                 <div class="titling"> <fmt:message key="register.surname" />: <h7>*</h7></div>
-                <input type="text" name="surname" value="" autofocus required>
+                <input type="text" name="surname" value=""  required>
                 <div class="titling"> <fmt:message key="register.email" />: <h7>*</h7></div>
-                <input type="email" name="email" value="" autofocus required>
+                <input type="email" name="email" value=""  required>
                 <div class="titling"> <fmt:message key="register.passport.number" />:<h7>*</h7></div>
-                <input type="text" pattern="^[A-Z0-9]{7,14}$" name="pass_num" value="" autofocus required>
+                <input type="text" pattern="^[A-Z0-9]{7,14}$" name="pass_num" value=""  required>
                 <br/>
                 <input type="submit" value="<fmt:message key="register.button"/>">
                 <br/>
