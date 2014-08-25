@@ -37,11 +37,13 @@
                         <c:forEach var="elem" items="${lst}" varStatus="status">
                             <tr>
                                 <td>
-                                    <b><fmt:message key="order.car.id"/></b> ${elem.id} <br/>
+                                    <span class="selection">  <b><fmt:message key="order.car.id"/></b> ${elem.id} </span><br/>
                                     <b><fmt:message key="order.name"/></b> ${elem.carName} <br/>
                                     <b><fmt:message key="order.sum"/></b> ${elem.sumToPay} <br/>
-                                    <b><fmt:message key="column.surname"/></b> ${elem.clientSurname} <br/>
-                                    <b><fmt:message key="column.passNum"/></b> ${elem.passNum} <br/>
+                                    <b><fmt:message key="column.surname"/>:</b> ${elem.clientSurname} <br/>
+                                    <b><fmt:message key="column.passNum"/>:</b> ${elem.passNum} <br/>
+                                    <b><fmt:message key="user.order.period"/>:</b> ${elem.period} <br/>
+                                    <b><fmt:message key="start.date"/>:</b> ${elem.date} <br/>
                                     <form name ="ChangeCarInfoForm"  method="POST" action="carrent" class="menu">
                                         <input type="hidden" name="applId" value="${elem.id}" /> 
                                         <input type="hidden" name="command" value="confirm" /> 
@@ -52,7 +54,7 @@
                                         <input type="hidden" name="command" value="deny" /> 
                                         <input type="hidden" name="applId" value="${elem.id}" /> 
                                         <fmt:message key="order.reason"/>
-                                        <input type="text" name="reasonForRefusal" value="" required/>
+                                        <input type="text" maxlength="100" name="reasonForRefusal" value="" required/>
                                         <input type="submit" value="<fmt:message key="order.deny" /> " />
                                     </form>
 

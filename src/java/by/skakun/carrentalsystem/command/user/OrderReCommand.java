@@ -33,7 +33,8 @@ public class OrderReCommand implements ActionCommand {
         int k1 = Integer.parseInt((String) request.getSession().getAttribute("carPrice"));
         int k2 = Integer.parseInt((String) request.getParameter("period"));
         if (!EnteredInfoValidator.periodVal(k2)) {
-            page = ConfigurationManager.getProperty("path.page.error");
+            request.setAttribute("cpError", 1);
+            page = ConfigurationManager.getProperty("path.page.define");
             return page;
         }
         sumToPay = k1 * k2;
@@ -51,7 +52,7 @@ public class OrderReCommand implements ActionCommand {
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
             LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
+            page = ConfigurationManager.getProperty("path.page.error"); // couldn't get a connection from connection pool
             return page;
         }
         Order appl = new Order(userId, carid, sumToPay, k1, k2, sql);
@@ -61,10 +62,10 @@ public class OrderReCommand implements ActionCommand {
             return page;
         } catch (DAOException ex) {
             LOG.error("DAOException while orderDao.create()" + ex);
-            page = ConfigurationManager.getProperty("path.page.order.fail");
-            return page;
         }
-
+        request.setAttribute("cpError", 1);
+        page = ConfigurationManager.getProperty("path.page.define");
+        return page;
     }
 
 }

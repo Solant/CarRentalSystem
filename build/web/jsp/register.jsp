@@ -34,9 +34,9 @@
                 <input type="password" name="passwordRepeat" value=""  required id='pas2'>
                 <c:if test="${not empty errorPassword}"><div class="alert"><fmt:message key="error.double.pass"/></div></c:if>
                 <div class="titling"> <fmt:message key="register.realname" />: <h7>*</h7></div>
-                <input type="text" name="realname" value=""  required>
+                <input type="text" name="realname" maxlength="25" value=""  required>
                 <div class="titling"> <fmt:message key="register.surname" />: <h7>*</h7></div>
-                <input type="text" name="surname" value=""  required>
+                <input type="text" name="surname"  maxlength="25" value=""  required>
                 <div class="titling"> <fmt:message key="register.email" />: <h7>*</h7></div>
                 <input type="email" name="email" value=""  required>
                 <div class="titling"> <fmt:message key="register.passport.number" />:<h7>*</h7></div>

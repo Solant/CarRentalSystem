@@ -32,11 +32,13 @@
                             <c:forEach var="elem" items="${lst}" varStatus="status">
                                 <tr>
                                     <td>
-                                        <b><fmt:message key="order.car.id"/></b> ${elem.id} <br/>
+                                        <span class="selection">  <b><fmt:message key="order.car.id"/></b> ${elem.id} </span><br/>
                                         <b><fmt:message key="order.name"/></b> ${elem.carName} <br/>
                                         <b><fmt:message key="order.sum"/></b> ${elem.sumToPay} <br/>
-                                        <b><fmt:message key="column.surname"/></b> ${elem.clientSurname} <br/>
-                                        <b><fmt:message key="column.passNum"/></b> ${elem.passNum} <br/> <br/>
+                                        <b><fmt:message key="column.surname"/>:</b> ${elem.clientSurname} <br/>
+                                        <b><fmt:message key="column.passNum"/>:</b> ${elem.passNum} <br/>
+                                        <b><fmt:message key="user.order.period"/>:</b> ${elem.period} <br/>
+                                      <b><fmt:message key="start.date"/>:</b> ${elem.date} <br/><br/>
                                         <form name ="ReturnedWithoutDamage"  method="POST" action="carrent" class="menu">
                                             <input type="hidden" name="applId" value="${elem.id}" /> 
                                             <input type="hidden" name="command" value="return" /> 
@@ -46,9 +48,9 @@
                                             <input type="hidden" name="command" value="returnDamage" /> 
                                             <input type="hidden" name="applId" value="${elem.id}" />  <br/>
                                             <fmt:message key="order.damage.info"/> <br/>
-                                            <input type="text" name="damage" value="" required/><br/>
+                                            <input type="text" maxlength="100" name="damage" value="" required/><br/>
                                             <fmt:message key="order.damage.price" /><br/>
-                                            <input type="number" min="1" name="damagecost" value="" required/><br/>
+                                            <input type="number" min="1" max="100000" name="damagecost" value="" required/><br/>
                                             <input type="submit" value="<fmt:message key="order.returnd" /> " />
                                         </form>
                                         <hr/>

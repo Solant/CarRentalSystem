@@ -26,10 +26,6 @@ public class EnteredInfoValidator {
         return loginVal(login) && passwordVal(password) && passNumVal(passNum) && emailVal(email);
     }
     
-  //  public static boolean validateOrderInfo(){
-        
-  //  }
-    
     public static boolean loginVal(String login) {
         return Pattern.matches(loginRegex, login);
     }

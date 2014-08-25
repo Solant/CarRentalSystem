@@ -1,6 +1,8 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="custom" uri="customtags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message key="header.title"/></title>
         <link rel="stylesheet" href="..\css\style.css" type="text/css">
-                        <link rel="shortcut icon" href="..\img\favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="..\img\favicon.ico" type="image/x-icon" />
 
     </head>
     <body>
@@ -21,6 +23,9 @@
                 <div id="menu">     
                     <c:import url="..\common\menu.jsp" charEncoding="utf-8"/> 
                 </div>
+                <custom:info-tag type="${userType}" username="${userName}">
+                    <fmt:message key='infotag.access'/>
+                </custom:info-tag>
                 <div id="page-content">  
 
 

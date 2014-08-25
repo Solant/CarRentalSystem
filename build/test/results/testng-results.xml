@@ -2,232 +2,232 @@
 <testng-results skipped="0" failed="0" total="53" passed="53">
   <reporter-output>
   </reporter-output>
-  <suite name="CarRentalSystem" duration-ms="1635" started-at="2014-08-21T22:22:55Z" finished-at="2014-08-21T22:22:57Z">
+  <suite name="CarRentalSystem" duration-ms="3856" started-at="2014-08-25T09:33:55Z" finished-at="2014-08-25T09:33:59Z">
     <groups>
     </groups>
-    <test name="by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest" duration-ms="1250" started-at="2014-08-21T22:22:55Z" finished-at="2014-08-21T22:22:56Z">
+    <test name="by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest" duration-ms="3453" started-at="2014-08-25T09:33:55Z" finished-at="2014-08-25T09:33:59Z">
       <class name="by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest">
-        <test-method status="PASS" signature="testCheckLogin()[pri:0, instance:testCheckLogin(by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest)]" name="testCheckLogin" duration-ms="1102" started-at="2014-08-22T01:22:55Z" finished-at="2014-08-22T01:22:56Z">
+        <test-method status="PASS" signature="testCheckLogin()[pri:0, instance:testCheckLogin(by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest)]" name="testCheckLogin" duration-ms="3040" started-at="2014-08-25T12:33:56Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCheckLogin -->
-        <test-method status="PASS" signature="testDeleteUser()[pri:0, instance:testDeleteUser(by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest)]" name="testDeleteUser" duration-ms="2" started-at="2014-08-22T01:22:56Z" finished-at="2014-08-22T01:22:56Z">
+        <test-method status="PASS" signature="testDeleteUser()[pri:0, instance:testDeleteUser(by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest)]" name="testDeleteUser" duration-ms="2" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteUser -->
       </class> <!-- by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest -->
     </test> <!-- by.skakun.carrentalsystem.dao.impl.ClientDaoImplTest -->
-    <test name="by.skakun.carrentalsystem.entity.ClientTest" duration-ms="226" started-at="2014-08-21T22:22:57Z" finished-at="2014-08-21T22:22:57Z">
+    <test name="by.skakun.carrentalsystem.entity.ClientTest" duration-ms="92" started-at="2014-08-25T09:33:59Z" finished-at="2014-08-25T09:33:59Z">
       <class name="by.skakun.carrentalsystem.entity.ClientTest">
-        <test-method status="PASS" signature="testGetCredit()[pri:0, instance:testGetCredit(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetCredit" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetCredit()[pri:0, instance:testGetCredit(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetCredit" duration-ms="2" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetCredit -->
-        <test-method status="PASS" signature="testSetCredit()[pri:0, instance:testSetCredit(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetCredit" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetCredit()[pri:0, instance:testSetCredit(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetCredit" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetCredit -->
-        <test-method status="PASS" signature="testGetActive()[pri:0, instance:testGetActive(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetActive" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetActive()[pri:0, instance:testGetActive(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetActive" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetActive -->
-        <test-method status="PASS" signature="testSetActive()[pri:0, instance:testSetActive(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetActive" duration-ms="2" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetActive()[pri:0, instance:testSetActive(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetActive" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetActive -->
-        <test-method status="PASS" signature="testGetEmail()[pri:0, instance:testGetEmail(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetEmail" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetEmail()[pri:0, instance:testGetEmail(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetEmail" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEmail -->
-        <test-method status="PASS" signature="testSetEmail()[pri:0, instance:testSetEmail(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetEmail" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetEmail()[pri:0, instance:testSetEmail(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetEmail" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetEmail -->
-        <test-method status="PASS" signature="testGetName()[pri:0, instance:testGetName(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetName" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetName()[pri:0, instance:testGetName(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetName" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetName -->
-        <test-method status="PASS" signature="testSetName()[pri:0, instance:testSetName(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetName" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetName()[pri:0, instance:testSetName(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetName" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetName -->
-        <test-method status="PASS" signature="testGetSurname()[pri:0, instance:testGetSurname(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetSurname" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetSurname()[pri:0, instance:testGetSurname(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetSurname" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetSurname -->
-        <test-method status="PASS" signature="testSetSurname()[pri:0, instance:testSetSurname(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetSurname" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetSurname()[pri:0, instance:testSetSurname(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetSurname" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetSurname -->
-        <test-method status="PASS" signature="testGetPassNum()[pri:0, instance:testGetPassNum(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetPassNum" duration-ms="3" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetPassNum -->
-        <test-method status="PASS" signature="testSetPassNum()[pri:0, instance:testSetPassNum(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetPassNum" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetPassNum()[pri:0, instance:testSetPassNum(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetPassNum" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetPassNum -->
-        <test-method status="PASS" signature="testGetType()[pri:0, instance:testGetType(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetType" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetPassNum()[pri:0, instance:testGetPassNum(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetPassNum" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetPassNum -->
+        <test-method status="PASS" signature="testGetType()[pri:0, instance:testGetType(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetType" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetType -->
-        <test-method status="PASS" signature="testSetType()[pri:0, instance:testSetType(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetType" duration-ms="6" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetType()[pri:0, instance:testSetType(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetType" duration-ms="36" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetType -->
-        <test-method status="PASS" signature="testGetLogin()[pri:0, instance:testGetLogin(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetLogin" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetLogin()[pri:0, instance:testGetLogin(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetLogin" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetLogin -->
-        <test-method status="PASS" signature="testSetLogin()[pri:0, instance:testSetLogin(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetLogin" duration-ms="4" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetLogin()[pri:0, instance:testSetLogin(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetLogin" duration-ms="2" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetLogin -->
-        <test-method status="PASS" signature="testGetPassword()[pri:0, instance:testGetPassword(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetPassword" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetPassword()[pri:0, instance:testGetPassword(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetPassword" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetPassword -->
-        <test-method status="PASS" signature="testSetPassword()[pri:0, instance:testSetPassword(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetPassword" duration-ms="7" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetPassword()[pri:0, instance:testSetPassword(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetPassword" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetPassword -->
-        <test-method status="PASS" signature="testGetId()[pri:0, instance:testGetId(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetId" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetId()[pri:0, instance:testGetId(by.skakun.carrentalsystem.entity.ClientTest)]" name="testGetId" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetId -->
-        <test-method status="PASS" signature="testSetId()[pri:0, instance:testSetId(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetId" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetId()[pri:0, instance:testSetId(by.skakun.carrentalsystem.entity.ClientTest)]" name="testSetId" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetId -->
-        <test-method status="PASS" signature="testEquals()[pri:0, instance:testEquals(by.skakun.carrentalsystem.entity.ClientTest)]" name="testEquals" duration-ms="10" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testEquals()[pri:0, instance:testEquals(by.skakun.carrentalsystem.entity.ClientTest)]" name="testEquals" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testEquals -->
       </class> <!-- by.skakun.carrentalsystem.entity.ClientTest -->
     </test> <!-- by.skakun.carrentalsystem.entity.ClientTest -->
-    <test name="by.skakun.carrentalsystem.entity.OrderTest" duration-ms="57" started-at="2014-08-21T22:22:57Z" finished-at="2014-08-21T22:22:57Z">
+    <test name="by.skakun.carrentalsystem.entity.OrderTest" duration-ms="69" started-at="2014-08-25T09:33:59Z" finished-at="2014-08-25T09:33:59Z">
       <class name="by.skakun.carrentalsystem.entity.OrderTest">
-        <test-method status="PASS" signature="testGetDate()[pri:0, instance:testGetDate(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetDate" duration-ms="4" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetDate -->
-        <test-method status="PASS" signature="testGetPassNum()[pri:0, instance:testGetPassNum(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetPassNum" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetPassNum()[pri:0, instance:testGetPassNum(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetPassNum" duration-ms="40" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetPassNum -->
-        <test-method status="PASS" signature="testSetPassNum()[pri:0, instance:testSetPassNum(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPassNum" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetPassNum()[pri:0, instance:testSetPassNum(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPassNum" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetPassNum -->
-        <test-method status="PASS" signature="testEquals()[pri:0, instance:testEquals(by.skakun.carrentalsystem.entity.OrderTest)]" name="testEquals" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testEquals()[pri:0, instance:testEquals(by.skakun.carrentalsystem.entity.OrderTest)]" name="testEquals" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testEquals -->
-        <test-method status="PASS" signature="testSetDate()[pri:0, instance:testSetDate(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetDate" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetDate()[pri:0, instance:testGetDate(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetDate" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testSetDate -->
-        <test-method status="PASS" signature="testGetPeriod()[pri:0, instance:testGetPeriod(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetPeriod" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        </test-method> <!-- testGetDate -->
+        <test-method status="PASS" signature="testGetPeriod()[pri:0, instance:testGetPeriod(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetPeriod" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetPeriod -->
-        <test-method status="PASS" signature="testSetPeriod()[pri:0, instance:testSetPeriod(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPeriod" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetDate()[pri:0, instance:testSetDate(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetDate" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testSetPeriod -->
-        <test-method status="PASS" signature="testGetClientSurname()[pri:0, instance:testGetClientSurname(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetClientSurname" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        </test-method> <!-- testSetDate -->
+        <test-method status="PASS" signature="testGetClientSurname()[pri:0, instance:testGetClientSurname(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetClientSurname" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetClientSurname -->
-        <test-method status="PASS" signature="testSetClientSurname()[pri:0, instance:testSetClientSurname(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetClientSurname" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetPeriod()[pri:0, instance:testSetPeriod(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPeriod" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testSetClientSurname -->
-        <test-method status="PASS" signature="testSetCarName()[pri:0, instance:testSetCarName(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetCarName" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testSetCarName -->
-        <test-method status="PASS" signature="testGetCarName()[pri:0, instance:testGetCarName(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetCarName" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        </test-method> <!-- testSetPeriod -->
+        <test-method status="PASS" signature="testGetCarName()[pri:0, instance:testGetCarName(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetCarName" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetCarName -->
-        <test-method status="PASS" signature="testGetPrice()[pri:0, instance:testGetPrice(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetPrice" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetClientSurname()[pri:0, instance:testSetClientSurname(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetClientSurname" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSetClientSurname -->
+        <test-method status="PASS" signature="testSetCarName()[pri:0, instance:testSetCarName(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetCarName" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSetCarName -->
+        <test-method status="PASS" signature="testGetPrice()[pri:0, instance:testGetPrice(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetPrice" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetPrice -->
-        <test-method status="PASS" signature="testSetPrice()[pri:0, instance:testSetPrice(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPrice" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetPrice()[pri:0, instance:testSetPrice(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPrice" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetPrice -->
-        <test-method status="PASS" signature="testGetUserId()[pri:0, instance:testGetUserId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetUserId" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetUserId()[pri:0, instance:testGetUserId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetUserId" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetUserId -->
-        <test-method status="PASS" signature="testSetUserId()[pri:0, instance:testSetUserId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetUserId" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetUserId()[pri:0, instance:testSetUserId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetUserId" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetUserId -->
-        <test-method status="PASS" signature="testGetCarId()[pri:0, instance:testGetCarId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetCarId" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetCarId()[pri:0, instance:testGetCarId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetCarId" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetCarId -->
-        <test-method status="PASS" signature="testSetCarId()[pri:0, instance:testSetCarId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetCarId" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetCarId()[pri:0, instance:testSetCarId(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetCarId" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetCarId -->
-        <test-method status="PASS" signature="testGetSumToPay()[pri:0, instance:testGetSumToPay(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetSumToPay" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetSumToPay()[pri:0, instance:testGetSumToPay(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetSumToPay" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetSumToPay -->
-        <test-method status="PASS" signature="testSetSumToPay()[pri:0, instance:testSetSumToPay(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetSumToPay" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetSumToPay()[pri:0, instance:testSetSumToPay(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetSumToPay" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetSumToPay -->
-        <test-method status="PASS" signature="testIsPaid()[pri:0, instance:testIsPaid(by.skakun.carrentalsystem.entity.OrderTest)]" name="testIsPaid" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testIsPaid()[pri:0, instance:testIsPaid(by.skakun.carrentalsystem.entity.OrderTest)]" name="testIsPaid" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testIsPaid -->
-        <test-method status="PASS" signature="testSetPaid()[pri:0, instance:testSetPaid(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPaid" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetPaid()[pri:0, instance:testSetPaid(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetPaid" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetPaid -->
-        <test-method status="PASS" signature="testGetDamaged()[pri:0, instance:testGetDamaged(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetDamaged" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetDamaged()[pri:0, instance:testGetDamaged(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetDamaged" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetDamaged -->
-        <test-method status="PASS" signature="testSetDamaged()[pri:0, instance:testSetDamaged(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetDamaged" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetDamaged()[pri:0, instance:testSetDamaged(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetDamaged" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetDamaged -->
-        <test-method status="PASS" signature="testGetReturned()[pri:0, instance:testGetReturned(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetReturned" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetReturned()[pri:0, instance:testGetReturned(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetReturned" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetReturned -->
-        <test-method status="PASS" signature="testSetReturned()[pri:0, instance:testSetReturned(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetReturned" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetReturned()[pri:0, instance:testSetReturned(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetReturned" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetReturned -->
-        <test-method status="PASS" signature="testGetConfirmed()[pri:0, instance:testGetConfirmed(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetConfirmed" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetConfirmed -->
-        <test-method status="PASS" signature="testSetConfirmed()[pri:0, instance:testSetConfirmed(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetConfirmed" duration-ms="1" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetConfirmed()[pri:0, instance:testSetConfirmed(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetConfirmed" duration-ms="1" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetConfirmed -->
-        <test-method status="PASS" signature="testGetRefusalReason()[pri:0, instance:testGetRefusalReason(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetRefusalReason" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetConfirmed()[pri:0, instance:testGetConfirmed(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetConfirmed" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetConfirmed -->
+        <test-method status="PASS" signature="testGetRefusalReason()[pri:0, instance:testGetRefusalReason(by.skakun.carrentalsystem.entity.OrderTest)]" name="testGetRefusalReason" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetRefusalReason -->
-        <test-method status="PASS" signature="testSetRefusalReason()[pri:0, instance:testSetRefusalReason(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetRefusalReason" duration-ms="0" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testSetRefusalReason()[pri:0, instance:testSetRefusalReason(by.skakun.carrentalsystem.entity.OrderTest)]" name="testSetRefusalReason" duration-ms="0" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetRefusalReason -->
       </class> <!-- by.skakun.carrentalsystem.entity.OrderTest -->
     </test> <!-- by.skakun.carrentalsystem.entity.OrderTest -->
-    <test name="by.skakun.carrentalsystem.logic.PasswordHashingTest" duration-ms="4" started-at="2014-08-21T22:22:57Z" finished-at="2014-08-21T22:22:57Z">
+    <test name="by.skakun.carrentalsystem.logic.PasswordHashingTest" duration-ms="79" started-at="2014-08-25T09:33:59Z" finished-at="2014-08-25T09:33:59Z">
       <class name="by.skakun.carrentalsystem.logic.PasswordHashingTest">
-        <test-method status="PASS" signature="testGetHashValue()[pri:0, instance:testGetHashValue(by.skakun.carrentalsystem.logic.PasswordHashingTest)]" name="testGetHashValue" duration-ms="2" started-at="2014-08-22T01:22:57Z" finished-at="2014-08-22T01:22:57Z">
+        <test-method status="PASS" signature="testGetHashValue()[pri:0, instance:testGetHashValue(by.skakun.carrentalsystem.logic.PasswordHashingTest)]" name="testGetHashValue" duration-ms="33" started-at="2014-08-25T12:33:59Z" finished-at="2014-08-25T12:33:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetHashValue -->

@@ -48,21 +48,24 @@ public class OrderDaoImpl implements OrderDao {
     private static final String DELETE_ORDER = "DELETE FROM ORDERC where ORDERC.`order_id`=?;";
     private static final String SELECT_NEW_ORDERS = "SELECT ORDERC.`order_id`, CAR.`carname`, "
             + "CAR.`price`, CLIENT.`username`, CLIENT.`surname`, "
-            + "CLIENT.`passport_number`, ORDERC.`sum_to_pay` FROM "
+            + "CLIENT.`passport_number`, ORDERC.`sum_to_pay`, bill.`period`, bill.`startdate` FROM "
             + "ORDERC LEFT JOIN CAR ON ORDERC.`car_id`=CAR.`car_id` "
-            + "LEFT JOIN CLIENT on ORDERC.`user_id`=CLIENT.`user_id`"
+            + "LEFT JOIN CLIENT on ORDERC.`user_id`=CLIENT.`user_id` INNER JOIN bill ON"
+            + " ORDERC.`order_id`=bill.`order_id`"
             + " WHERE ORDERC.`confirmed`=0;";
     private static final String SELECT_PAID_ORDERS = "SELECT ORDERC.`order_id`, CAR.`carname`, "
             + "CAR.`price`, CLIENT.`username`, CLIENT.`surname`, "
-            + "CLIENT.`passport_number`, ORDERC.`sum_to_pay` FROM "
+            + "CLIENT.`passport_number`, ORDERC.`sum_to_pay`, bill.`period`, bill.`startdate` FROM "
             + "ORDERC LEFT JOIN CAR ON ORDERC.`car_id`=CAR.`car_id` "
-            + "LEFT JOIN CLIENT on ORDERC.`user_id`=CLIENT.`user_id`"
+            + "LEFT JOIN CLIENT on ORDERC.`user_id`=CLIENT.`user_id` INNER JOIN bill "
+            + "ON ORDERC.`order_id`=bill.`order_id` "
             + " WHERE ORDERC.`paidfor`=1 AND ORDERC.`returned`=0;";
     private static final String SELECT_UNPAID_ORDERS = "SELECT ORDERC.`order_id`, CAR.`carname`, "
             + "CAR.`price`, CLIENT.`username`, CLIENT.`surname`, "
-            + "CLIENT.`passport_number`, ORDERC.`sum_to_pay` FROM "
+            + "CLIENT.`passport_number`, ORDERC.`sum_to_pay`, bill.`period`, bill.`startdate` FROM "
             + "ORDERC LEFT JOIN CAR ON ORDERC.`car_id`=CAR.`car_id` "
-            + "LEFT JOIN CLIENT on ORDERC.`user_id`=CLIENT.`user_id`"
+            + "LEFT JOIN CLIENT on ORDERC.`user_id`=CLIENT.`user_id` INNER JOIN bill ON"
+            + " ORDERC.`order_id`=bill.`order_id`"
             + " WHERE ORDERC.`confirmed`=1 AND ORDERC.`paidfor`=0 AND ORDERC.`returned`=0;";
     private static final String SELECT_ARCHIVE_ORDERS = "SELECT ORDERC.`order_id`, CAR.`carname`, CAR.`price`, "
             + "CLIENT.`username`, CLIENT.`surname`, CLIENT.`passport_number`,"
@@ -352,6 +355,8 @@ public class OrderDaoImpl implements OrderDao {
                 order.setClientSurname(rs.getString("surname"));
                 order.setPassNum(rs.getString("passport_number"));
                 order.setId(rs.getInt("order_id"));
+                order.setDate(rs.getDate("startdate"));
+                order.setPeriod(rs.getInt("period"));
                 list.add(order);
             }
             return list;
@@ -384,6 +389,8 @@ public class OrderDaoImpl implements OrderDao {
                 order.setClientSurname(rs.getString("surname"));
                 order.setPassNum(rs.getString("passport_number"));
                 order.setId(rs.getInt("order_id"));
+                order.setDate(rs.getDate("startdate"));
+                order.setPeriod(rs.getInt("period"));
                 order.setPaid(true);
                 list.add(order);
             }
@@ -417,6 +424,8 @@ public class OrderDaoImpl implements OrderDao {
                 order.setClientSurname(rs.getString("surname"));
                 order.setPassNum(rs.getString("passport_number"));
                 order.setId(rs.getInt("order_id"));
+                order.setPeriod(rs.getInt("period"));
+                order.setDate(rs.getDate("startdate"));
                 order.setPaid(true);
                 list.add(order);
             }

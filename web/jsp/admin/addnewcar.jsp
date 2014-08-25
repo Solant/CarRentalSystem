@@ -34,7 +34,7 @@
                         <br/>
                         <div id="back"> 
                             <form name ="BackForm"  method="POST" action="carrent" >
-                                <input type="hidden" name="command" value="backCars"/> 
+                                <input type="hidden" name="command" value="CARSREDIRECTADMIN"/> 
                                 <input type="submit" value="<fmt:message key="menu.users.back" /> "/>
                             </form> 
                         </div><br/><br/>
