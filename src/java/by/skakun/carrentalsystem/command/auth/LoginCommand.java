@@ -3,6 +3,7 @@ package by.skakun.carrentalsystem.command.auth;
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.command.admin.MainAdmCommand;
 import by.skakun.carrentalsystem.command.user.MainRedirectCommand;
+import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -39,7 +40,7 @@ public class LoginCommand implements ActionCommand {
             return page;
         }
         password = PasswordHashing.getHashValue(password);
-        ClientDaoImpl clientDao;
+        ClientDao clientDao;
         try {
             clientDao = new ClientDaoImpl();
         } catch (DAOException ex) {

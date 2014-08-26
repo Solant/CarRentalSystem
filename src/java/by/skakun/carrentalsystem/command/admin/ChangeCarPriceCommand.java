@@ -2,6 +2,7 @@ package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
+import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -26,7 +27,7 @@ public class ChangeCarPriceCommand implements ActionCommand {
         int id = Integer.parseInt(carid);
         String carprice = (String) request.getParameter("newprice");
         int price = Integer.parseInt(carprice);
-        CarDaoImpl carDao;
+        CarDao carDao;
         try {
             carDao = new CarDaoImpl();
         } catch (DAOException ex) {

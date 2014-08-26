@@ -17,7 +17,7 @@ public class ContactsRedirectCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("->contacts");
+        LOG.debug("->contacts");
         String page = ConfigurationManager.getProperty("path.page.contacts");
         return page;
 

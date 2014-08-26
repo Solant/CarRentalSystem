@@ -16,7 +16,7 @@ public class UsersDeleteCommand implements ActionCommand{
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("->deleteUsers");
+        LOG.debug("->deleteUsers");
         String page = ConfigurationManager.getProperty("path.page.deleteusers");
         return page; 
     }

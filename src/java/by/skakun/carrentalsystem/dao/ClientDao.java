@@ -23,5 +23,7 @@ public interface ClientDao <T extends Client> extends IDao {
     boolean changePassword(int id, String pass, String newPass) throws DAOException;
     
     boolean changeEmail(int id, String newemail) throws DAOException;
+    
+    boolean changeActive(int id) throws DAOException;
 
 }

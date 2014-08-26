@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.OrderDao;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -20,7 +21,7 @@ public class ArchiveOrdersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        OrderDaoImpl orderDao;
+        OrderDao orderDao;
         try {
             orderDao = new OrderDaoImpl();
         } catch (DAOException ex) {

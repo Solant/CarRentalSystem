@@ -325,6 +325,7 @@ public class ClientDaoImpl implements ClientDao {
      * @return true if the state was changed
      * @throws DAOException
      */
+    @Override
     public boolean changeActive(int id) throws DAOException {
         LOG.info("CarDaoImpl.changeActive()");
         PreparedStatement stm = null;

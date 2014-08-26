@@ -50,7 +50,7 @@ public final class Client extends Entity implements Serializable{
             setPassNum(passNum);
             this.type = type;
         } catch (ClientException ex) {
-            LOG.info("ClientException while creating Client:" + ex);
+            LOG.error("ClientException while creating Client:" + ex);
         }
     }
 
@@ -79,7 +79,7 @@ public final class Client extends Entity implements Serializable{
             setActive(active);
             setCredit(credit);
         } catch (ClientException ex) {
-            LOG.info("ClientException while creating Client:" + ex);
+            LOG.error("ClientException while creating Client:" + ex);
         }
     }
 

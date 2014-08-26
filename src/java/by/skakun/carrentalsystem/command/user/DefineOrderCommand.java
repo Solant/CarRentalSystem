@@ -17,7 +17,6 @@ public class DefineOrderCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("DefineOrderCommand");
         String carname =  (String) request.getParameter("carName");
         String carprice =  (String) request.getParameter("carPrice");
         String carid = (String) request.getParameter("carId");
@@ -26,7 +25,7 @@ public class DefineOrderCommand implements ActionCommand {
         request.getSession().setAttribute("carName", carname);
         request.getSession().setAttribute("carImage", carimage);
         request.getSession().setAttribute("carPrice", carprice);
-        LOG.info("->define-order");
+        LOG.debug("->define-order");
         String page = ConfigurationManager.getProperty("path.page.define");
         return page;
 

@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.OrderDao;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -20,12 +21,12 @@ public class NewOrdersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        OrderDaoImpl applDao;
+        OrderDao applDao;
         try {
             applDao = new OrderDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             String page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -36,7 +37,7 @@ public class NewOrdersCommand implements ActionCommand {
             LOG.error("DAOException after OrderDao.getNewApplications()" + ex);
         }
         request.setAttribute("lst", appls);
-        LOG.info("->neworders");
+        LOG.debug("->neworders");
         String page = ConfigurationManager.getProperty("path.page.neworders");
         return page;
 

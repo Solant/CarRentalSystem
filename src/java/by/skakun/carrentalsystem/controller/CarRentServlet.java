@@ -34,7 +34,7 @@ public class CarRentServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         LOG.info("CarentServlet got request.");
-        String page = null;
+        String page;
         ActionFactory client = new ActionFactory();
         ActionCommand command = (ActionCommand) client.defineCommand(request);
         page = command.execute(request);

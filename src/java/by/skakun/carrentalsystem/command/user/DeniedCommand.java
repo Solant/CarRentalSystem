@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.OrderDao;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -21,8 +22,7 @@ public class DeniedCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("DeniedCommand");
-        OrderDaoImpl orderDao;
+        OrderDao orderDao;
         List<Order> orderDenied;
         try {
             orderDao = new OrderDaoImpl();

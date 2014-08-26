@@ -12,9 +12,9 @@ import org.apache.log4j.Logger;
  * 
  * releasing ConnectionPool on close
  */
-public class ContListener implements ServletContextListener {
+public class ContextListener implements ServletContextListener {
 
-    private static final Logger LOG = Logger.getLogger(ContListener.class);
+    private static final Logger LOG = Logger.getLogger(ContextListener.class);
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {

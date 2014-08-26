@@ -1,7 +1,6 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.connectionpool.ConnectionPool;
 import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.entity.Car;
@@ -23,12 +22,12 @@ public class CarsRedirectCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        CarDaoImpl carDao;
+        CarDao carDao;
         try {
             carDao = new CarDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             String page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -36,10 +35,10 @@ public class CarsRedirectCommand implements ActionCommand {
         try {
             cars = carDao.getAllForUser();
         } catch (DAOException ex) {
-            LOG.info("DAOException while carDao.getAll()." + ex);
+            LOG.error("DAOException while carDao.getAll()." + ex);
         }
         request.setAttribute("lst", cars);
-        LOG.info("->cars");
+        LOG.debug("->cars");
         String page = ConfigurationManager.getProperty("path.page.cars");
         return page;
 

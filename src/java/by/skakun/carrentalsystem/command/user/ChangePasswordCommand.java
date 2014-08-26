@@ -17,7 +17,7 @@ public class ChangePasswordCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("->changepassword.jsp");
+        LOG.debug("->changepassword.jsp");
         String page = ConfigurationManager.getProperty("path.page.changepass");
         return page;
 

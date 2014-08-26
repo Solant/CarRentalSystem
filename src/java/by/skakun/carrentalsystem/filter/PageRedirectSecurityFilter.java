@@ -20,9 +20,7 @@ import org.apache.log4j.Logger;
  * filter for ensuring that only the index.jsp can be accessed without
  * admin or user rights
  */
-@WebFilter(urlPatterns = {"/jsp/*"},
-        initParams = {
-            @WebInitParam(name = "INDEX_PATH", value = "/index.jsp")})
+
 
 public class PageRedirectSecurityFilter implements Filter {
 
@@ -62,7 +60,7 @@ public class PageRedirectSecurityFilter implements Filter {
      */
     @Override
     public void destroy() {
-        //
+        indexPath=null;
     }
 
 }

@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.entity.Car;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -20,12 +21,12 @@ public class NewCarCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        CarDaoImpl carDao;
+        CarDao carDao;
         try {
             carDao = new CarDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -38,7 +39,7 @@ public class NewCarCommand implements ActionCommand {
             Car car = new Car(carname, price, carimage, 1);
             flag = carDao.create(car);
         } catch (DAOException ex) {
-            LOG.info("DAOException while CarDao.create()" + ex);
+            LOG.error("DAOException while CarDao.create()" + ex);
         }
         if (flag) {
             request.setAttribute("csuccess", "1");

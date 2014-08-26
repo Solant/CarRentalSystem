@@ -11,25 +11,15 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  *
- * @author apple
+ * @author Skakun
  */
 public class InfoTag extends TagSupport implements Serializable {
 
     private String username;
     private String type;
-    private String userMsg;
-    private String typeMsg;
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public void setUserMsg(String userMsg) {
-        this.userMsg = userMsg;
-    }
-
-    public void setTypeMsg(String typeMsg) {
-        this.typeMsg = typeMsg;
     }
 
     public void setType(String type) {
@@ -41,8 +31,8 @@ public class InfoTag extends TagSupport implements Serializable {
         try {
             JspWriter out = pageContext.getOut();
             out.write(" <div class=\"infotag\">\n"
-                    + "<b>" + username + 
-                    "</b><br/>" + "<b>" 
+                    + "<b>" + username
+                    + "</b><br/>" + "<b>"
             );
         } catch (IOException ex) {
             throw new JspTagException(ex.getMessage());
@@ -52,7 +42,7 @@ public class InfoTag extends TagSupport implements Serializable {
 
     @Override
     public int doAfterBody() throws JspTagException {
-        
+
         return SKIP_BODY;
     }
 
@@ -61,7 +51,7 @@ public class InfoTag extends TagSupport implements Serializable {
         try {
             pageContext.getOut().write(type + "</b>\n</div>");
         } catch (IOException ex) {
-           throw new JspTagException(ex.getMessage());
+            throw new JspTagException(ex.getMessage());
         }
         return EVAL_PAGE;
     }

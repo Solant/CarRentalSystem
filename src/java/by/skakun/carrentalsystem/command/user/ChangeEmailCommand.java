@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -28,12 +29,12 @@ public class ChangeEmailCommand implements ActionCommand {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        ClientDaoImpl clientDao;
+        ClientDao clientDao;
         try {
             clientDao = new ClientDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -50,7 +51,7 @@ public class ChangeEmailCommand implements ActionCommand {
                 return page;
             }
         } catch (DAOException ex) {
-            LOG.info("DAOException while ChangePasswordConfCommand", ex);
+            LOG.error("DAOException while ChangePasswordConfCommand", ex);
             page = ConfigurationManager.getProperty("path.page.changepass");
             return page;
         }

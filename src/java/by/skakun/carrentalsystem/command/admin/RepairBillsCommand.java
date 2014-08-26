@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.RepairBillDao;
 import by.skakun.carrentalsystem.dao.impl.RepairBillDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -21,12 +22,12 @@ public class RepairBillsCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        RepairBillDaoImpl billDao;
+        RepairBillDao billDao;
         try {
             billDao = new RepairBillDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             String page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -34,10 +35,10 @@ public class RepairBillsCommand implements ActionCommand {
         try {
             bills = billDao.getAll();
         } catch (DAOException ex) {
-            LOG.info("DAOException after OrderDao.getRepairBills()" + ex);
+            LOG.error("DAOException after OrderDao.getRepairBills()" + ex);
         }
         request.setAttribute("lst", bills);
-        LOG.info("->repairbills");
+        LOG.debug("->repairbills");
         String page = ConfigurationManager.getProperty("path.page.repairbills");
         return page;
     }

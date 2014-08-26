@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.OrderDao;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -10,7 +11,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
+ *
  * user paying for the order
  */
 public class PayCommand implements ActionCommand {
@@ -20,25 +21,24 @@ public class PayCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        LOG.info("PayCommand");
         boolean flag = false;
-       String idO = (String) request.getParameter("applid");
-        String idS = (String) request.getParameter("userId");
-        int id = Integer.parseInt(idS);
-        int idOr = Integer.parseInt(idO);
+        String idOrderS = (String) request.getParameter("applid");
+        String idUserS = (String) request.getParameter("userId");
+        int id = Integer.parseInt(idUserS);
+        int idOrder = Integer.parseInt(idOrderS);
         String sumO = (String) request.getParameter("sumToPay");
         int sum = Integer.parseInt(sumO);
-        OrderDaoImpl orderDao;
+        OrderDao orderDao;
         try {
             orderDao = new OrderDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
         try {
-            flag = orderDao.pay(id, idOr,sum);
+            flag = orderDao.pay(id, idOrder, sum);
         } catch (DAOException ex) {
             LOG.error("DAOException while PayCommand: " + ex);
         }

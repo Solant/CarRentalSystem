@@ -1,12 +1,13 @@
 package by.skakun.carrentalsystem.command.auth;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
-import by.skakun.carrentalsystem.util.PasswordHashing;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
 import by.skakun.carrentalsystem.util.EnteredInfoValidator;
+import by.skakun.carrentalsystem.util.PasswordHashing;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -45,7 +46,7 @@ public class RegisterCommand implements ActionCommand {
         int active = 1; //1 means active, 0 means inactive
         int credit = 1000; // srandart sum, placeholder for real billing
         password = PasswordHashing.getHashValue(password);
-        ClientDaoImpl clientDao;
+        ClientDao clientDao;
         try {
             clientDao = new ClientDaoImpl();
         } catch (DAOException ex) {
@@ -72,7 +73,7 @@ public class RegisterCommand implements ActionCommand {
             page = ConfigurationManager.getProperty("path.page.index");
             return page;
         } catch (DAOException ex) {
-            LOG.info("Couldn't add the user to the database" + ex);
+            LOG.error("Couldn't add the user to the database" + ex);
             page = ConfigurationManager.getProperty("path.page.register");
             return page;
         }

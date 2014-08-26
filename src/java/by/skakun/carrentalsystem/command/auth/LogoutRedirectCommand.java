@@ -17,7 +17,7 @@ public class LogoutRedirectCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = ConfigurationManager.getProperty("path.page.logout");
-        LOG.info ("->logout.jsp");
+        LOG.debug ("->logout.jsp");
         return page;
 
     }

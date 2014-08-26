@@ -16,7 +16,7 @@ public class RegisterRedicrectCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("->register.jsp");
+        LOG.debug("->register.jsp");
         String page = ConfigurationManager.getProperty("path.page.register");
         return page;
 

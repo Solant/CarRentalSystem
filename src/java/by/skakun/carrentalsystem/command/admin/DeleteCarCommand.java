@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -20,7 +21,7 @@ public class DeleteCarCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
-        CarDaoImpl carDao;
+        CarDao carDao;
         try {
             carDao = new CarDaoImpl();
         } catch (DAOException ex) {

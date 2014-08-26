@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.OrderDao;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -25,19 +26,19 @@ public class DeleteOrderACommand implements ActionCommand {
         boolean flag = false;
         String idA = (String) request.getParameter("applId");
         int id = Integer.parseInt(idA);
-        OrderDaoImpl applDao;
+        OrderDao applDao;
         try {
             applDao = new OrderDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database");
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
         try {
             flag = applDao.delete(id);
         } catch (DAOException ex) {
-            LOG.info("DAOException while PayCommand: " + ex);
+            LOG.error("DAOException while PayCommand: " + ex);
         }
         if (flag) {
             page = new UnpaidOrdersCommand().execute(request);

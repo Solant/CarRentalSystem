@@ -1,6 +1,7 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -21,24 +22,23 @@ public class UsersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        ClientDaoImpl clientDao;
+        ClientDao clientDao;
         try {
             clientDao = new ClientDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             String page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
         List<Client> clients = null;
         try {
             clients = clientDao.getAll();
-            LOG.info(clients.toString());
         } catch (DAOException ex) {
-            LOG.info("DAOException while clientDao.getAll()" + ex);
+            LOG.error("DAOException while clientDao.getAll()" + ex);
         }
         request.setAttribute("lst", clients);
-        LOG.info("->users");
+        LOG.debug("->users");
         String page = ConfigurationManager.getProperty("path.page.allusers");
         return page;
     }

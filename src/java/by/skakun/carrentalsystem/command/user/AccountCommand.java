@@ -22,7 +22,7 @@ public class AccountCommand implements ActionCommand {
      */
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("->account.jsp");
+        LOG.debug("->account.jsp");
         String page = ConfigurationManager.getProperty("path.page.account");
         return page;
     }

@@ -16,7 +16,7 @@ public class UsersWCommand implements ActionCommand{
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("->usersW");
+        LOG.debug("->usersW");
         String page = ConfigurationManager.getProperty("path.page.users");
         return page;
     

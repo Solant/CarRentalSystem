@@ -41,7 +41,7 @@ public final class Car extends Entity implements Serializable{
             setImage(image);
             setActive(active);
         } catch (CarException ex) {
-            LOG.info("CarException while creating Car:" + ex);
+            LOG.error("CarException while creating Car:" + ex);
         }
     }
 

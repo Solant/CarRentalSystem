@@ -75,7 +75,7 @@ public class Order extends Entity implements Serializable{
             setPrice(price);
             setDate(date);
         } catch (OrderException ex) {
-            LOG.info("ClientException while creating Client:" + ex);
+            LOG.error("ClientException while creating Client:" + ex);
         }
     }
 

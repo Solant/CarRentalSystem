@@ -7,7 +7,6 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 import org.apache.log4j.Logger;
 
@@ -36,7 +35,7 @@ public final class ConnectionPool {
     private static boolean flag = true;
 
     private ConnectionPool() {
-        LOG.info("ConnectionPool()");
+        LOG.debug("ConnectionPool()");
         Connection connection;
         if (flag) {
             try {
@@ -56,9 +55,9 @@ public final class ConnectionPool {
                     }
                 }
             } catch (ClassNotFoundException | SQLException ex) {
-                LOG.warn("Couldn't establish the connection with the db while creating the  ConnectionPool. " + ex);
+                LOG.fatal("Couldn't establish the connection with the db while creating the  ConnectionPool. " + ex);
             } catch (InstantiationException | IllegalAccessException | InterruptedException ex) {
-                LOG.warn("Connection pool exception:" + ex);
+                LOG.fatal("Connection pool exception:" + ex);
             }
         }
     }
@@ -68,7 +67,7 @@ public final class ConnectionPool {
      * @return new Instanse of Connection Pool (if it wasn't alreasy initialized)
      */
     public static ConnectionPool getInstance() {
-        LOG.info("ConnectionPool.getInstance()");
+        LOG.debug("ConnectionPool.getInstance()");
         lock = new ReentrantLock();
         if (INSTANCE == null) {
             lock.lock();
