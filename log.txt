@@ -7,3 +7,19 @@
 2014-08-25 12:33:59 [main        ] <INFO > <ConnectionPool.getInstance()>
 2014-08-25 12:33:59 [main        ] <DEBUG> <ConnectionPool.getConnection()>
 2014-08-25 12:33:59 [main        ] <INFO > <ClientDaoImpl.deleteUser()>
+2014-08-27 13:04:53 [main        ] <DEBUG> <ConnectionPool.getInstance()>
+2014-08-27 13:04:53 [main        ] <DEBUG> <ConnectionPool()>
+2014-08-27 13:04:54 [main        ] <DEBUG> <ConnectionPool.getConnection()>
+2014-08-27 13:04:54 [main        ] <INFO > <ClientDaoImpl.deleteUser()>
+2014-08-27 13:04:54 [main        ] <DEBUG> <ConnectionPool.getInstance()>
+2014-08-27 13:04:54 [main        ] <DEBUG> <ConnectionPool.getConnection()>
+2014-08-27 13:04:54 [main        ] <INFO > <CLientDaoImpl.checkLogin()>
+2014-08-27 13:04:54 [main        ] <INFO > <com.mysql.jdbc.JDBC4PreparedStatement@17579e0f: SELECT * FROM CLIENT WHERE USERNAME= '';>
+2014-08-27 13:28:02 [main        ] <DEBUG> <ConnectionPool.getInstance()>
+2014-08-27 13:28:02 [main        ] <DEBUG> <ConnectionPool()>
+2014-08-27 13:28:06 [main        ] <DEBUG> <ConnectionPool.getConnection()>
+2014-08-27 13:28:06 [main        ] <INFO > <CLientDaoImpl.checkLogin()>
+2014-08-27 13:28:06 [main        ] <INFO > <com.mysql.jdbc.JDBC4PreparedStatement@1d29cf23: SELECT * FROM CLIENT WHERE USERNAME= '';>
+2014-08-27 13:28:06 [main        ] <DEBUG> <ConnectionPool.getInstance()>
+2014-08-27 13:28:06 [main        ] <DEBUG> <ConnectionPool.getConnection()>
+2014-08-27 13:28:06 [main        ] <INFO > <ClientDaoImpl.deleteUser()>
