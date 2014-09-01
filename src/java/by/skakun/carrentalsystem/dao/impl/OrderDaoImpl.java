@@ -102,7 +102,6 @@ public class OrderDaoImpl implements OrderDao {
      * order into database
      * @throws DAOException
      */
-    @Override
     public void create(Order order) throws DAOException {
 
         PreparedStatement stm = null;
@@ -145,15 +144,7 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-    /**
-     *
-     * @param order
-     * @throws DAOException
-     */
-    @Override
-    public void update(Order order) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
 
     /**
      *
@@ -161,7 +152,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all unpaid (but confirmed) orders by this user
      * @throws DAOException
      */
-    @Override
     public List<Order> getUByUserId(int id) throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getUByUserId()");
@@ -196,7 +186,6 @@ public class OrderDaoImpl implements OrderDao {
      * otherwise returns exception
      * @throws DAOException
      */
-    @Override
     public boolean confirm(int id) throws DAOException {
         LOG.info("OrderDaoImpl.confirm()");
         PreparedStatement stm = null;
@@ -219,7 +208,6 @@ public class OrderDaoImpl implements OrderDao {
      * returned without any damage
      * @throws DAOException
      */
-    @Override
     public void returnCar(int id) throws DAOException {
         LOG.info("OrderDaoImpl.returnCar()");
         PreparedStatement stm = null;
@@ -242,7 +230,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return true if update was successful, otherwise
      * @throws DAOException
      */
-    @Override
     public boolean deny(int id, String reason) throws DAOException {
         LOG.info("OrderDaoImpl.deny()");
         PreparedStatement stm = null;
@@ -268,7 +255,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return true id the payment was successful, otherwise
      * @throws DAOException
      */
-    @Override
     public boolean pay(int id, int idOr, int sum) throws DAOException {
         LOG.info("OrderDaoImpl.pay()");
         PreparedStatement stm = null;
@@ -317,7 +303,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return true id order was deleted successfully, otherwise
      * @throws DAOException
      */
-    @Override
     public boolean delete(int id) throws DAOException {
         LOG.info("OrderDaoImpl.delete()");
         PreparedStatement stm = null;
@@ -339,7 +324,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all newly made orders (for admin)
      * @throws DAOException
      */
-    @Override
     public List<Order> getNewOrders() throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getNewOrders()");
@@ -373,7 +357,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all paid orders (for admin)
      * @throws DAOException
      */
-    @Override
     public List<Order> getPaidOrders() throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getPaidOrders()");
@@ -408,7 +391,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all unpaid orders (for admin)
      * @throws DAOException
      */
-    @Override
     public List<Order> getUnPaidOrders() throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getUnPaidOrders()");
@@ -443,7 +425,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all archived orders (for admin)
      * @throws DAOException
      */
-    @Override
     public List<Order> getArchiveOrders() throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getArchiveOrders()");
@@ -478,7 +459,6 @@ public class OrderDaoImpl implements OrderDao {
      * were denied)
      * @throws DAOException
      */
-    @Override
     public List<Order> getDByUserId(int id) throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrdercationDaoImpl.getDByUserId()");
@@ -512,7 +492,6 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all archived orders for this user
      * @throws DAOException
      */
-    @Override
     public List<Order> getAByUserId(int id) throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getAByUserId()");
@@ -545,7 +524,6 @@ public class OrderDaoImpl implements OrderDao {
      * @param damageCost
      * @throws DAOException
      */
-    @Override
     public void returnDamage(int id, String damage, int damageCost) throws DAOException {
         LOG.info("OrderDaoImpl.returnDamage()");
         PreparedStatement stm = null;
@@ -577,17 +555,7 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     * @throws DAOException
-     */
-    @Override
-    public Order read(int id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    
     /**
      *
      * @return @throws DAOException

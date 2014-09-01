@@ -18,24 +18,22 @@
 
         <div class="page-wrapper">   
             <div class="header"> 
-                <c:import url="\common\header.jsp" charEncoding="utf-8"/> 
+                <c:import url="common\header.jsp" charEncoding="utf-8"/> 
             </div>
             <div class="page-buffer">
                 <center>
-
                     <div id="login">
-                <!--    <p class="titling"> <fmt:message key="login.language"/>:</p> -->
                         <form name ="LanguageForm" method="POST" action="carrent" class="lang">
                             <input type="hidden" name="command" value="RU" />
                             <input name= "language" type="submit" value="RU"/> 
                             <input type="hidden" name="command" value="EN" />
                             <input name = "language" type="submit" value="EN"/>
                         </form>
-                        <!--  </div>
-                            <div id="login"> -->
+
                         <form name='form-login' method="POST" action="carrent" >                  
                             <h1><fmt:message key="login.title"/></h1> <br/>
                             <input type="hidden" name="command" value="Login" />
+                            <input type="hidden" name="userType" value="GUEST" /> 
                             <span class="fontawesome-user"></span>
                             <input type="text" id="user" maxlength="16" name= "login" placeholder="<fmt:message key="login.name" />" required>
                             <c:if test="${not empty errorLogin}"><div class="alert"><fmt:message key="active.restricted"/></div></c:if>
@@ -53,7 +51,7 @@
                     </div></center> </div>
         </div>
         <div class="footer"> 
-            <c:import url="\common\footer.jsp" charEncoding="utf-8"/> 
+            <c:import url="common\footer.jsp" charEncoding="utf-8"/> 
         </div>
     </body>
 </html>

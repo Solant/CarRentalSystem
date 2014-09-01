@@ -8,6 +8,7 @@ import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import by.skakun.carrentalsystem.util.LoginLogic;
 import by.skakun.carrentalsystem.util.PasswordHashing;
 import java.util.List;
@@ -35,7 +36,7 @@ public class LoginCommand implements ActionCommand {
         String page;
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        if (login.isEmpty() || password.isEmpty()) {
+        if (!EnteredInfoValidator.validateLoginInfo(login, password)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -53,7 +54,7 @@ public class LoginCommand implements ActionCommand {
         try {
             clients = clientDao.getAll();
         } catch (DAOException ex) {
-            LOG.info("DAOException after userDao.getAll()" + ex.getLocalizedMessage());
+            LOG.error("DAOException after userDao.getAll()" + ex);
         }
 
         switch (LoginLogic.checkLogin(clients, login, password, request)) {

@@ -34,7 +34,7 @@
         <exception-type>java.lang.RuntimeException</exception-type>
         <location>/error.jsp</location>
     </error-page>
-    <filter>
+   <filter>
         <filter-name>characterencodingfilter</filter-name>
         <filter-class>by.skakun.carrentalsystem.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -46,7 +46,20 @@
     <filter-mapping>
         <filter-name>characterencodingfilter</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping> 
+    <filter>
+        <filter-name>servletsecurityfilter</filter-name>
+        <filter-class>by.skakun.carrentalsystem.filter.ServletSecurityFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>servletsecurityfilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    
+    
+  
     
     <filter>
         <filter-name>pageredirectsecurityfilter</filter-name>
@@ -63,6 +76,7 @@
     </filter-mapping>
     
 
+    
     
     <listener>
         <listener-class>by.skakun.carrentalsystem.listener.ContextListener</listener-class>

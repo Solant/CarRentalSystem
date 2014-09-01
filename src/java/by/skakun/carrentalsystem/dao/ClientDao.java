@@ -4,15 +4,12 @@ import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
 import java.util.List;
 
-public interface ClientDao <T extends Client> extends IDao {
+public interface ClientDao extends IDao {
 
-    @Override
     Client read(int id) throws DAOException;
 
     @Override
     List<Client> getAll() throws DAOException;
-
-    void update(Client user) throws DAOException;
 
     boolean checkLogin(String login) throws DAOException;
 
@@ -24,6 +21,6 @@ public interface ClientDao <T extends Client> extends IDao {
     
     boolean changeEmail(int id, String newemail) throws DAOException;
     
-    boolean changeActive(int id) throws DAOException;
+    boolean changeActive(int id, int active) throws DAOException;
 
 }

@@ -37,7 +37,7 @@
                             ${rw}
                         </custom:statistics-tag>
                         <fmt:message key="tag.user"/>
-                        <custom:statistics-tag command="usersW">
+                        <custom:statistics-tag command="users">
                             ${us}
                         </custom:statistics-tag>
                         <fmt:message key="tag.car"/>

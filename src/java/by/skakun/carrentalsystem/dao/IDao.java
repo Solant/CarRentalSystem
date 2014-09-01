@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
  * @author Skakun
  * @param <T>
  */
-public interface IDao<T extends Entity> {
+public interface IDao<Entity> {
 
     /**
      * log4j logger
@@ -21,17 +21,9 @@ public interface IDao<T extends Entity> {
 
     /**
      *
-     * @param id
-     * @return
-     * @throws DAOException
-     */
-    T read(int id) throws DAOException;
-
-    /**
-     *
      * @return @throws DAOException
      */
-    List<T> getAll() throws DAOException;
+    List<Entity> getAll() throws DAOException;
 
     /**
      *

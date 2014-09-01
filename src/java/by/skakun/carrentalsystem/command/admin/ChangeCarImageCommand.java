@@ -5,6 +5,7 @@ import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -24,7 +25,12 @@ public class ChangeCarImageCommand implements ActionCommand {
         String carid = (String) request.getParameter("carid");
         int id = Integer.parseInt(carid);
         String carimage = (String) request.getParameter("newimage");
+        if(EnteredInfoValidator.dataLength(carimage)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         carimage = "img/car/".concat(carimage).concat(".jpg"); //created an acceptable for database image address
+        
         CarDao carDao;
         try {
             carDao = new CarDaoImpl();

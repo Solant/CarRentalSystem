@@ -5,6 +5,7 @@ import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -27,16 +28,19 @@ public class ChangeCarNameCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         boolean flag;
-        LOG.info("ChangeCarNameCommand");
         String carid = (String) request.getParameter("carid");
         int id = Integer.parseInt(carid);
         String carname = (String) request.getParameter("newcarname");
+        if(EnteredInfoValidator.dataLength(carname)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         CarDao carDao;
         try {
             carDao = new CarDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database");
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }

@@ -4,6 +4,7 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
@@ -33,6 +34,10 @@ public class DenyCommand implements ActionCommand {
         }
         String appl = (String) request.getParameter("applId");
         String reason = (String) request.getParameter("reasonForRefusal");
+        if(EnteredInfoValidator.dataLength(reason)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         int applId = Integer.parseInt(appl);
         try {
             flag = applDao.deny(applId, reason);

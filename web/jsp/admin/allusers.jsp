@@ -23,16 +23,12 @@
                 <div id="menu">     
                     <c:import url="..\common\menu_admin.jsp" charEncoding="utf-8"/> 
                 </div>
-                 <custom:info-tag type="${userType}" username="${userName}">
+                <custom:info-tag type="${userType}" username="${userName}">
                     <fmt:message key='infotag.access'/>
                 </custom:info-tag>
                 <div id="page-content">  
 
-                   <h2> <fmt:message key="admin.users.title"/></h2>
-                   <form name ="BackForm"  method="POST" action="carrent" class="menu">
-                        <input type="hidden" name="command" value="usersW" /> 
-                        <input type="submit" value="<fmt:message key="menu.users.back" /> " />
-                    </form> 
+                    <h2> <fmt:message key="admin.users.title"/></h2>
                     <table id="usertable">
                         <tr>
                             <td class="heading">
@@ -56,6 +52,9 @@
                             <td class="heading">
                                 <b> <fmt:message key="register.email"/></b>
                             </td> 
+                            <td class="heading">
+                                <b> Права доступа: </b>
+                            </td> 
                         </tr>
                         <c:forEach var="elem" items="${lst}" varStatus="status">
                             <tr>
@@ -76,16 +75,26 @@
                                 </td> 
                                 <td>
                                     <c:out value="${elem.active}"/> 
+                                   <form name ="ChangeCarInfoForm"  method="POST" action="carrent" class="change"> 
+                                        <input type="hidden" name="command" value="deleteUser" /> 
+                                        <input type="hidden" name="active" value="${elem.active}" /> 
+                                        <input type="hidden" name="type" value="${elem.type}" />
+                                        <input type="hidden" name="user_id" value="${elem.id}" />     
+                                        <input type="submit" value="<fmt:message key="car.change"/> " />
+                                    </form>
                                 </td> 
                                 <td>
                                     <c:out value="${elem.email}"/> 
+                                </td> 
+                                <td>
+                                    <c:out value="${elem.type}"/> 
                                 </td> 
                             </tr>
                             <tr>
                             </tr>
                         </c:forEach>
                     </table>
-                    
+
                 </div>               
             </div>
         </div>                 

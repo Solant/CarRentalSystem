@@ -299,6 +299,25 @@ after { clear: both; }
     cursor: pointer;
     transition: background 0.3s ease-in-out;
 }
+
+form.change input[type="submit"] {
+        border: 0;
+
+    height: auto;
+    border-color: black;
+    color: black;
+    border-bottom-width: 1px;
+    border-style: solid;
+}
+form.change input[type="submit"]:hover {
+    border: 0;
+    height: auto;
+    border-color: darkgreen;
+    color: darkgreen;
+    border-bottom-width: 1px;
+    border-style: solid;
+}
+
 #login form.order input[type="submit"]:hover {
     background: black;
 }

@@ -9,7 +9,7 @@ import java.util.List;
  * @author Skakun
  * @param <T>
  */
-public interface CarDao<T extends Car> extends IDao {
+public interface CarDao extends IDao {
 
     /**
      *
@@ -17,7 +17,6 @@ public interface CarDao<T extends Car> extends IDao {
      * @return
      * @throws DAOException
      */
-    @Override
    Car read(int id) throws DAOException;
 
     /**

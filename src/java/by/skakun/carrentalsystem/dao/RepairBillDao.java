@@ -10,7 +10,7 @@ import java.util.List;
  * @author Skakun
  * @param <T>
  */
-public interface RepairBillDao <T extends RepairBill> extends IDao{
+public interface RepairBillDao extends IDao{
     
     /**
      *

@@ -77,7 +77,7 @@ public class RepairBillDaoImpl implements RepairBillDao {
      * @return true if operation was successful, otherwise
      * @throws DAOException
      */
-    @Override
+
     public boolean repair(int id) throws DAOException {
         LOG.info("RepairBillDaoImpl.repair()");
         PreparedStatement stm = null;
@@ -100,9 +100,6 @@ public class RepairBillDaoImpl implements RepairBillDao {
      * @return
      * @throws DAOException
      */
-    @Override
-    public Entity read(int id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+
 
 }

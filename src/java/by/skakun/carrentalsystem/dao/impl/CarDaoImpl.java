@@ -86,7 +86,6 @@ public class CarDaoImpl implements CarDao {
      * @return list of all cars visible for user
      * @throws DAOException
      */
-    @Override
     public List<Car> getAllForUser() throws DAOException {
         PreparedStatement stm = null;
         try {
@@ -119,7 +118,6 @@ public class CarDaoImpl implements CarDao {
      * @return car by id
      * @throws DAOException
      */
-    @Override
     public Car read(int id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -131,7 +129,6 @@ public class CarDaoImpl implements CarDao {
      * @return true if carname was changed, otherwise
      * @throws DAOException
      */
-    @Override
     public boolean changeCarname(String carname, int id) throws DAOException {
         LOG.info("CarDaoImpl.changeCarname()");
         PreparedStatement stm = null;
@@ -156,7 +153,6 @@ public class CarDaoImpl implements CarDao {
      * @return true if car price was changed, otherwise
      * @throws DAOException
      */
-    @Override
     public boolean changeCarprice(int carprice, int id) throws DAOException {
         LOG.info("CarDaoImpl.changeCarprice()");
         PreparedStatement stm = null;
@@ -181,7 +177,6 @@ public class CarDaoImpl implements CarDao {
      * @return true if the image was changed, otherwise
      * @throws DAOException
      */
-    @Override
     public boolean changeCarimage(String carimage, int id) throws DAOException {
         LOG.info("CarDaoImpl.changeCarimage()");
         PreparedStatement stm = null;
@@ -206,7 +201,6 @@ public class CarDaoImpl implements CarDao {
      * @return true if the state was changed
      * @throws DAOException
      */
-    @Override
     public boolean changeActive(int active, int id) throws DAOException {
         LOG.info("CarDaoImpl.changeActive()");
         PreparedStatement stm = null;
@@ -236,7 +230,6 @@ public class CarDaoImpl implements CarDao {
      * @return true if this car was deleted, if it wasn't return false
      * @throws DAOException
      */
-    @Override
     public boolean deleteCar(int id) throws DAOException {
         LOG.info("CarDaoImpl.deleteCar()");
         PreparedStatement stm = null;
@@ -268,7 +261,6 @@ public class CarDaoImpl implements CarDao {
      * @return true if car was inserted into database, otherwise
      * @throws DAOException
      */
-    @Override
     public boolean create(Car car) throws DAOException {
         PreparedStatement stm = null;
 

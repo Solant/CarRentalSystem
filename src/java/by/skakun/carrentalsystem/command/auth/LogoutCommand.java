@@ -18,7 +18,7 @@ public class LogoutCommand implements ActionCommand{
 
     @Override
     public String execute(HttpServletRequest request) {
-     request.setAttribute("userName", "GUEST");
+     request.setAttribute("userType", "GUEST");
      String page = ConfigurationManager.getProperty("path.page.index");
      request.getSession().invalidate();
      LOG.info("session invalidated");

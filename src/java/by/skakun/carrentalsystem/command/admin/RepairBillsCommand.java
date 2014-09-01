@@ -3,7 +3,7 @@ package by.skakun.carrentalsystem.command.admin;
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.RepairBillDao;
 import by.skakun.carrentalsystem.dao.impl.RepairBillDaoImpl;
-import by.skakun.carrentalsystem.entity.Order;
+import by.skakun.carrentalsystem.entity.RepairBill;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
 import java.util.List;
@@ -31,7 +31,7 @@ public class RepairBillsCommand implements ActionCommand {
             String page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        List<Order> bills = null;
+        List<RepairBill> bills = null;
         try {
             bills = billDao.getAll();
         } catch (DAOException ex) {

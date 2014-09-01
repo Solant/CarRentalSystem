@@ -6,6 +6,7 @@ import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -27,6 +28,10 @@ public class ChangeCarPriceCommand implements ActionCommand {
         int id = Integer.parseInt(carid);
         String carprice = (String) request.getParameter("newprice");
         int price = Integer.parseInt(carprice);
+        if(!EnteredInfoValidator.rentPrice(price)) {
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
+        }
         CarDao carDao;
         try {
             carDao = new CarDaoImpl();

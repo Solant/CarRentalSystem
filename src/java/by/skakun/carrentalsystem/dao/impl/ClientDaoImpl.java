@@ -15,8 +15,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun 
- * DAO implementation for ClientDao Interface
+ * @author Skakun DAO implementation for ClientDao Interface
  */
 public class ClientDaoImpl implements ClientDao {
 
@@ -93,7 +92,6 @@ public class ClientDaoImpl implements ClientDao {
      * @return user, otherwise
      * @throws DAOException
      */
-    @Override
     public Client read(int id) throws DAOException {
         PreparedStatement stm = null;
         try {
@@ -124,7 +122,6 @@ public class ClientDaoImpl implements ClientDao {
      * @param user from request
      * @throws DAOException
      */
-    @Override
     public void update(Client user) throws DAOException {
         PreparedStatement stm = null;
 
@@ -158,7 +155,7 @@ public class ClientDaoImpl implements ClientDao {
      * @return boolean true or false
      * @throws by.skakun.carrentalsystem.exception.DAOException
      */
-    @Override
+
     public boolean checkLogin(String login) throws DAOException {
         LOG.info("CLientDaoImpl.checkLogin()");
         PreparedStatement stm = null;
@@ -226,7 +223,6 @@ public class ClientDaoImpl implements ClientDao {
      * if there is no such user or if the user has applications
      * @throws DAOException
      */
-    @Override
     public boolean deleteUser(int id) throws DAOException {
         LOG.info("ClientDaoImpl.deleteUser()");
         PreparedStatement stm = null;
@@ -261,7 +257,6 @@ public class ClientDaoImpl implements ClientDao {
      * @throws DAOException
      *
      */
-    @Override
     public boolean changePassword(int id, String pass, String newPass) throws
             DAOException {
         LOG.info("ClientDaoImpl.changePassword()");
@@ -289,7 +284,7 @@ public class ClientDaoImpl implements ClientDao {
             pool.returnConnection(connection);
         }
     }
-    
+
     /**
      *
      * @param id of the user
@@ -299,16 +294,15 @@ public class ClientDaoImpl implements ClientDao {
      * @throws DAOException
      *
      */
-    @Override
     public boolean changeEmail(int id, String newEmail) throws DAOException {
         LOG.info("ClientDaoImpl.changePassword()");
         PreparedStatement stm = null;
         try {
-                stm = connection.prepareStatement( CHANGE_EMAIL);
-                stm.setString(1, newEmail);
-                stm.setInt(2, id);
-                stm.executeUpdate();
-                return true;
+            stm = connection.prepareStatement(CHANGE_EMAIL);
+            stm.setString(1, newEmail);
+            stm.setInt(2, id);
+            stm.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             throw new DAOException("DAOException while ClientDaoImpl.changeEmail()", ex);
         } finally {
@@ -316,8 +310,7 @@ public class ClientDaoImpl implements ClientDao {
             pool.returnConnection(connection);
         }
     }
-    
-    
+
     /**
      *
      *
@@ -325,27 +318,22 @@ public class ClientDaoImpl implements ClientDao {
      * @return true if the state was changed
      * @throws DAOException
      */
-    @Override
-    public boolean changeActive(int id) throws DAOException {
+    public boolean changeActive(int id, int active) throws DAOException {
         LOG.info("CarDaoImpl.changeActive()");
         PreparedStatement stm = null;
-        
         try {
-            stm = connection.prepareStatement(SELECT_USER_BY_ID);
-            stm.setInt(1, id);
-            ResultSet rs = stm.executeQuery();
-            rs.next();
-            int active = rs.getInt("active");
             if (active == 1) {
                 stm = connection.prepareStatement(SET_INACTIVE);
                 stm.setInt(1, id);
                 stm.executeUpdate();
                 return true;
-            } else {
+            } else if (active == 0) {
                 stm = connection.prepareStatement(SET_ACTIVE);
                 stm.setInt(1, id);
                 stm.executeUpdate();
                 return true;
+            } else {
+                return false;
             }
         } catch (SQLException ex) {
             throw new DAOException("DAOException while ClientDaoImpl.changeActive()", ex);
@@ -354,5 +342,4 @@ public class ClientDaoImpl implements ClientDao {
             pool.returnConnection(connection);
         }
     }
-
 }

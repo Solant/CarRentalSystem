@@ -50,7 +50,7 @@
                                             <fmt:message key="order.damage.info"/> <br/>
                                             <input type="text" maxlength="100" name="damage" value="" required/><br/>
                                             <fmt:message key="order.damage.price" /><br/>
-                                            <input type="number" min="1" max="100000" name="damagecost" value="" required/><br/>
+                                            <input type="number" min="1" max="10000" name="damagecost" value="" required/><br/>
                                             <input type="submit" value="<fmt:message key="order.returnd" /> " />
                                         </form>
                                         <hr/>

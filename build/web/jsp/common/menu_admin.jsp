@@ -19,7 +19,7 @@
                 <input type="submit" value="<fmt:message key='menu.main'/>"/> 
             </form>
                <form name ="menu" class="menu" method="POST" action="carrent" >
-                    <input type="hidden" name="command" value="usersW" />
+                    <input type="hidden" name="command" value="users" />
                     <input type="submit" value="<fmt:message key='menu.users'/>"/>
                 </form>
                 <form name ="menu" class="menu" method="POST" action="carrent" >
