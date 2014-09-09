@@ -1,6 +1,11 @@
 package by.skakun.carrentalsystem.exception;
 
-
+/**
+ *
+ * @author Skakun
+ * 
+ * Exception which is called for while processing DAO layer, working with Connection Pool
+ */
 public class DAOException extends Exception {
 
     public DAOException() {

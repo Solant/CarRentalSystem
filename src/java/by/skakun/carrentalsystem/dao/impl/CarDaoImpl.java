@@ -86,6 +86,7 @@ public class CarDaoImpl implements CarDao {
      * @return list of all cars visible for user
      * @throws DAOException
      */
+    @Override
     public List<Car> getAllForUser() throws DAOException {
         PreparedStatement stm = null;
         try {
@@ -230,6 +231,7 @@ public class CarDaoImpl implements CarDao {
      * @return true if this car was deleted, if it wasn't return false
      * @throws DAOException
      */
+    @Override
     public boolean deleteCar(int id) throws DAOException {
         LOG.info("CarDaoImpl.deleteCar()");
         PreparedStatement stm = null;
@@ -261,6 +263,7 @@ public class CarDaoImpl implements CarDao {
      * @return true if car was inserted into database, otherwise
      * @throws DAOException
      */
+    @Override
     public boolean create(Car car) throws DAOException {
         PreparedStatement stm = null;
 

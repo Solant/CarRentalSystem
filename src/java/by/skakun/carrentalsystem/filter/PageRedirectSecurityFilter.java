@@ -7,8 +7,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
@@ -18,7 +16,7 @@ import org.apache.log4j.Logger;
  * @author Skakun
  * 
  * filter for ensuring that only the index.jsp can be accessed without
- * admin or user rights
+ * admin or user rights (when guests are trying to type the page address manually)
  */
 
 

@@ -11,6 +11,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * shows user a list of already archived/paidfor orders
+ */
 public class PaidCommand implements ActionCommand {
 
     private static final Logger LOG = Logger.getLogger(PaidCommand.class);

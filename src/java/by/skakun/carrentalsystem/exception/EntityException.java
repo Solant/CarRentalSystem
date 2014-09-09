@@ -3,6 +3,8 @@ package by.skakun.carrentalsystem.exception;
 /**
  *
  * @author Skakun
+ * 
+ * Exception which is called for while creating an Entity object
  */
 public abstract class EntityException extends Exception {
 

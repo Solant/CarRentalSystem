@@ -18,6 +18,9 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
+ * filter for ensuring no unsanctioned access will be granted to guests who are
+ * not authorised in the system
  */
 public class ServletSecurityFilter implements Filter {
     private static final Logger LOG = Logger.getLogger(ServletSecurityFilter.class);

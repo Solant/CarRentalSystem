@@ -20,7 +20,7 @@ public class ConfigurationManager {
     /**
      *
      * @param key
-     * @return
+     * @return the value tied to the key
      */
     public static String getProperty(String key){
         return resourceBundle.getString(key);

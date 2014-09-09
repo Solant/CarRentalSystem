@@ -1,5 +1,11 @@
 package by.skakun.carrentalsystem.exception;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * Exception which is called for while creating a Car object
+ */
 public class CarException extends EntityException{
 
     public CarException() {

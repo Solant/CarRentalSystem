@@ -41,7 +41,7 @@ public class RegisterCommand implements ActionCommand {
         String email = request.getParameter("email");
         String type = "USER";
         /* additional validation in case validation on jsp page doesn't work*/
-        if (!EnteredInfoValidator.validateRegistrationInfo(login, email, passport, password)) {
+        if (EnteredInfoValidator.validateRegistrationInfo(login, email, passport, password)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }

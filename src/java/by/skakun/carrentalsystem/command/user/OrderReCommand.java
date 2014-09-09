@@ -4,7 +4,6 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.DaoFactory;
 import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;

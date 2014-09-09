@@ -41,6 +41,7 @@
                 <div class="titling"> <fmt:message key="register.email" />: <h7>*</h7></div>
                 <input type="email" name="email" value=""  required>
                 <div class="titling"> <fmt:message key="register.passport.number" />:<h7>*</h7></div>
+                <div class="warning"> <fmt:message key="passnum.warn" /></div>
                 <input type="text" pattern="^[A-Z0-9]{7,14}$" name="pass_num" value=""  required>
                 <br/>
                 <input type="submit" value="<fmt:message key="register.button"/>">

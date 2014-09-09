@@ -4,7 +4,6 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.DaoFactory;
 import by.skakun.carrentalsystem.dao.DaoType;
-import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
 import by.skakun.carrentalsystem.util.EnteredInfoValidator;
@@ -29,7 +28,7 @@ public class ChangePasswordConfCommand implements ActionCommand {
         int id = (int) request.getSession().getAttribute("userId");
         String password = (String) request.getParameter("pass");
         String newpassword = (String) request.getParameter("newpass");
-        if (!EnteredInfoValidator.passwordVal(newpassword)) {
+        if (EnteredInfoValidator.passwordVal(newpassword)) {
             request.setAttribute("cpError", "1");
             page = ConfigurationManager.getProperty("path.page.changepass");
             return page;

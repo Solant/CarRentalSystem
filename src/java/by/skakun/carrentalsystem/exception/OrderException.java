@@ -3,6 +3,8 @@ package by.skakun.carrentalsystem.exception;
 /**
  *
  * @author Skakun
+ * 
+ * Exception which is called for while creating an Order object
  */
 public class OrderException extends EntityException {
 

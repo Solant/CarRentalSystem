@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
  *
  * @author Skakun
  * 
- * releasing ConnectionPool on close
+ * releasing ConnectionPool when context is being destroyed
  */
 public class ContextListener implements ServletContextListener {
 
@@ -18,7 +18,7 @@ public class ContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        // серирализация???
+        // todo some actions
 
     }
 

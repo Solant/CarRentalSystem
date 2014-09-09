@@ -34,7 +34,6 @@
                     <fmt:message key="user.account.passnum"/>: <b> ${userPassNum}</b> <br/>
                     <fmt:message key="user.account.email"/>: <b> ${userEmail}</b>
 
-                    <!--        <div id="login"> -->
                     <form name='form-change-email' method="POST" action="carrent" > 
                         <input type="hidden" name="command" value="ChangeEmail" /> 
                         <input type="email" name="newemail" required value="" />
@@ -50,7 +49,6 @@
                     </form> 
 
 
-                    <!--    </div>     -->                  
                 </div>
 
             </div> 

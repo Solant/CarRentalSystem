@@ -1,5 +1,11 @@
 package by.skakun.carrentalsystem.exception;
 
+/**
+ *
+ * @author Skakun
+ * 
+ * Exception which is called for while creating a Client object
+ */
 public class ClientException extends EntityException {
 
     public ClientException() {
