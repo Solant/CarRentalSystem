@@ -4,6 +4,8 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.command.admin.MainAdmCommand;
 import by.skakun.carrentalsystem.command.user.MainRedirectCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -11,6 +13,7 @@ import by.skakun.carrentalsystem.util.ConfigurationManager;
 import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import by.skakun.carrentalsystem.util.LoginLogic;
 import by.skakun.carrentalsystem.util.PasswordHashing;
+import by.skakun.carrentalsystem.util.StatisticsTagHandler;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
@@ -29,7 +32,7 @@ public class LoginCommand implements ActionCommand {
      *
      * @param request
      * @return either the main page for user or admin, or login page with
-     * warning if login and/or password werent' correct
+     * warning if login and/or password weren't correct
      */
     @Override
     public String execute(HttpServletRequest request) {
@@ -40,21 +43,18 @@ public class LoginCommand implements ActionCommand {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
+
         password = PasswordHashing.getHashValue(password);
         ClientDao clientDao;
-        try {
-            clientDao = new ClientDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        List<Client> clients = null;
+        clientDao = (ClientDao) DaoFactory.getDao(DaoType.CLIENT);
+        List<Client> clients;
+
         try {
             clients = clientDao.getAll();
         } catch (DAOException ex) {
             LOG.error("DAOException after userDao.getAll()" + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
 
         switch (LoginLogic.checkLogin(clients, login, password, request)) {
@@ -63,10 +63,19 @@ public class LoginCommand implements ActionCommand {
                 page = ConfigurationManager.getProperty("path.page.index");
                 return page;
             case 2:
-                page = new MainAdmCommand().execute(request);
+                request.setAttribute("rw", StatisticsTagHandler.getOrderStats().size());
+                request.setAttribute("us", StatisticsTagHandler.getUserStats().size());
+                request.setAttribute("car", StatisticsTagHandler.getCarsStats().size());
+                page = ConfigurationManager.getProperty("path.page.admin");
                 return page;
             case 3:
-                page = new MainRedirectCommand().execute(request);
+                int id = (int) request.getSession().getAttribute("userId");
+                int size = StatisticsTagHandler.getUsersOrders(id).size();
+                if (size > 0) {
+                    request.setAttribute("flag", "1");
+                    request.setAttribute("rw", size);
+                }
+                page = ConfigurationManager.getProperty("path.page.main");
                 return page;
             default:
                 request.setAttribute("errorPassword", "1");

@@ -2,6 +2,8 @@ package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -23,23 +25,17 @@ public class UsersCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         ClientDao clientDao;
+        String page;
+        List<Client> clients;
         try {
-            clientDao = new ClientDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            String page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        List<Client> clients = null;
-        try {
-            clients = clientDao.getAll();
+            clientDao = (ClientDao) DaoFactory.getDao(DaoType.CLIENT);
+            clients = clientDao.getAllUsers();
+            request.setAttribute("lst", clients);
+            page = ConfigurationManager.getProperty("path.page.allusers");
         } catch (DAOException ex) {
             LOG.error("DAOException while clientDao.getAll()" + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
         }
-        request.setAttribute("lst", clients);
-        LOG.debug("->users");
-        String page = ConfigurationManager.getProperty("path.page.allusers");
         return page;
     }
 }

@@ -1,16 +1,20 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
+import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 /**
  *
  * @author Skakun
+ *
  * marking the order as returned without any damage
  */
 public class ReturnCommand implements ActionCommand {
@@ -21,22 +25,20 @@ public class ReturnCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         OrderDao orderDao;
+        String order = (String) request.getParameter("applId");
+        int orderId = Integer.parseInt(order);
+        List<Order> orders;
         try {
-            orderDao = new OrderDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        String appl = (String) request.getParameter("applId");
-        int applId = Integer.parseInt(appl);
-        try {
-            orderDao.returnCar(applId);
-            page = new PaidOrdersCommand().execute(request);
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            orderDao.returnCar(orderId);
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            orders = orderDao.getPaidOrders();
+            request.setAttribute("lst", orders);
+            page = ConfigurationManager.getProperty("path.page.paidorders");
         } catch (DAOException ex) {
             LOG.error("DaoException while ReturnCommand: " + ex);
-            page = new PaidOrdersCommand().execute(request);
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
         LOG.debug("->paidorders.jsp");
         return page;

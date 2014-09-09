@@ -30,6 +30,7 @@ public class ClientDaoImpl implements ClientDao {
             + " NAME=?, SURNAME=?, PASSPORT_NUMBER=? WHERE ID = ?;";
     private static final String CHECK_LOGIN = "SELECT * FROM CLIENT WHERE USERNAME= ?;";
     private static final String GET_ALL_USERS = "SELECT * FROM CLIENT;";
+    private static final String GET_ONLY_CLIENTS = "SELECT * FROM CLIENT WHERE CLIENT.`client_type`=\"USER\";";
     private static final String DELETE_USER = "DELETE FROM CLIENT WHERE CLIENT.`user_id`=?;";
     private static final String CHANGE_PASSWORD = "UPDATE `client` SET client.`pass`=? "
             + "where client.`user_id`=?;";
@@ -92,6 +93,7 @@ public class ClientDaoImpl implements ClientDao {
      * @return user, otherwise
      * @throws DAOException
      */
+    @Override
     public Client read(int id) throws DAOException {
         PreparedStatement stm = null;
         try {
@@ -337,6 +339,39 @@ public class ClientDaoImpl implements ClientDao {
             }
         } catch (SQLException ex) {
             throw new DAOException("DAOException while ClientDaoImpl.changeActive()", ex);
+        } finally {
+            closePS(stm);
+            pool.returnConnection(connection);
+        }
+    }
+    
+    @Override
+    public List<Client> getAllUsers() throws DAOException {
+        LOG.info("ClientDaoImpl.getAll()");
+        PreparedStatement stm = null;
+        try {
+            List<Client> list;
+            stm = connection.prepareStatement(GET_ONLY_CLIENTS);
+            ResultSet rs = stm.executeQuery();
+            list = new ArrayList<>();
+            while (rs.next()) {
+                Client user;
+                user = new Client();
+                user.setName(rs.getString("name"));
+                user.setSurname(rs.getString("surname"));
+                user.setPassNum(rs.getString("passport_number"));
+                user.setLogin(rs.getString("username"));
+                user.setPassword(rs.getString("pass"));
+                user.setType(rs.getString("client_type"));
+                user.setEmail(rs.getString("email"));
+                user.setId(rs.getInt("user_id"));
+                user.setActive(rs.getInt("active"));
+                user.setCredit(rs.getInt("credit"));
+                list.add(user);
+            }
+            return list;
+        } catch (SQLException | ClientException ex) {
+            throw new DAOException("ClientException while ClientDaoImpl.getAll():", ex);
         } finally {
             closePS(stm);
             pool.returnConnection(connection);

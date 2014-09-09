@@ -1,8 +1,9 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -12,8 +13,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun
- * sends admin to page with all archived orders
+ * @author Skakun sends admin to page with all archived orders
  */
 public class ArchiveOrdersCommand implements ActionCommand {
 
@@ -22,23 +22,20 @@ public class ArchiveOrdersCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         OrderDao orderDao;
+        String page;
+        orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+        List<Order> orders;
+        
         try {
-            orderDao = new OrderDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
-            String page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        List<Order> appls = null;
-        try {
-            appls = orderDao.getArchiveOrders();
+            orders = orderDao.getArchiveOrders();
+            request.setAttribute("lst", orders);
+            page = ConfigurationManager.getProperty("path.page.archiveorders");
         } catch (DAOException ex) {
             LOG.error("DAOException while applicationDaoImpl.getAll()." + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
         }
-        request.setAttribute("lst", appls);
-        LOG.info("-> archiveorders.jsp");
-        String page = ConfigurationManager.getProperty("path.page.archiveorders");
+        
+        LOG.debug("-> archiveorders.jsp");
         return page;
 
     }

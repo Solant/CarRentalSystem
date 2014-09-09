@@ -12,8 +12,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun
- * changes the price of car and returns him to the car info page
+ * @author Skakun changes the price of car and returns him to the car info page
  */
 public class ChangeCarPriceCommand implements ActionCommand {
 
@@ -23,12 +22,11 @@ public class ChangeCarPriceCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         boolean flag;
-        LOG.info("ChangeCarPriceCommand");
         String carid = (String) request.getParameter("carid");
         int id = Integer.parseInt(carid);
         String carprice = (String) request.getParameter("newprice");
         int price = Integer.parseInt(carprice);
-        if(!EnteredInfoValidator.rentPrice(price)) {
+        if (!EnteredInfoValidator.rentPrice(price)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -37,7 +35,7 @@ public class ChangeCarPriceCommand implements ActionCommand {
             carDao = new CarDaoImpl();
         } catch (DAOException ex) {
             LOG.fatal("Couldn't establish the connection to the database");
-            LOG.info("->errorpage");
+            LOG.debug("->errorpage");
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
@@ -45,19 +43,14 @@ public class ChangeCarPriceCommand implements ActionCommand {
             flag = carDao.changeCarprice(price, id);
             if (flag) {
                 request.setAttribute("psuccess", "1");
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
             } else {
                 request.setAttribute("pfail", "1");
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
             }
         } catch (DAOException ex) {
-            LOG.info("DAOException while ChangeCarPriceCommand");
-            page = ConfigurationManager.getProperty("path.page.carchange");
-            return page;
+            LOG.error("DAOException while ChangeCarPriceCommand");
         }
-
+        page = ConfigurationManager.getProperty("path.page.carchange");
+        return page;
     }
 
 }

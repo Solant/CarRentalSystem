@@ -34,6 +34,9 @@
                             <input type="submit" value="<fmt:message key="back.button"/>"/>
                         </form> 
                     </div> 
+                    <c:if test="${not empty cpError}"><div class="warnings"><fmt:message key="change.password.fail"/></div></c:if>
+                    <c:if test="${not empty cpSuccess}"><div class="warnings"><fmt:message key="change.password.success"/></div></c:if>
+                    <c:if test="${not empty cpSame}"><div class="warnings"><fmt:message key="error.same.passes"/></div></c:if>
                     <br/>
                     <form name='form-change-passwprd' method="POST" action="carrent">   
                         <input type="hidden" name="command" value="ChangePasswordConf" />
@@ -44,8 +47,7 @@
                         <input type="password" id="user" name= "pass" placeholder="" required> <br/><br/>
                         <input type="submit" value="<fmt:message key="user.account.passchange"/>"/>
                     </form> 
-                    <c:if test="${not empty cpError}"><div class="msg"><fmt:message key="change.password.fail"/></div></c:if>
-                    <c:if test="${not empty cpSuccess}"><div class="msg"><fmt:message key="change.password.success"/></div></c:if>
+                    
                     </div>                                
                 </div>
             </div>

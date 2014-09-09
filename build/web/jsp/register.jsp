@@ -23,6 +23,7 @@
             <h1><fmt:message key="register.title"/></h1>
             <form name ="RegisterForm" method="POST" action="carrent">
                 <input type="hidden" name="command" value="Register" />
+                <input type="hidden" name="userType" value="GUEST" /> 
                 <div class="titling"><fmt:message key="register.name"/>: <h7>*</h7></div>
                 <div class="warning"> <fmt:message key="register.warn.login"/> </div>
                 <input type="text" name="login" pattern="^[a-z0-9_-]{3,16}$"  value="" autofocus required>

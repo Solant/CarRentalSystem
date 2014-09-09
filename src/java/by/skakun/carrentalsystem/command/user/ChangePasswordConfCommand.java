@@ -2,6 +2,8 @@ package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -28,21 +30,21 @@ public class ChangePasswordConfCommand implements ActionCommand {
         String password = (String) request.getParameter("pass");
         String newpassword = (String) request.getParameter("newpass");
         if (!EnteredInfoValidator.passwordVal(newpassword)) {
-            page = ConfigurationManager.getProperty("path.page.error");
+            request.setAttribute("cpError", "1");
+            page = ConfigurationManager.getProperty("path.page.changepass");
+            return page;
+        }
+        if (EnteredInfoValidator.passwordValSame(newpassword, password)) {
+            request.setAttribute("cpSame", "1");
+            page = ConfigurationManager.getProperty("path.page.changepass");
             return page;
         }
         password = PasswordHashing.getHashValue(password);
         newpassword = PasswordHashing.getHashValue(newpassword);
         ClientDao clientDao;
+
         try {
-            clientDao = new ClientDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        try {
+            clientDao = (ClientDao) DaoFactory.getDao(DaoType.CLIENT);
             flag = clientDao.changePassword(id, password, newpassword);
             if (flag) {
                 request.setAttribute("cpSuccess", "1");
@@ -55,7 +57,7 @@ public class ChangePasswordConfCommand implements ActionCommand {
             }
         } catch (DAOException ex) {
             LOG.error("DAOException while ChangePasswordConfCommand", ex);
-            page = ConfigurationManager.getProperty("path.page.changepass");
+            page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
 

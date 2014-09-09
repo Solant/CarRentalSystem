@@ -1,8 +1,9 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -22,21 +23,22 @@ public class BasketCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         OrderDao orderDao;
-        List<Order> order;
+        List<Order> orders;
         try {
-            orderDao = new OrderDaoImpl();
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
             int id = (int) request.getSession().getAttribute("userId");
-            order = orderDao.getUByUserId(id);
+            orders = orderDao.getUByUserId(id);
+            request.setAttribute("lst", orders);
+            page = ConfigurationManager.getProperty("path.page.basket");
         } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            String page = ConfigurationManager.getProperty("path.page.error");
+            LOG.error("DaoException while getUByUserId()" + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        request.setAttribute("lst", order);
+        
         LOG.debug("->basket");
-        String page = ConfigurationManager.getProperty("path.page.basket");
         return page;
     }
 }

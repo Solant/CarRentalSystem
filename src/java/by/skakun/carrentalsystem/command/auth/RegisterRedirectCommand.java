@@ -8,18 +8,19 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
  * getting guest to the register.jsp
  */
-public class RegisterRedicrectCommand implements ActionCommand {
+public class RegisterRedirectCommand implements ActionCommand {
 
-    private static final Logger LOG = Logger.getLogger(RegisterRedicrectCommand.class);
+    private static final Logger LOG = Logger.getLogger(RegisterRedirectCommand.class);
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         LOG.debug("->register.jsp");
-        String page = ConfigurationManager.getProperty("path.page.register");
+        page = ConfigurationManager.getProperty("path.page.register");
         return page;
-
     }
 
 }

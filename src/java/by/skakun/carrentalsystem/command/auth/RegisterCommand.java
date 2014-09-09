@@ -2,6 +2,8 @@ package by.skakun.carrentalsystem.command.auth;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -14,7 +16,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
+ *
  * registering user in the system and returning him to login.jsp
  */
 public class RegisterCommand implements ActionCommand {
@@ -39,36 +41,31 @@ public class RegisterCommand implements ActionCommand {
         String email = request.getParameter("email");
         String type = "USER";
         /* additional validation in case validation on jsp page doesn't work*/
-        if(!EnteredInfoValidator.validateRegistrationInfo(login, email, passport, password)) {
+        if (!EnteredInfoValidator.validateRegistrationInfo(login, email, passport, password)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
         int active = 1; //1 means active, 0 means inactive
-        int credit = 1000; // srandart sum, placeholder for real billing
+        int credit = 1000; // standart sum, placeholder for the real billing
         password = PasswordHashing.getHashValue(password);
         ClientDao clientDao;
         try {
-            clientDao = new ClientDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        try {
+            clientDao = (ClientDao) DaoFactory.getDao(DaoType.CLIENT);
             boolean flag = clientDao.checkLogin(login);
-            if(flag) {
-            request.setAttribute("errorLogin", 1);
-            page = ConfigurationManager.getProperty("path.page.register");
-            return page;
+            if (flag) {
+                request.setAttribute("errorLogin", 1);
+                page = ConfigurationManager.getProperty("path.page.register");
+                return page;
             }
         } catch (DAOException ex) {
             LOG.error("DAOException while checkLogin()");
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
-        
+
         Client user = new Client(login, password, realname, surname, passport, type, email, active, credit);
         try {
-            clientDao = new ClientDaoImpl();
+            clientDao = (ClientDao) DaoFactory.getDao(DaoType.CLIENT);
             clientDao.create(user);
             page = ConfigurationManager.getProperty("path.page.index");
             return page;

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ * 
  * processing redirect to account.jsp
  */
 public class AccountCommand implements ActionCommand {
@@ -18,12 +19,13 @@ public class AccountCommand implements ActionCommand {
     /**
      * Redirecting to the page My Account with info about the user
      * @param request from user
-     * @return
+     * @return page address
      */
     @Override
     public String execute(HttpServletRequest request) {
         LOG.debug("->account.jsp");
-        String page = ConfigurationManager.getProperty("path.page.account");
+        String page;
+        page = ConfigurationManager.getProperty("path.page.account");
         return page;
     }
 

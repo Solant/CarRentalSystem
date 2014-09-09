@@ -1,11 +1,14 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
+import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
 import by.skakun.carrentalsystem.util.EnteredInfoValidator;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -23,38 +26,33 @@ public class ReturnDamageCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         OrderDao orderDao;
-        try {
-            orderDao = new OrderDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
+
         String order = (String) request.getParameter("applId");
         String damage = (String) request.getParameter("damage");
-        LOG.info("!");
         if (EnteredInfoValidator.dataLength(damage)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        LOG.info("!");
         String damageCost = (String) request.getParameter("damagecost");
         int applId = Integer.parseInt(order);
         int dCost = Integer.parseInt(damageCost);
-        LOG.info("!");
         if (!EnteredInfoValidator.rentPrice(dCost)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        LOG.info("!");
+        List<Order> orders;
         try {
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
             orderDao.returnDamage(applId, damage, dCost);
-            page = new PaidOrdersCommand().execute(request);
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            orders = orderDao.getPaidOrders();
+            request.setAttribute("lst", orders);
         } catch (DAOException ex) {
             LOG.error("DAOException while confirmComand: " + ex);
-            page = new PaidOrdersCommand().execute(request);
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
+        page = ConfigurationManager.getProperty("path.page.paidorders");
         return page;
 
     }

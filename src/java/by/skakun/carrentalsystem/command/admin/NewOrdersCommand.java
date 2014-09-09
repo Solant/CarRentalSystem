@@ -1,8 +1,9 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -13,7 +14,8 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun 
- * getting admin to page with all new applications
+ * 
+ * getting admin to the page with all new applications
  */
 public class NewOrdersCommand implements ActionCommand {
 
@@ -22,23 +24,19 @@ public class NewOrdersCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         OrderDao applDao;
+        String page;
+        List<Order> orders;
         try {
-            applDao = new OrderDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            String page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        List<Order> appls = null;
-        try {
-            appls = applDao.getNewOrders();
+            applDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            orders = applDao.getNewOrders();
         } catch (DAOException ex) {
             LOG.error("DAOException after OrderDao.getNewApplications()" + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
-        request.setAttribute("lst", appls);
+        request.setAttribute("lst", orders);
         LOG.debug("->neworders");
-        String page = ConfigurationManager.getProperty("path.page.neworders");
+        page = ConfigurationManager.getProperty("path.page.neworders");
         return page;
 
     }

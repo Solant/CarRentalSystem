@@ -2,6 +2,8 @@ package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.CarDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -11,7 +13,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
+ *
  * deletes car / not recommended
  */
 public class DeleteCarCommand implements ActionCommand {
@@ -22,32 +24,23 @@ public class DeleteCarCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         CarDao carDao;
-        try {
-            carDao = new CarDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database");
-            LOG.info("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        boolean flag = false;
+        carDao = (CarDao) DaoFactory.getDao(DaoType.CAR);
+        boolean flag;
         try {
             int id = Integer.parseInt((String) request.getParameter("carid"));
             flag = carDao.deleteCar(id);
-            LOG.info(flag);
         } catch (DAOException ex) {
-            LOG.info("Dao Mistake after clientDao.deleteUser(id)." + ex.getLocalizedMessage());
+            LOG.error("DAOException after clientDao.deleteUser(id)." + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
         if (flag) {
             request.setAttribute("dsuccess", "1");
-            page = ConfigurationManager.getProperty("path.page.carchange");
-            return page;
-
         } else {
             request.setAttribute("dfail", "1");
-            page = ConfigurationManager.getProperty("path.page.carchange");
-            return page;
         }
+        page = ConfigurationManager.getProperty("path.page.carchange");
+        return page;
 
     }
 

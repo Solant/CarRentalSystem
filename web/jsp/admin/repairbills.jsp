@@ -29,7 +29,7 @@
                 <div id="page-content">  
                     <h2><fmt:message key="repairbill.title"/></h2>
                     <table class="cartable">
-                        <c:if test="${not empty csuccess}"><div class="msg"><fmt:message key="order.damage.c"/></div></c:if>
+                        <c:if test="${not empty csuccess}"><div class="msg"><fmt:message key="order.damage.s"/></div></c:if>
                         <c:if test="${not empty cfail}"><div class="msg"><fmt:message key="order.damage.f"/></div></c:if>
                             <hr/>
                         <c:forEach var="elem" items="${lst}" varStatus="status">

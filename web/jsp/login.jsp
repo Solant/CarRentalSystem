@@ -25,8 +25,10 @@
                     <div id="login">
                         <form name ="LanguageForm" method="POST" action="carrent" class="lang">
                             <input type="hidden" name="command" value="RU" />
+                            <input type="hidden" name="userType" value="GUEST" /> 
                             <input name= "language" type="submit" value="RU"/> 
                             <input type="hidden" name="command" value="EN" />
+                            <input type="hidden" name="userType" value="GUEST" /> 
                             <input name = "language" type="submit" value="EN"/>
                         </form>
 
@@ -46,6 +48,7 @@
                         </form>
                         <form name ="RegisterForm"  method="POST" action="carrent">
                             <input type="hidden" name="command" value="REGISTERREDIRECT" /> 
+                            <input type="hidden" name="userType" value="GUEST" /> 
                             <input type="submit" value="<fmt:message key="login.register" /> " />
                         </form> 
                     </div></center> </div>

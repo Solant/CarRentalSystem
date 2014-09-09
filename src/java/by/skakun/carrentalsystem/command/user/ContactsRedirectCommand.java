@@ -17,22 +17,11 @@ public class ContactsRedirectCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         LOG.debug("->contacts");
-        String page = ConfigurationManager.getProperty("path.page.contacts");
+        page = ConfigurationManager.getProperty("path.page.contacts");
         return page;
 
     }
 
 }
-
-/**
- *
- * @param request
- * @return content for page result/or redirects to login page with error message
- */
-/*   @Override
- public String execute(HttpServletRequest request) {
- String page = ConfigurationManager.getProperty("path.page.register");
- return page;
-
- } */

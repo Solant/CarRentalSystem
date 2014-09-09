@@ -8,7 +8,6 @@ import java.util.List;
 /**
  *
  * @author Skakun
- * @param <T>
  */
 public interface RepairBillDao extends IDao{
     

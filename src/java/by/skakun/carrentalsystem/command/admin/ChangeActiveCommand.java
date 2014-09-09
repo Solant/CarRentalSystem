@@ -2,6 +2,8 @@ package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.CarDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -11,8 +13,8 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
- * changes the state of car and returns him to the car info page
+ *
+ * changes the state of car and returns admin to the car info page
  */
 public class ChangeActiveCommand implements ActionCommand {
 
@@ -27,33 +29,24 @@ public class ChangeActiveCommand implements ActionCommand {
         String caractive = (String) request.getParameter("active");
         int active = Integer.parseInt(caractive);
         CarDao carDao;
-        try {
-            carDao = new CarDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
+        carDao = (CarDao) DaoFactory.getDao(DaoType.CAR);
+        
         try {
             flag = carDao.changeActive(active, id);
-
             if (flag) {
                 request.setAttribute("acsuccess", "1");
                 request.setAttribute("active", Math.abs(active - 1));
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
+
             } else {
                 request.setAttribute("acfail", "1");
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
             }
         } catch (DAOException ex) {
-            LOG.info("DAOException while ChangeActiveCommand", ex);
-            page = ConfigurationManager.getProperty("path.page.carchange");
+            LOG.debug("DAOException while ChangeActiveCommand", ex);
+            page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-
+        page = ConfigurationManager.getProperty("path.page.carchange");
+        return page;
     }
 
 }

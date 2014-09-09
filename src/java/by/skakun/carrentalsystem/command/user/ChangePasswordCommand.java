@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
+ *
  * processing user's request to get to changepassword.jsp
  */
 public class ChangePasswordCommand implements ActionCommand {
@@ -18,7 +18,8 @@ public class ChangePasswordCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         LOG.debug("->changepassword.jsp");
-        String page = ConfigurationManager.getProperty("path.page.changepass");
+        String page;
+        page = ConfigurationManager.getProperty("path.page.changepass");
         return page;
 
     }

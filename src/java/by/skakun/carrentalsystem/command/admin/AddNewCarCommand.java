@@ -17,7 +17,7 @@ public class AddNewCarCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = ConfigurationManager.getProperty("path.page.addnewcar");
-        LOG.info("->addnewcar.jsp");
+        LOG.debug("->addnewcar.jsp");
         return page;
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 /**
  *
  * @author Skakun
- * @param <Order>
  * 
  */
 public interface OrderDao extends IDao {

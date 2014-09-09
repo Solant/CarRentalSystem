@@ -1,8 +1,9 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
+ *
  * showing user the list of denied orders (with reasons, why)
  */
 public class DeniedCommand implements ActionCommand {
@@ -22,21 +23,19 @@ public class DeniedCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         OrderDao orderDao;
         List<Order> orderDenied;
         try {
-            orderDao = new OrderDaoImpl();
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
             int id = (int) request.getSession().getAttribute("userId");
             orderDenied = orderDao.getDByUserId(id);
+            request.setAttribute("lstR", orderDenied);
+            page = ConfigurationManager.getProperty("path.page.ordersdenied");
         } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.info("->errorpage");
-            String page = ConfigurationManager.getProperty("path.page.error");
-            return page;
+            LOG.error("DAOException while getDByUserId(id)" + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
         }
-        request.setAttribute("lstR", orderDenied); 
-        LOG.info("->denied");
-        String page = ConfigurationManager.getProperty("path.page.ordersdenied");
         return page;
     }
 }

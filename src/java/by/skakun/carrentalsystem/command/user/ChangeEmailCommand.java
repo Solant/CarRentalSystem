@@ -2,7 +2,8 @@ package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
-import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
 import by.skakun.carrentalsystem.util.EnteredInfoValidator;
@@ -11,8 +12,8 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun 
- * 
+ * @author Skakun
+ *
  * processing request to change user's email
  */
 public class ChangeEmailCommand implements ActionCommand {
@@ -24,21 +25,23 @@ public class ChangeEmailCommand implements ActionCommand {
         String page;
         boolean flag;
         int id = (int) request.getSession().getAttribute("userId");
+        String oldEmail = (String) request.getSession().getAttribute("userEmail");
         String email = (String) request.getParameter("newemail");
-        if(!EnteredInfoValidator.emailVal(email)){
-            page = ConfigurationManager.getProperty("path.page.error");
+        if (!EnteredInfoValidator.emailVal(email)) {
+            page = ConfigurationManager.getProperty("path.page.account");
             return page;
         }
+        
+        if (EnteredInfoValidator.emailValSame(email, oldEmail)) {
+            request.setAttribute("cpSame", "1");
+            page = ConfigurationManager.getProperty("path.page.account");
+            return page;
+        }
+
         ClientDao clientDao;
+
         try {
-            clientDao = new ClientDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        try {
+            clientDao = (ClientDao) DaoFactory.getDao(DaoType.CLIENT);
             flag = clientDao.changeEmail(id, email);
             if (flag) {
                 request.setAttribute("cpSuccess", "1");
@@ -52,7 +55,7 @@ public class ChangeEmailCommand implements ActionCommand {
             }
         } catch (DAOException ex) {
             LOG.error("DAOException while ChangePasswordConfCommand", ex);
-            page = ConfigurationManager.getProperty("path.page.changepass");
+            page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
 

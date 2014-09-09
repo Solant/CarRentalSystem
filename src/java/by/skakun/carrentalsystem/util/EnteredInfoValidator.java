@@ -44,9 +44,16 @@ public class EnteredInfoValidator {
     public static boolean emailVal(String email) {
         return Pattern.matches(EMAIL_REGEX, email);
     }
+    
+    public static boolean emailValSame(String email, String oldEmail) {
+        return email.equals(oldEmail);
+    }
 
     public static boolean passwordVal(String password) {
         return Pattern.matches(PASSWORD_REGEX, password);
+    }
+    public static boolean passwordValSame(String password, String oldPassword) {
+        return password.equals(oldPassword);
     }
         public static boolean passwordValE(String password) {
         return !password.isEmpty();

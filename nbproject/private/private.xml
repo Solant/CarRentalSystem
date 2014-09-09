@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/dao/IDao.java</file>
-            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/filter/ServletSecurityFilter.java</file>
-            <file>file:/Users/apple/CarRentalSystem/web/WEB-INF/web.xml</file>
-            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/dao/impl/CarDaoImpl.java</file>
-            <file>file:/Users/apple/CarRentalSystem/web/jsp/register.jsp</file>
-            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/dao/OrderDao.java</file>
-            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/auth/LogoutCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/ConfirmCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/web/index.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/RepairedCommand.java</file>
             <file>file:/Users/apple/CarRentalSystem/web/jsp/login.jsp</file>
         </group>
     </open-files>

@@ -2,6 +2,8 @@ package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.CarDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.entity.Car;
 import by.skakun.carrentalsystem.exception.DAOException;
@@ -11,8 +13,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun
- * returns page after trying to add new car to the database
+ * @author Skakun returns page after trying to add new car to the database
  */
 public class NewCarCommand implements ActionCommand {
 
@@ -22,15 +23,8 @@ public class NewCarCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         CarDao carDao;
-        try {
-            carDao = new CarDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        boolean flag = false;
+        carDao = (CarDao) DaoFactory.getDao(DaoType.CAR);
+        boolean flag;
         try {
             String carname = (String) request.getParameter("carname");
             int price = Integer.parseInt((String) request.getParameter("price"));
@@ -40,17 +34,16 @@ public class NewCarCommand implements ActionCommand {
             flag = carDao.create(car);
         } catch (DAOException ex) {
             LOG.error("DAOException while CarDao.create()" + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
         if (flag) {
             request.setAttribute("csuccess", "1");
-            page = ConfigurationManager.getProperty("path.page.addnewcar");
-            return page;
-
         } else {
             request.setAttribute("cfail", "1");
-            page = ConfigurationManager.getProperty("path.page.addnewcar");
-            return page;
         }
+        page = ConfigurationManager.getProperty("path.page.addnewcar");
+        return page;
 
     }
 

@@ -16,7 +16,7 @@ public class CarsAdmCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        LOG.info("->cars");
+        LOG.debug("->cars");
         String page = ConfigurationManager.getProperty("path.page.carsadmin");
         return page;
 

@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * @param <T>
+ * @param <Entity>
  */
 public interface IDao<Entity> {
 

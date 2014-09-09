@@ -1,8 +1,9 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -22,24 +23,20 @@ public class UnpaidOrdersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        OrderDao applDao;
+        OrderDao orderDao;
+        String page;
+        List<Order> orders;
         try {
-            applDao = new OrderDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            String page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        List<Order> appls = null;
-        try {
-            appls = applDao.getUnPaidOrders();
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            orders = orderDao.getUnPaidOrders();
+            request.setAttribute("lst", orders);
         } catch (DAOException ex) {
             LOG.error("DAOException after applicationDaoImpl.getUnPaidApplications()" + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
+            return page;
         }
-        request.setAttribute("lst", appls);
         LOG.debug("->unpaidorders");
-        String page = ConfigurationManager.getProperty("path.page.unpaidorders");
+        page = ConfigurationManager.getProperty("path.page.unpaidorders");
         return page;
 
     }

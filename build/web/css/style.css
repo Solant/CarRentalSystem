@@ -536,10 +536,17 @@ h2 {
     margin-top: -20px;
 }
 
+.alerts {
+    color: red;
+    font-size: 14px;
+}
+
 .msg {
     color: white;
     font-size:14px;
 }
+
+
 
 .notice {
     color:black;
@@ -553,11 +560,12 @@ h2 {
     color:black;
 }
 
-.warning {
-    color:#CCC;
+.warnings {
+    color:#cc0033;
     font-size: 14px;
     line-height: 14px;
-    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-left: 0px;
 }
 .warning {
     color:black;

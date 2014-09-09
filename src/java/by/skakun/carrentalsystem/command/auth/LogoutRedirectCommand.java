@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
+ *
  * getting user to logout.jsp
  */
 public class LogoutRedirectCommand implements ActionCommand {
@@ -16,8 +17,9 @@ public class LogoutRedirectCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        String page = ConfigurationManager.getProperty("path.page.logout");
-        LOG.debug ("->logout.jsp");
+        String page;
+        LOG.debug("->logout.jsp");
+        page = ConfigurationManager.getProperty("path.page.logout");
         return page;
 
     }

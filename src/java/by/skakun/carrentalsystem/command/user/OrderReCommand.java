@@ -1,6 +1,8 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
 import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
 import by.skakun.carrentalsystem.entity.Order;
@@ -39,32 +41,28 @@ public class OrderReCommand implements ActionCommand {
         }
         sumToPay = carPrice * period;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date parsedate = null;
+        Date parsedate;
+        java.sql.Date sql = null;
         try {
             parsedate = formatter.parse((String) request.getParameter("date"));
+            sql = new java.sql.Date(parsedate.getTime());
         } catch (ParseException ex) {
             LOG.error("ParseException while converting date: " + ex);
         }
-        java.sql.Date sql = new java.sql.Date(parsedate.getTime());
+        
         OrderDao orderDao;
-        try {
-            orderDao = new OrderDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error"); // couldn't get a connection from connection pool
-            return page;
-        }
         Order appl = new Order(userId, carid, sumToPay, carPrice, period, sql);
+        
         try {
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
             orderDao.create(appl);
             page = ConfigurationManager.getProperty("path.page.order.success");
-            return page;
         } catch (DAOException ex) {
             LOG.error("DAOException while orderDao.create()" + ex);
+            request.setAttribute("cpError", 1);
+            page = ConfigurationManager.getProperty("path.page.define");
         }
-        request.setAttribute("cpError", 1);
-        page = ConfigurationManager.getProperty("path.page.define");
+        
         return page;
     }
 

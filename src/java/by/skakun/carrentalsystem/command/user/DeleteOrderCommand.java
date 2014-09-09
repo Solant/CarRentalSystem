@@ -1,10 +1,13 @@
 package by.skakun.carrentalsystem.command.user;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
+import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -21,31 +24,25 @@ public class DeleteOrderCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page;
+        List<Order> orders;
 
-        boolean flag = false;
-        String idA = (String) request.getParameter("applid");
-        int id = Integer.parseInt(idA);
+        String orderIdS = (String) request.getParameter("applid");
+        int orderId = Integer.parseInt(orderIdS);
         OrderDao orderDao;
+
         try {
-            orderDao = new OrderDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database", ex);
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
-        try {
-            flag = orderDao.delete(id);
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            orderDao.delete(orderId);
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            int id = (int) request.getSession().getAttribute("userId");
+            orders = orderDao.getUByUserId(id);
+            request.setAttribute("lst", orders);
+            page = ConfigurationManager.getProperty("path.page.basket");
         } catch (DAOException ex) {
             LOG.error("DAOException while PayCommand: " + ex);
+            page = ConfigurationManager.getProperty("path.page.error");
         }
-        if (flag) {
-            page = new BasketCommand().execute(request);
-            return page;
-        } else {
-            page = new BasketCommand().execute(request);
-            return page;
-        }
-
+        
+        return page;
     }
 }

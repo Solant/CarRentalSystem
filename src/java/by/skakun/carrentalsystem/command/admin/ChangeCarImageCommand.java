@@ -2,6 +2,8 @@ package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.CarDao;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -11,8 +13,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun
- * changes the image of car and returns him to the car info page
+ * @author Skakun changes the image of car and returns him to the car info page
  */
 public class ChangeCarImageCommand implements ActionCommand {
 
@@ -25,38 +26,28 @@ public class ChangeCarImageCommand implements ActionCommand {
         String carid = (String) request.getParameter("carid");
         int id = Integer.parseInt(carid);
         String carimage = (String) request.getParameter("newimage");
-        if(EnteredInfoValidator.dataLength(carimage)) {
+        if (EnteredInfoValidator.dataLength(carimage)) { //checking entered info
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
         carimage = "img/car/".concat(carimage).concat(".jpg"); //created an acceptable for database image address
-        
+
         CarDao carDao;
+        carDao = (CarDao) DaoFactory.getDao(DaoType.CAR);
         try {
-            carDao = new CarDaoImpl();
+            flag = carDao.changeCarimage(carimage, id);
+            if (flag) {
+                request.setAttribute("isuccess", "1");
+            } else {
+                request.setAttribute("ifail", "1");
+            }
         } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database");
-            LOG.info("->errorpage");
+            LOG.error("DAOException while ChangeCarImageCommand", ex);
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        try {
-            flag = carDao.changeCarimage(carimage, id);
-
-            if (flag) {
-                request.setAttribute("isuccess", "1");
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
-            } else {
-                request.setAttribute("ifail", "1");
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
-            }
-        } catch (DAOException ex) {
-            LOG.info("DAOException while ChangeCarImageCommand", ex);
-            page = ConfigurationManager.getProperty("path.page.carchange");
-            return page;
-        }
+        page = ConfigurationManager.getProperty("path.page.carchange");
+        return page;
 
     }
 

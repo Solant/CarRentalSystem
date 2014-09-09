@@ -1,10 +1,13 @@
 package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.dao.OrderDao;
-import by.skakun.carrentalsystem.dao.impl.OrderDaoImpl;
+import by.skakun.carrentalsystem.entity.Order;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -23,33 +26,26 @@ public class ConfirmCommand implements ActionCommand {
         String page;
         boolean flag;
         OrderDao orderDao;
+        String orderIdS = (String) request.getParameter("applId");
+        int orderId = Integer.parseInt(orderIdS);
+        List<Order> orders;
         try {
-            orderDao=new OrderDaoImpl();
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            flag = orderDao.confirm(orderId);
+            orderDao = (OrderDao) DaoFactory.getDao(DaoType.ORDER);
+            orders = orderDao.getNewOrders();
         } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database");
-            LOG.info("->errorpage");
+            LOG.error("DAOException while ConfirmCommand" + ex);
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
-        String appl = (String) request.getParameter("applId");
-        int applId = Integer.parseInt(appl);
-        try {
-            flag = orderDao.confirm(applId);
-        } catch (DAOException ex) {
-            page = new NewOrdersCommand().execute(request);
-            return page;
-        }
-
         if (flag) {
             request.setAttribute("csuccess", "1");
-            page = new NewOrdersCommand().execute(request);
-
-        } else {
-            page = new NewOrdersCommand().execute(request);
+            request.setAttribute("lst", orders);
         }
-        LOG.info("->neworders");
+        LOG.debug("->neworders");
+        page = ConfigurationManager.getProperty("path.page.neworders");
         return page;
-
     }
 
 }

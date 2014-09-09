@@ -22,5 +22,7 @@ public interface ClientDao extends IDao {
     boolean changeEmail(int id, String newemail) throws DAOException;
     
     boolean changeActive(int id, int active) throws DAOException;
+    
+    List<Client> getAllUsers() throws DAOException;
 
 }

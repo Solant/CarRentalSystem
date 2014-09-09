@@ -2,7 +2,8 @@ package by.skakun.carrentalsystem.command.admin;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.CarDao;
-import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
+import by.skakun.carrentalsystem.dao.DaoFactory;
+import by.skakun.carrentalsystem.dao.DaoType;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
 import by.skakun.carrentalsystem.util.EnteredInfoValidator;
@@ -11,8 +12,7 @@ import org.apache.log4j.Logger;
 
 /**
  *
- * @author Skakun
- * processing the request of changing the car name
+ * @author Skakun processing the request of changing the car name
  */
 public class ChangeCarNameCommand implements ActionCommand {
 
@@ -31,36 +31,27 @@ public class ChangeCarNameCommand implements ActionCommand {
         String carid = (String) request.getParameter("carid");
         int id = Integer.parseInt(carid);
         String carname = (String) request.getParameter("newcarname");
-        if(EnteredInfoValidator.dataLength(carname)) {
+        if (EnteredInfoValidator.dataLength(carname)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
         CarDao carDao;
-        try {
-            carDao = new CarDaoImpl();
-        } catch (DAOException ex) {
-            LOG.fatal("Couldn't establish the connection to the database");
-            LOG.debug("->errorpage");
-            page = ConfigurationManager.getProperty("path.page.error");
-            return page;
-        }
+            carDao = (CarDao) DaoFactory.getDao(DaoType.CAR);
         try {
             flag = carDao.changeCarname(carname, id);
 
             if (flag) {
                 request.setAttribute("success", "1");
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
             } else {
                 request.setAttribute("fail", "1");
-                page = ConfigurationManager.getProperty("path.page.carchange");
-                return page;
             }
         } catch (DAOException ex) {
-            LOG.info("DAOException while ChangeCarNameCommand", ex);
-            page = ConfigurationManager.getProperty("path.page.carchange");
+            LOG.error("DAOException while ChangeCarNameCommand", ex);
+            page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
+        page = ConfigurationManager.getProperty("path.page.carchange");
+        return page;
 
     }
 

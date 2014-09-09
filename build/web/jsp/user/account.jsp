@@ -40,8 +40,10 @@
                         <input type="email" name="newemail" required value="" />
                         <input type="submit" value="<fmt:message key="user.account.emailchange"/>"/>
                     </form> 
-                    <c:if test="${not empty cpError}"><div class="msg"><fmt:message key="change.email.fail"/></div></c:if>
-                    <c:if test="${not empty cpSuccess}"><div class="msg"><fmt:message key="change.email.success"/></div></c:if>
+                    <c:if test="${not empty cpError}"><div class="warnings"><fmt:message key="change.email.fail"/></div></c:if>
+                    <c:if test="${not empty cpSuccess}"><div class="warnings"><fmt:message key="change.email.success"/></div></c:if>
+                    <c:if test="${not empty cpSame}"><div class="warnings"><fmt:message key="error.same.emails"/></div></c:if>
+  
                     <form name='form-change-password' method="POST" action="carrent" > 
                         <input type="hidden" name="command" value="ChangePassword" /> 
                         <input type="submit" value="<fmt:message key="user.account.passchange"/>"/>

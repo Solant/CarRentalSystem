@@ -98,7 +98,7 @@ public enum CommandEnum {
      */
     REGISTERREDIRECT {
                 {
-                    this.command = new RegisterRedicrectCommand();
+                    this.command = new RegisterRedirectCommand();
                 }
             },
 
@@ -326,14 +326,7 @@ public enum CommandEnum {
                 }
             },
 
-    /**
-     *
-     */
-    USERSDELETE {
-                {
-                    this.command = new UsersDeleteCommand();
-                }
-            },
+    
 
     /**
      *
