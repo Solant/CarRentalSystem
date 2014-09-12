@@ -43,6 +43,7 @@ public class ChangeCarPriceCommand implements ActionCommand {
             flag = carDao.changeCarprice(price, id);
             if (flag) {
                 request.setAttribute("psuccess", "1");
+                request.getSession().setAttribute("carprice", price);
             } else {
                 request.setAttribute("pfail", "1");
             }

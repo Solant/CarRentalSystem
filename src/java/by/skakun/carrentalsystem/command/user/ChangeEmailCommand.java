@@ -28,6 +28,7 @@ public class ChangeEmailCommand implements ActionCommand {
         String oldEmail = (String) request.getSession().getAttribute("userEmail");
         String email = (String) request.getParameter("newemail");
         if (EnteredInfoValidator.emailVal(email)) {
+            request.setAttribute("cpError", "1");
             page = ConfigurationManager.getProperty("path.page.account");
             return page;
         }

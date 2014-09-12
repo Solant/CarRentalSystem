@@ -42,15 +42,15 @@
                         <form name ="AddingNewCar"  method="POST" action="carrent" class="menu">
                             <input type="hidden" name="command" value="newcar" /> 
                             <b> <fmt:message key="car.add.name"/></b>
-                            <input type="text" name="carname" value="" required> <br/> <br/>
+                            <input type="text" name="carname" maxlength="100" value="" required> <br/> <br/>
                             <b> <fmt:message key="car.add.price"/></b>
-                            <input type="number" name="price" min="1" value="" required> <br/><br/>
+                            <input type="number" name="price" min="1" max="10000" value="" required> <br/><br/>
                             <b> <fmt:message key="car.add.image"/></b>
                             <div class="notice"><fmt:message key="carimagechange.notice"/></div>
-                            <input type="text" name="image" value="" required> <br/><br/>
+                            <input type="text" maxlength="100" name="image" value="" required> <br/><br/>
                             <input type="submit" value="<fmt:message key="car.add"/> " />
-                            <c:if test="${not empty csuccess}"><div class="msg"><fmt:message key="car.add.success"/></div></c:if>
-                            <c:if test="${not empty cfail}"><div class="msg"><fmt:message key="car.add.fail"/></div></c:if>
+                            <c:if test="${not empty csuccess}"><div class="warnings"><fmt:message key="car.add.success"/></div></c:if>
+                            <c:if test="${not empty cfail}"><div class="warnings"><fmt:message key="car.add.fail"/></div></c:if>
                             </form>
                             <br/>
                         </div>               

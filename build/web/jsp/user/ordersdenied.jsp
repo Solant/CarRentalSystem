@@ -48,6 +48,9 @@
                             <td class="heading">
                                 <b><fmt:message key="order.reason.deny"/></b>
                             </td> 
+                            <td class="heading">
+                                <b><fmt:message key="order.date"/></b>
+                            </td>
                         </tr>
                         <c:forEach var="elemR" items="${lstR}" varStatus="status">
                             <tr>  
@@ -56,6 +59,7 @@
                                 <td>${elemR.period}  </td>
                                 <td>${elemR.sumToPay} </td>
                                 <td>${elemR.refusalReason} </td>
+                                <td>${elemR.date} </td>
                             </tr> 
                         </c:forEach> 
                     </table>

@@ -38,6 +38,7 @@ public class ChangeCarImageCommand implements ActionCommand {
             flag = carDao.changeCarimage(carimage, id);
             if (flag) {
                 request.setAttribute("isuccess", "1");
+                request.getSession().setAttribute("carimage", carimage);
             } else {
                 request.setAttribute("ifail", "1");
             }

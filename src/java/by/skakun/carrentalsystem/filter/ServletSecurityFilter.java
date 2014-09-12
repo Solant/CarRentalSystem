@@ -37,8 +37,6 @@ public class ServletSecurityFilter implements Filter {
         HttpSession session = req.getSession();
         ClientType type = (ClientType) session.getAttribute("userType");
         String type2 = (String) req.getParameter("userType");
-        LOG.info(type2 + "userType");
-        LOG.info(type + "userType");
         if (type == null & type2 == null) {
             type = ClientType.GUEST;
             session.setAttribute("userType", type);

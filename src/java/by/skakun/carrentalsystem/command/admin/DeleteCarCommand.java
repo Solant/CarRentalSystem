@@ -4,7 +4,6 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.CarDao;
 import by.skakun.carrentalsystem.dao.DaoFactory;
 import by.skakun.carrentalsystem.dao.DaoType;
-import by.skakun.carrentalsystem.dao.impl.CarDaoImpl;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
@@ -24,14 +23,15 @@ public class DeleteCarCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         String page;
         CarDao carDao;
-        carDao = (CarDao) DaoFactory.getDao(DaoType.CAR);
         boolean flag;
         try {
+            carDao = (CarDao) DaoFactory.getDao(DaoType.CAR);
             int id = Integer.parseInt((String) request.getParameter("carid"));
             flag = carDao.deleteCar(id);
         } catch (DAOException ex) {
             LOG.error("DAOException after clientDao.deleteUser(id)." + ex);
-            page = ConfigurationManager.getProperty("path.page.error");
+            page = ConfigurationManager.getProperty("path.page.carchange");
+            request.setAttribute("dfail", "1");
             return page;
         }
         if (flag) {

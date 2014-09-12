@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * 
+ *
  * DAO implementation for OrderDao Interface
  *
  */
@@ -73,12 +73,12 @@ public class OrderDaoImpl implements OrderDao {
             + "=CAR.`car_id` LEFT JOIN CLIENT on ORDERC.`user_id`="
             + "CLIENT.`user_id` WHERE ORDERC.`returned`=1;";
     private static final String SELECT_DENIED_BY_ID = "SELECT ORDERC.`sum_to_pay`,ORDERC.`order_id`,"
-            + "ORDERC.`reason_for_refusal`, bill.`period`, CAR.`carname`, CAR.`price` "
+            + "ORDERC.`reason_for_refusal`, bill.`period`, bill.`startdate`, CAR.`carname`, CAR.`price` "
             + "FROM ORDERC LEFT JOIN CAR ON ORDERC.`car_id`=CAR.`car_id` INNER JOIN bill ON"
             + " ORDERC.`order_id`=bill.`order_id` WHERE ORDERC.`user_id`= ? AND ORDERC.`paidfor`=0 "
             + "AND ORDERC.`confirmed`=2;";
     private static final String SELECT_ARCHIVED_BY_ID = "SELECT ORDERC.`order_id`,ORDERC.`sum_to_pay`, CAR.`carname`, CAR.`price`, "
-            + "bill.`period` FROM ORDERC INNER JOIN CAR ON "
+            + "bill.`period`, bill.`startdate` FROM ORDERC INNER JOIN CAR ON "
             + "ORDERC.`car_id`=CAR.`car_id` INNER JOIN bill ON "
             + "ORDERC.`order_id`=bill.`order_id` "
             + "WHERE ORDERC.`user_id`= ? AND ORDERC.`paidfor`=1;";
@@ -90,6 +90,7 @@ public class OrderDaoImpl implements OrderDao {
 
     /**
      *
+     * @throws by.skakun.carrentalsystem.exception.DAOException
      */
     public OrderDaoImpl() throws DAOException {
         this.pool = ConnectionPool.getInstance();
@@ -102,6 +103,7 @@ public class OrderDaoImpl implements OrderDao {
      * order into database
      * @throws DAOException
      */
+    @Override
     public void create(Order order) throws DAOException {
 
         PreparedStatement stm = null;
@@ -144,14 +146,13 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-    
-
     /**
      *
      * @param id - id of the user
      * @return list of all unpaid (but confirmed) orders by this user
      * @throws DAOException
      */
+    @Override
     public List<Order> getUByUserId(int id) throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getUByUserId()");
@@ -208,6 +209,7 @@ public class OrderDaoImpl implements OrderDao {
      * returned without any damage
      * @throws DAOException
      */
+    @Override
     public void returnCar(int id) throws DAOException {
         LOG.info("OrderDaoImpl.returnCar()");
         PreparedStatement stm = null;
@@ -230,6 +232,7 @@ public class OrderDaoImpl implements OrderDao {
      * @return true if update was successful, otherwise
      * @throws DAOException
      */
+    @Override
     public boolean deny(int id, String reason) throws DAOException {
         LOG.info("OrderDaoImpl.deny()");
         PreparedStatement stm = null;
@@ -255,11 +258,10 @@ public class OrderDaoImpl implements OrderDao {
      * @return true id the payment was successful, otherwise
      * @throws DAOException
      */
+    @Override
     public boolean pay(int id, int idOr, int sum) throws DAOException {
         LOG.info("OrderDaoImpl.pay()");
-        PreparedStatement stm = null;
-        PreparedStatement stm1 = null;
-        PreparedStatement stm2 = null;
+        PreparedStatement stm = null, stm1 = null, stm2 = null;
 
         try {
             stm1 = connection.prepareStatement(SELECT_CREDIT);
@@ -267,7 +269,7 @@ public class OrderDaoImpl implements OrderDao {
             ResultSet rs = stm1.executeQuery();
             rs.next();
             int credit = rs.getInt("credit");
-            if(sum>credit) {
+            if (sum > credit) {
                 return false;
             }
             connection.setAutoCommit(false);
@@ -278,7 +280,6 @@ public class OrderDaoImpl implements OrderDao {
             stm2.setInt(1, credit);
             stm2.setInt(2, sum);
             stm2.setInt(3, id);
-            LOG.info(stm2);
             stm2.executeUpdate();
             connection.commit();
             connection.setAutoCommit(true);
@@ -293,6 +294,7 @@ public class OrderDaoImpl implements OrderDao {
         } finally {
             closePS(stm);
             closePS(stm1);
+            closePS(stm2);
             pool.returnConnection(connection);
         }
     }
@@ -303,6 +305,7 @@ public class OrderDaoImpl implements OrderDao {
      * @return true id order was deleted successfully, otherwise
      * @throws DAOException
      */
+    @Override
     public boolean delete(int id) throws DAOException {
         LOG.info("OrderDaoImpl.delete()");
         PreparedStatement stm = null;
@@ -324,6 +327,7 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all newly made orders (for admin)
      * @throws DAOException
      */
+    @Override
     public List<Order> getNewOrders() throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getNewOrders()");
@@ -357,6 +361,7 @@ public class OrderDaoImpl implements OrderDao {
      * @return list of all paid orders (for admin)
      * @throws DAOException
      */
+    @Override
     public List<Order> getPaidOrders() throws DAOException {
         List<Order> list = new ArrayList<>();
         LOG.info("OrderDaoImpl.getPaidOrders()");
@@ -474,6 +479,7 @@ public class OrderDaoImpl implements OrderDao {
                 order.setPrice(rs.getInt("price"));
                 order.setPeriod(rs.getInt("period"));
                 order.setId(rs.getInt("order_id"));
+                order.setDate(rs.getDate("startdate"));
                 order.setRefusalReason(rs.getString("reason_for_refusal"));
                 list.add(order);
             }
@@ -506,6 +512,7 @@ public class OrderDaoImpl implements OrderDao {
                 order.setCarName(rs.getString("carname"));
                 order.setPrice(rs.getInt("price"));
                 order.setPeriod(rs.getInt("period"));
+                order.setDate(rs.getDate("startdate"));
                 list.add(order);
             }
             return list;
@@ -555,7 +562,6 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-    
     /**
      *
      * @return @throws DAOException
@@ -575,7 +581,7 @@ public class OrderDaoImpl implements OrderDao {
                 list.add(order);
             }
             return list;
-        } catch (SQLException  ex) {
+        } catch (SQLException ex) {
             throw new DAOException(ex);
         } finally {
             closePS(stm);

@@ -49,8 +49,8 @@
                             <input type="text" name="newcarname" value="" required> 
                             <input type="submit" value="<fmt:message key="car.change"/> " />
                         </form>
-                        <c:if test="${not empty success}"><div class="msg"><fmt:message key="carnamechange.success"/></div></c:if>
-                        <c:if test="${not empty fail}"><div class="msg"><fmt:message key="carnamechange.fail"/></div></c:if>
+                        <c:if test="${not empty success}"><div class="warnings"><fmt:message key="carnamechange.success"/></div></c:if>
+                        <c:if test="${not empty fail}"><div class="warnings"><fmt:message key="carnamechange.fail"/></div></c:if>
 
                             <hr/>
                             <b> <fmt:message key="order.price"/></b> ${carprice} <fmt:message key="cars.currency"/>
@@ -61,8 +61,8 @@
                             <input type="number" name="newprice" min="1" max="10000" value="" required> 
                             <input type="submit" value="<fmt:message key="car.change"/> " />
                         </form>
-                        <c:if test="${not empty psuccess}"><div class="msg"><fmt:message key="carpricechange.success"/></div></c:if>
-                        <c:if test="${not empty pfail}"><div class="msg"><fmt:message key="carpricechange.fail"/></div></c:if>
+                        <c:if test="${not empty psuccess}"><div class="warnings"><fmt:message key="carpricechange.success"/></div></c:if>
+                        <c:if test="${not empty pfail}"><div class="warnings"><fmt:message key="carpricechange.fail"/></div></c:if>
 
                             <hr/>
                             <img src="${carimage}"/><br/>
@@ -70,15 +70,15 @@
                             <input type="hidden" name="carimage" value="${carimage}" /> 
                             <input type="hidden" name="carid" value="${carid}" /> 
                             <input type="hidden" name="command" value="changecarimage" /> 
-                            <input type="text" pattern="(^[A-z0-9]{7,14}){2}" name="newimage" value="" required> 
+                            <input type="text" maxlength="100" name="newimage" value="" required> 
                             <input type="submit" value="<fmt:message key="car.change"/> " />
                         </form>
                         <div class="notice"><fmt:message key="carimagechange.notice"/></div>
-                        <c:if test="${not empty isuccess}"><div class="msg"><fmt:message key="carimagechange.success"/></div></c:if>
-                        <c:if test="${not empty ifail}"><div class="msg"><fmt:message key="carimagechange.fail"/></div></c:if>
+                        <c:if test="${not empty isuccess}"><div class="warnings"><fmt:message key="carimagechange.success"/></div></c:if>
+                        <c:if test="${not empty ifail}"><div class="warnings"><fmt:message key="carimagechange.fail"/></div></c:if>
                             <hr/>
-                        <c:if test="${active == 1}"><div class="msg"><fmt:message key="caractivechange.success"/></div></c:if>
-                        <c:if test="${active == 0}"><div class="msg"><fmt:message key="caractivechange.fail"/></div></c:if>                            
+                        <c:if test="${active == 1}"><div class="warnings"><fmt:message key="caractivechange.success"/></div></c:if>
+                        <c:if test="${active == 0}"><div class="warnings"><fmt:message key="caractivechange.fail"/></div></c:if>                            
                         <form name ="ChangeCarInfoForm"  method="POST" action="carrent" class="menu">
                             <input type="hidden" name="active" value="${active}" /> 
                             <input type="hidden" name="carid" value="${carid}" /> 
@@ -92,8 +92,8 @@
                             <input type="submit" value="<fmt:message key="car.delete"/> " />
                         </form>
                         <div class="notice"><fmt:message key="cardelete.notice"/></div>
-                        <c:if test="${not empty dsuccess}"><div class="msg"><fmt:message key="cardelete.success"/></div></c:if>
-                        <c:if test="${not empty dfail}"><div class="msg"><fmt:message key="cardelete.fail"/></div></c:if>
+                        <c:if test="${not empty dsuccess}"><div class="warnings"><fmt:message key="cardelete.success"/></div></c:if>
+                        <c:if test="${not empty dfail}"><div class="warnings"><fmt:message key="cardelete.fail"/></div></c:if>
                             <br/>
 
                         </div>               

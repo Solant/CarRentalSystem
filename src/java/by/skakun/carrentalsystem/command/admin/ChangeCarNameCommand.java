@@ -42,6 +42,7 @@ public class ChangeCarNameCommand implements ActionCommand {
 
             if (flag) {
                 request.setAttribute("success", "1");
+                request.getSession().setAttribute("carname", carname);
             } else {
                 request.setAttribute("fail", "1");
             }

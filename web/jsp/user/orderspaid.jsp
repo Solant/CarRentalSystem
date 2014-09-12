@@ -45,16 +45,18 @@
                             <td class="heading">
                                 <b> <fmt:message key="user.order.sumToPay"/>, $ </b> 
                             </td> 
-           <!--                 <td class="heading">
-                                <b> <fmt:message key="user.order.date"/>, $ </b> 
-                            </td>  -->
+                            <td class="heading">
+                                <b><fmt:message key="order.date"/></b>
+                            </td>
                             
                         </tr>
                     <c:forEach var="elemA" items="${lstA}" varStatus="status">
                         <tr>  <td> ${elemA.carName}</td>
                         <td>${elemA.price}</td>
                         <td> ${elemA.period}</td>
-                        <td> ${elemA.sumToPay} </td></tr>
+                        <td> ${elemA.sumToPay} </td>
+                        <td>${elemA.date} </td>
+                        </tr>
                     </c:forEach> 
                      </table>
                     <br/>

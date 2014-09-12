@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/ConfirmCommand.java</file>
-            <file>file:/Users/apple/CarRentalSystem/web/index.jsp</file>
-            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/RepairedCommand.java</file>
-            <file>file:/Users/apple/CarRentalSystem/web/jsp/login.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/web/jsp/user/basket.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/web/jsp/admin/addnewcar.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/web/jsp/user/ordersdenied.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/dao/DaoFactory.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/CarInfoCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/admin/ChangeCarNameCommand.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/dao/impl/OrderDaoImpl.java</file>
+            <file>file:/Users/apple/CarRentalSystem/web/jsp/user/orderspaid.jsp</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/dao/OrderDao.java</file>
+            <file>file:/Users/apple/CarRentalSystem/src/java/by/skakun/carrentalsystem/command/user/PaidCommand.java</file>
         </group>
     </open-files>
 </project-private>
