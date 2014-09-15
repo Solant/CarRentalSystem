@@ -39,7 +39,7 @@
                 <div class="titling"> <fmt:message key="register.surname" />: <h7>*</h7></div>
                 <input type="text" name="surname"  maxlength="25" value=""  required>
                 <div class="titling"> <fmt:message key="register.email" />: <h7>*</h7></div>
-                <input type="email" name="email" value=""  required>
+                <input type="email" name="email" value=""required>
                 <div class="titling"> <fmt:message key="register.passport.number" />:<h7>*</h7></div>
                 <div class="warning"> <fmt:message key="passnum.warn" /></div>
                 <input type="text" pattern="^[A-Z0-9]{7,14}$" name="pass_num" value=""  required>
@@ -49,7 +49,8 @@
             </form>
             <br/>
             <form name="back" action="" method="POST">
-                <input type="submit" value="<fmt:message key="back.button"/>" onclick='history.back()'/> </form>
+                <input type="hidden" name="command" value="returnIndex"/> 
+                <input type="submit" value="<fmt:message key="error.back.button"/>"/> </form>
         </div>
     </center>
     <div class="footer">  <c:import url="\common\footer.jsp" charEncoding="utf-8"/> </div>

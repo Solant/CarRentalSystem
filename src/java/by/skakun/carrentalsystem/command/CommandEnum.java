@@ -437,6 +437,12 @@ public enum CommandEnum {
                     this.command = new DeleteCarCommand();
                 }
             },
+    RETURNINDEX {
+                {
+                    this.command = new ReturnIndexCommand();
+                }
+            },
+    
 
     /**
      *

@@ -36,7 +36,6 @@ public class PageRedirectSecurityFilter implements Filter {
     }
 
     /**
-     *
      * @param request
      * @param response
      * @param chain

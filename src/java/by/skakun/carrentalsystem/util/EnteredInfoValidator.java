@@ -1,18 +1,19 @@
 package by.skakun.carrentalsystem.util;
 
 import java.util.regex.Pattern;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Skakun
  *
- * server-side validation of information, which ysers enter into
- * the fields
+ * server-side validation of information, which users enter into the fields
  */
 public class EnteredInfoValidator {
 
+    private static final Logger LOG = Logger.getLogger(EnteredInfoValidator.class);
 
-    public static final String LOGIN_REGEX = "^[a-z0-9]{3,16}$"; //big letters
+    public static final String LOGIN_REGEX = "^[a-z0-9]{3,16}$";
     public static final String EMAIL_REGEX = "^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$";
     public static final String PASSWORD_REGEX = "^[a-z0-9_-]{6,16}$";
     public static final String PASSNUM_REGEX = "^[A-Z0-9]{7,14}$";
@@ -35,9 +36,10 @@ public class EnteredInfoValidator {
      * @return true if there are problems with entered info
      */
     public static boolean validateRegistrationInfo(String login, String email, String passNum, String password) {
-        return loginVal(login) || passwordVal(password) || passNumVal(passNum) || emailVal(email);
+        LOG.debug("total val: " + (loginVal(login) | passwordVal(password) | passNumVal(passNum)));
+        return loginVal(login) | passwordVal(password) | passNumVal(passNum);
     }
-    
+
     /**
      *
      * @param login
@@ -47,16 +49,17 @@ public class EnteredInfoValidator {
     public static boolean validateLoginInfo(String login, String password) {
         return loginValE(login) || passwordValE(password);
     }
-    
+
     /**
      *
      * @param login
      * @return true if login doesn't match the pattern
      */
     public static boolean loginVal(String login) {
+        LOG.debug("loginVal" + !Pattern.matches(LOGIN_REGEX, login));
         return !Pattern.matches(LOGIN_REGEX, login);
     }
-    
+
     /**
      *
      * @param login
@@ -72,9 +75,10 @@ public class EnteredInfoValidator {
      * @return
      */
     public static boolean emailVal(String email) {
+        LOG.debug("emailVal" + !Pattern.matches(EMAIL_REGEX, email));
         return !Pattern.matches(EMAIL_REGEX, email);
     }
-    
+
     /**
      *
      * @param email
@@ -91,6 +95,7 @@ public class EnteredInfoValidator {
      * @return password doesn't match the pattern
      */
     public static boolean passwordVal(String password) {
+        LOG.debug("passwordVal" + !Pattern.matches(PASSWORD_REGEX, password));
         return !Pattern.matches(PASSWORD_REGEX, password);
     }
 
@@ -119,6 +124,7 @@ public class EnteredInfoValidator {
      * @return true if passNum doesn't match the regular expression
      */
     public static boolean passNumVal(String passNum) {
+        LOG.debug("passNumVal" + !Pattern.matches(PASSNUM_REGEX, passNum));
         return !Pattern.matches(PASSNUM_REGEX, passNum);
     }
 
@@ -143,7 +149,7 @@ public class EnteredInfoValidator {
     /**
      *
      * @param price
-     * @return true if  price is outside acceptable range
+     * @return true if price is outside acceptable range
      */
     public static boolean priceVal(int price) {
         return (price > MIN_PRICE) || (price < MAX_PRICE);
@@ -157,7 +163,7 @@ public class EnteredInfoValidator {
     public static boolean periodVal(int period) {
         return (period >= MIN_PERIOD) || (period <= MAX_PERIOD);
     }
-    
+
     /**
      *
      * @param price

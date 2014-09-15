@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * returns page for adding new car
+ * returns page for adding a new car
  */
 public class AddNewCarCommand implements ActionCommand {
 

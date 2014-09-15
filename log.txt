@@ -31,3 +31,11 @@
 2014-09-01 23:04:24 [main        ] <DEBUG> <ConnectionPool.getInstance()>
 2014-09-01 23:04:24 [main        ] <DEBUG> <ConnectionPool.getConnection()>
 2014-09-01 23:04:24 [main        ] <INFO > <ClientDaoImpl.deleteUser()>
+2014-09-15 14:14:26 [main        ] <DEBUG> <ConnectionPool.getInstance()>
+2014-09-15 14:14:27 [main        ] <DEBUG> <ConnectionPool()>
+2014-09-15 14:14:29 [main        ] <DEBUG> <ConnectionPool.getConnection()>
+2014-09-15 14:14:29 [main        ] <INFO > <CLientDaoImpl.checkLogin()>
+2014-09-15 14:14:29 [main        ] <INFO > <com.mysql.jdbc.JDBC4PreparedStatement@305fd85d: SELECT * FROM CLIENT WHERE USERNAME= '';>
+2014-09-15 14:14:29 [main        ] <DEBUG> <ConnectionPool.getInstance()>
+2014-09-15 14:14:29 [main        ] <DEBUG> <ConnectionPool.getConnection()>
+2014-09-15 14:14:29 [main        ] <INFO > <ClientDaoImpl.deleteUser()>

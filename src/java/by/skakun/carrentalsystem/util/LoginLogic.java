@@ -32,7 +32,7 @@ public class LoginLogic {
                 if (client != null) {
                     login2 = client.getLogin();
                     password2 = client.getPassword();
-                    if (login.equals(login2) && password.equals(password2)) {
+                    if (login.equals(login2) & password.equals(password2)) {
                         if (client.getActive() == 0) {
                             return 1;
                         }

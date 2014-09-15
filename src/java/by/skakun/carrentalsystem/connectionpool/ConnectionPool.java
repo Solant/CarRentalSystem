@@ -31,7 +31,6 @@ public final class ConnectionPool {
     private final static String DATABASE_PASSWORD = ConfigurationManager.getProperty("db.password");
     private final static int CONNECTIONS_QUANTITY = Integer.parseInt(ConfigurationManager.getProperty("db.maxpool"));
     private final static String DATABASE_DRIVER = ConfigurationManager.getProperty("db.driver");
-    private final static int DATABASE_WAIT = Integer.parseInt(ConfigurationManager.getProperty("db.idleTimeout"));
     private static boolean flag = true;
 
     private ConnectionPool() {
@@ -71,7 +70,7 @@ public final class ConnectionPool {
         lock = new ReentrantLock();
         if (INSTANCE == null) {
             lock.lock();
-            try {
+            try { 
                 if (INSTANCE == null) {
                     INSTANCE = new ConnectionPool();
                 }

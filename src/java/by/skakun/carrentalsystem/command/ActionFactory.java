@@ -30,9 +30,9 @@ public class ActionFactory {
        try {
            CommandEnum currentEnum =CommandEnum.valueOf(action.toUpperCase());
            current = currentEnum.getCurrentCommand();
-           LOG.info("User has chosen command:" + currentEnum.name());
+           LOG.debug("User has chosen command:" + currentEnum.name());
        } catch (IllegalArgumentException ex) {
-           LOG.info("IllegalArgumentException while ActionFactory.defineCommand()" + ex);
+           LOG.error("IllegalArgumentException while ActionFactory.defineCommand()" + ex);
           request.setAttribute("wrongAtion", action + ConfigurationManager.getProperty("message.wrongaction"));
        }
        return current;

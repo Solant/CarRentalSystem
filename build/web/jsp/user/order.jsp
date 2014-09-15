@@ -45,7 +45,7 @@
                     <form name ="order"  method="POST" action="carrent" class="order">
                         <input type="hidden" name="command" value="OrderRe" /> 
                         <p><fmt:message key="order.date"/></p> 
-                        <input type="date" name="date" value="" required  max="2015-12-31" min="2014-08-26"/>
+                        <input type="date" name="date" value="" required  max="2015-12-31" min="2014-09-16"/>
                         <div class="notice"><fmt:message key="order.minmax"/></div>
                         <input  type="number"  min="1" max="30" required name="period" value="" placeholder="" />
                         <input type="submit" value="<fmt:message key="cars.order"/>" />

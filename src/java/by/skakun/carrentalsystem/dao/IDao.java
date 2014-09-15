@@ -10,9 +10,9 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Skakun
- * @param <Entity>
+ * @param <T> stands for Clients, Cars, RepairBills and Orders
  */
-public interface IDao<Entity> {
+public interface IDao <T extends Entity>{
 
     /**
      * log4j logger
@@ -23,7 +23,7 @@ public interface IDao<Entity> {
      *
      * @return @throws DAOException
      */
-    List<Entity> getAll() throws DAOException;
+    List <T> getAll() throws DAOException;
 
     /**
      *

@@ -4,7 +4,6 @@ import by.skakun.carrentalsystem.command.ActionCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.DaoFactory;
 import by.skakun.carrentalsystem.dao.DaoType;
-import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -44,7 +43,7 @@ public class RegisterCommand implements ActionCommand {
         if (EnteredInfoValidator.validateRegistrationInfo(login, email, passport, password)) {
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
-        }
+        } 
         int active = 1; //1 means active, 0 means inactive
         int credit = 1000; // standart sum, placeholder for the real billing
         password = PasswordHashing.getHashValue(password);
@@ -58,7 +57,7 @@ public class RegisterCommand implements ActionCommand {
                 return page;
             }
         } catch (DAOException ex) {
-            LOG.error("DAOException while checkLogin()");
+            LOG.error("DAOException while checkLogin()" + ex);
             page = ConfigurationManager.getProperty("path.page.error");
             return page;
         }
