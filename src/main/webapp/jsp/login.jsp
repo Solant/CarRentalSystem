@@ -7,7 +7,7 @@
 
 <html>
     <head>
-        <%--<fmt:setLocale value="${locale}" scope="session"/>--%>
+        <fmt:setLocale value="${locale}" scope="session"/>
         <fmt:bundle basename="title" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message key="header.title"/></title>
