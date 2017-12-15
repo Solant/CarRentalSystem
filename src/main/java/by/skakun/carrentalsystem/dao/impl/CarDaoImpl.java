@@ -25,16 +25,16 @@ public class CarDaoImpl implements CarDao {
     private static final Logger LOG = Logger.getLogger(CarDaoImpl.class);
     private static final String SELECT_ALL = "SELECT * FROM CAR;";
     private static final String SELECT_ALL_ACTIVE = "SELECT * FROM CAR WHERE CAR.`active`=1;";
-    private static final String UPDATE_CAR_NAME = "UPDATE `car` SET car.`carname`=?"
-            + " where car.`car_id`=?;";
-    private static final String UPDATE_CAR_PRICE = "UPDATE `car` SET car.`price`=?"
-            + " where car.`car_id`=?;";
-    private static final String UPDATE_CAR_IMAGE = "UPDATE `car` SET car.`image`=?"
-            + " where car.`car_id`=?;";
-    private static final String SET_INACTIVE = "UPDATE `car` SET car.`active`=0"
-            + " where car.`car_id`=?;";
-    private static final String SET_ACTIVE = "UPDATE `car` SET car.`active`=1"
-            + " where car.`car_id`=?;";
+    private static final String UPDATE_CAR_NAME = "UPDATE `CAR` SET CAR.`carname`=?"
+            + " where CAR.`car_id`=?;";
+    private static final String UPDATE_CAR_PRICE = "UPDATE `CAR` SET CAR.`price`=?"
+            + " where CAR.`car_id`=?;";
+    private static final String UPDATE_CAR_IMAGE = "UPDATE `CAR` SET CAR.`image`=?"
+            + " where CAR.`car_id`=?;";
+    private static final String SET_INACTIVE = "UPDATE `CAR` SET CAR.`active`=0"
+            + " where CAR.`car_id`=?;";
+    private static final String SET_ACTIVE = "UPDATE `CAR` SET CAR.`active`=1"
+            + " where CAR.`car_id`=?;";
     private static final String LOOK_FOR_CAR = "SELECT * FROM CAR WHERE CAR.`car_id`=?;";
     private static final String DELETE_FROM_CAR = "DELETE FROM CAR WHERE CAR.`car_id`=?;";
     private static final String ADD_NEW_CAR = "INSERT INTO CAR(CARNAME, PRICE, IMAGE, ACTIVE) "

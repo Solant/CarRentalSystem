@@ -25,9 +25,9 @@ public class RepairBillDaoImpl implements RepairBillDao {
     private ConnectionPool pool;
     private static final Logger LOG = Logger.getLogger(RepairBillDaoImpl.class);
     private static final String GET_ALL = "SELECT damagebill.`bill_id`, damagebill.`damage`, "
-            + "damagebill.`sum`, car.`carname` FROM damagebill LEFT JOIN "
-            + "`orderc` ON `damagebill`.`order_id`=orderc.`order_id` "
-            + "LEFT JOIN car ON orderc.`car_id`=car.`car_id` WHERE damagebill.`repaired`=0;";
+            + "damagebill.`sum`, CAR.`carname` FROM damagebill LEFT JOIN "
+            + "`ORDERC` ON `damagebill`.`order_id`=ORDERC.`order_id` "
+            + "LEFT JOIN CAR ON ORDERC.`car_id`=CAR.`car_id` WHERE damagebill.`repaired`=0;";
     private static final String REPAIR = "UPDATE DAMAGEBILL SET DAMAGEBILL.`repaired`=1"
             + " where DAMAGEBILL.`bill_id`=?;";
 
