@@ -1,12 +1,9 @@
 package by.skakun.carrentalsystem.command.auth;
 
 import by.skakun.carrentalsystem.command.ActionCommand;
-import by.skakun.carrentalsystem.command.admin.MainAdmCommand;
-import by.skakun.carrentalsystem.command.user.MainRedirectCommand;
 import by.skakun.carrentalsystem.dao.ClientDao;
 import by.skakun.carrentalsystem.dao.DaoFactory;
 import by.skakun.carrentalsystem.dao.DaoType;
-import by.skakun.carrentalsystem.dao.impl.ClientDaoImpl;
 import by.skakun.carrentalsystem.entity.Client;
 import by.skakun.carrentalsystem.exception.DAOException;
 import by.skakun.carrentalsystem.util.ConfigurationManager;
@@ -14,7 +11,7 @@ import by.skakun.carrentalsystem.util.EnteredInfoValidator;
 import by.skakun.carrentalsystem.util.LoginLogic;
 import by.skakun.carrentalsystem.util.PasswordHashing;
 import by.skakun.carrentalsystem.util.StatisticsTagHandler;
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
@@ -70,7 +67,9 @@ public class LoginCommand implements ActionCommand {
                 return page;
             case 3:
                 int id = (int) request.getSession().getAttribute("userId");
-                int size = StatisticsTagHandler.getUsersOrders(id).size();
+                int size = Optional.ofNullable(StatisticsTagHandler.getUsersOrders(id))
+                        .orElseGet(Collections::emptyList)
+                        .size();
                 if (size > 0) {
                     request.setAttribute("flag", "1");
                     request.setAttribute("rw", size);
