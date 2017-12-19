@@ -63,5 +63,11 @@ CHANGE COLUMN `order_id` `order_id` INT(11) NOT NULL AUTO_INCREMENT ;
 ALTER TABLE `CarRentalSystem`.`bill`
 CHANGE COLUMN `bill_id` `bill_id` INT(11) NOT NULL AUTO_INCREMENT ;
 
+ALTER TABLE `CarRentalSystem`.`damagebill`
+CHANGE COLUMN `bill_id` `bill_id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `CarRentalSystem`.`ORDERC`
+ADD COLUMN `reason_for_refusal` VARCHAR(300) NULL AFTER `RETURNED`;
+
 -- admin admin1234
 INSERT INTO `CarRentalSystem`.`CLIENT` (`USER_ID`, `USERNAME`, `PASS`, `SURNAME`, `NAME`, `PASSPORT_NUMBER`, `EMAIL`, `CLIENT_TYPE`, `ACTIVE`, `CREDIT`) VALUES ('1', 'admin', 'ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'admin', 'admin', '1234567890', 'admin@admin.com', 'ADMIN', '1', '1000');
